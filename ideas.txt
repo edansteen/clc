@@ -1,0 +1,51 @@
+PROJECT: Make a game that I can sell on Steam
+	- Is 2D
+	- Must include Multiplayer
+	- Uses Godot or Electron ideally I haven't really decided yet
+	- Similar playstyle to Super Auto Pets
+
+Inspiration:
+	Egg Inc.
+	Brawlhalla
+	Super Auto Pets ********
+	The Expendabros
+	Terraria
+	Pac-Man
+	Among Us
+	Mario
+	Souls Games (RPG)
+	Soul Knight
+	Agar.io
+	Crossy road
+	Geometry Dash
+	Ultimate Chicken Horse
+	Hearthstone
+	Explosive Kittens
+	Shotgun King
+	Magic Survival
+	Chess Boxing The Videogame (Chess for 30 seconds then Street Fighter for 30 seconds) ****************
+	Alto's Adventure but Space Themed
+
+What I want:
+	2D
+	Multiplayer available (but also playable offline)
+		1v1 format
+	Autochess or Satisfying idle game or Roguelike with loads of unique weapons
+	Simple graphics
+
+Game Idea: Rouguelike Dungeon-crawler
+	For singleplayer mode: roguelike dungeon run with 5 randomly selected bosses that you have to beat to complete the game 
+
+Game Idea: Space Game
+	Fly a spaceship through an asteroid cluttered space to land on a planet, where it becomes a timer-based survival game like Soul Knight + Magic Survival where, when you reach the timer, spaceship is ready and you can move on to the next planet
+		Any powerups/weapons received are kept throughout the game, planets get harder and harder as time passes
+	Includes an Endless Arcade Mode, where you start with nothing and goal is to reach the highest possible score and mobs get tougher as time passes. Weapons/powerups will get better as time passes too
+
+Game Idea: Chess boxing
+	1v1 where you play 30sec Chess, then 30sec Street Fighter over and over until one player wins either one of the games
+	Will need AI so players don't have to play against real players
+	Friends System
+
+
+
+daver99@gmail.com
