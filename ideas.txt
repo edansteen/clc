@@ -13,7 +13,6 @@ Inspiration:
 	Pac-Man
 	Among Us
 	Mario
-	Souls Games (RPG)
 	Soul Knight
 	Agar.io
 	Crossy road
@@ -26,26 +25,31 @@ Inspiration:
 	Chess Boxing The Videogame (Chess for 30 seconds then Street Fighter for 30 seconds) ****************
 	Alto's Adventure but Space Themed
 
-What I want:
-	2D
-	Multiplayer available (but also playable offline)
-		1v1 format
-	Autochess or Satisfying idle game or Roguelike with loads of unique weapons
-	Simple graphics
 
 Game Idea: Rouguelike Dungeon-crawler
 	For singleplayer mode: roguelike dungeon run with 5 randomly selected bosses that you have to beat to complete the game 
+	For multiplayer mode: it's just a 1v1 Brawlhalla-style fight
 
 Game Idea: Space Game
 	Fly a spaceship through an asteroid cluttered space to land on a planet, where it becomes a timer-based survival game like Soul Knight + Magic Survival where, when you reach the timer, spaceship is ready and you can move on to the next planet
-		Any powerups/weapons received are kept throughout the game, planets get harder and harder as time passes
+	Any powerups/weapons received are kept throughout the game, planets get harder and harder as time passes
 	Includes an Endless Arcade Mode, where you start with nothing and goal is to reach the highest possible score and mobs get tougher as time passes. Weapons/powerups will get better as time passes too
 
 Game Idea: Chess boxing
 	1v1 where you play 30sec Chess, then 30sec Street Fighter over and over until one player wins either one of the games
 	Will need AI so players don't have to play against real players
-	Friends System
+	Will need Friends System
 
+Game Idea: Survival Game
+	Start of game: Create your character and pick between Sword, Guns, or Magic
+	 	Sword Ability: Anime Slash - destroy all enemy characters on the screen
+		Gun Ability: Machine Gun - gain a powerful machine gun that easily destroys everything for 10 seconds
+		Magic Ability: Freeze Time - Freeze all enemies and non-player projectiles for 10 seconds
+		OR: only 1 weapon: Either Magic Sword or Magic Guns  
 
+	Sword on-click: sheath, on-release: unleash slash that spreads out and deals high damage
+	gun on-click: shoot, on-hold, autofire
 
-daver99@gmail.com
+Gunner
+	Select weapon at start (they're bought with coins) and survive as long as possible
+	Terraria-like endless sidescrolling hack and slash

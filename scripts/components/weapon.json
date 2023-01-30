@@ -1,0 +1,9 @@
+{
+    "name":"Revolver",
+    "sprite":"sprites/",
+    "damage":12,
+    "bulletSprite":"",
+    "fireRate":1,
+    "magSize":6,
+    "reloadTime":1
+}

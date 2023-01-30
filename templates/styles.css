@@ -1,22 +1,37 @@
-html, body {
-    height: fit-content;
+html {
+    height: 100vh;
     width: 100vw;
+    overflow: hidden;
+}
+
+body {
     justify-content: center;
     text-align: center;
     margin: none;
+    padding: none;
+    border: none;
+    height: 100%;
+    width: 100%;
+    background-color: #333;
 }
 
 main {
+
+}
+
+.main {
+    height: 100vh;
     width: 80%;
     justify-content: center;
     text-align: center;
     align-items: center;
     margin: auto;
-    background-color: rgb(0,0,0,0.5);
+    background-color: rgb(0,0,0,.5);
 }
 
 h1 {
-
+    font-size: 3em;
+    font-family: fantasy;
 }
 
 #menuButtons {
@@ -32,23 +47,45 @@ h1 {
 /*The buttons*/
 #menuButtons > div {
     margin: auto;
-    width: 80%;
+    width: 40%;
     height: fit-content;
     padding: 15px;
-    background-color: orange;
-    border: 4px solid black;
-    border-radius: 15px;
+    background-color: #333;
+    border: 4px solid purple;
+    color: whitesmoke;
     cursor: pointer;
 }
 
 #menuButtons > div:hover {
     cursor: pointer;
-    border-color: green;
+    border-color: whitesmoke;
 }
-
-
 
 #menuButtons > div > span {
     font-size: x-large;
     font-weight: 600;
+}
+
+.comingSoon {
+    cursor: default;
+    border-color: #333;
+    opacity: .5;
+    color: black;
+}
+
+.comingSoon:hover {
+    cursor:default;
+    border-color: #333;
+}
+
+footer {
+    height: fit-content;
+    width: fit-content;
+    z-index: 20;
+    color: black;
+}
+
+/* TESTING CLASS*/
+.test {
+
 }
