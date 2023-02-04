@@ -1,74 +1,107 @@
+import "./components/GameScreen.js";
+import "./components/Player.js";
+
 var gameOver = false;
-//current position of player
+var score = 0;
+
+// current position of player
 var playerX = document.body.width/2;
 var playerY = document.body.height/2;
-//player direction of movement
-var dirX = 0;
-var dirY = 0;
-//mouse position
-var mouseX = 0;
-var mouseY = 0;
+var playerHeight = 64;
+var playerWidth = 48;
+// current position of mouse
+var mouseX = playerX+1;
+var mouseY = playerY;
+
+var screen = new GameScreen();
+var player = new Player();
+
+var gameArea = screen.getScreen();
+
+document.body.appendChild(gameArea);
 
 document.body.onload = function main() {
     setup();
     while (!gameOver) {
         draw();
         logic();
+        setTimeout(20); //delay
     }
-    console.log("game over");
-}
-
-var gameCanvas = {
-    //
-}
-
-//the arm that holds the weapon
-function PlayerWeapon (width,height,x,y,spriteSRC,angle) {
-    this.width = width;
-    this.heigh = height;
-    this.x = x;
-    this.y = y;
-    this.angle = angle;
-    this.spriteSRC = spriteSRC;
-    this.update() = function() {
-        //update
-    }
-}
-
-function Player(width,height,spriteSRC,x,y) {
-    this.width=width;
-    this.height=height;
-    this.x = x;
-    this.y = y;
-    this.speedX = 0;
-    this.speedY = 0;
-    this.classList.add("test");
-    this.update() = function() {
-        //update
-    }
-}
-
-//fire controls
-document.addEventListener(onclick) = () => {
-    //fire bullet to direction of cursor
-}
-
-//aim controls
-document.addEventListener(onmousemove) = () => {
-    //get current position of mouse
-}
-
-//movement controls
-document.addEventListener(onkeydown) = () => {
-    //move character 
 }
 
 function setup() {
     //setupGame
+    
+    
 };
-function draw() {
 
+function draw() {
+    //put stuff on the screen
 };
+
 function logic() {
     gameOver= true;
 };
+
+/* CONTROLS */
+
+//fire controls
+document.getElementById("gameArea").addEventListener("onclick", function() {
+    //fire bullet to direction of mouse
+
+});
+
+//on unclick, play hammer reload sound and set chamberEmpty to false
+
+//aim controls
+document.getElementById("gameArea").addEventListener("onmousemove", function(event) {
+    //get current position of mouse
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+});
+
+//movement controls
+window.onkeydown = function(e) {
+    //move character
+    switch(e.key) {
+        case 'w':
+            Player.speedY--;
+            break;
+        case 'a':
+            Player.speedX--;
+            break;
+        case 's':
+            Player.speedY++;
+            break;
+        case 'd':
+            Player.speedX++;
+            break;
+        case 32: //space
+            Player.shoot(mouseX,mouseY);
+            break;
+        case 27:    //escape
+            break;
+        default: 
+            break;
+    } 
+}
+
+window.onkeyup = function(e) {
+    //move character
+    switch(e.key) {
+        case 'w':
+        case 's':
+            Player.speedY = 0;
+            break;
+        case 'a':
+        case 'd':
+            Player.speedX = 0;
+            break;
+        case 32: //space
+            break;
+        case 27:    //escape
+            break;
+        default: 
+            break;
+    } 
+}

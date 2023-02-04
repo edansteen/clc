@@ -1,0 +1,10 @@
+{
+    "name":"Revolver",
+    "sprite":"assets/sprites/weaponSprites/revolver.png",
+    "damage":12,
+    "bulletSize":8,
+    "bulletSprite":"assets/sprites/bulletSprite/lead_bullet.png",
+    "fireRate":1,
+    "magSize":6,
+    "reloadTime":1
+}

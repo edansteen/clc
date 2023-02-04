@@ -1,65 +1,57 @@
-//import weapon
-//import player spritesheet
-//splice player spritesheet
+//import weapons
+import w from "../../assets/weapons/weapon.json";
+import playerSprite from "../assets/sprites/playerSprites/test_sprite.png";
 
-export function Player(width,height,spriteSRC,x,y) {
-    this.width=width;
-    this.height=height;
-    this.x = x;
-    this.y = y;
-    this.speedX = 0;
-    this.speedY = 0;
-    this.spriteSRC = spriteSRC;
-    this.classList.add("test");
-    new PlayerWeapon(width,height,x,y,spriteSRC,angle);
-    this.update() = function() {
-        //update
-    }
-}
+class Player {
+    static x = 0;
+    static y = 0;
+    static speed = 2; //speed of player
+    speedX = 0;
+    speedY = 0;
+    height = 0;
+    width = 0;
+    weaponAngle = 0;
+    spriteSRC = playerSprite;
 
-//the arm that holds the weapon
-//rect that rotates around player x and y values
-function PlayerWeapon (width,height,x,y,spriteSRC,angle) {
-    this.width = width;
-    this.height = height;
-    this.x = x;
-    this.y = y;
-    this.angle = angle; //0-360 degrees
-    this.sprite = spriteSRC;
-    this.moveTo(coordX, coordY) = function() {
-        this.x = coordX;
-        this.y = coordY;
-    }
-    this.rotate() = function() {
-        //rotate around x and y coordinates
-    }
-}
+    //default
+    constructor(w,h,pX,pY) {
+        this.height = h;
+        this.width = w;
+        this.x = pX;
+        this.y = pY;
+        this.spriteSRC = playerSprite;
+    };
 
-//fire controls
-document.body.addEventListener(onclick) = () => {
-    //fire bullet to direction of cursor
-}
+    constructor() {
+        this.height = 20;
+        this.width = 20;
+        this.x = 50;
+        this.y = 50;
+        this.spriteSRC = playerSprite;
+    };
 
-//aim controls
-document.body.addEventListener(onmousemove) = () => {
-    //get current position of mouse
-}
+    getPlayer() {
+        return (this.spriteSRC+","+this.x+","+this.y+","+this.width+","+this.height);
+    };
 
-//movement controls
-document.body.addEventListener(onkeydown) = () => {
-    //move character
-    switch(e) {
-        case 'w':
-            break;
-        case 'a':
-            break;
-        case 's':
-            break;
-        case 'd':
-            break;
-        case 32:
-            break;
-        default: 
-            break;
-    } 
+    getWeapon() {
+        return (this.x+","+this.y+","+this.angle);
+    };
+
+    update() {
+
+    };
+
+    changeDir(dirX,dirY) {
+        this.speedX += dirX;
+        this.speedY += dirY;
+    };
+
+    shoot(coordX,coordY) {
+
+    };
+
+    rotateWeapon(angle) {
+
+    };
 }
