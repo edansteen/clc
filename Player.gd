@@ -15,7 +15,10 @@ func get_input():
 	if Input.is_action_just_pressed("jump") and !double_jumped: #double jump
 		jumping = true
 		double_jumped = true
-		velocity.y = jumpSpeed * (-1)
+		velocity.y = 0-jumpSpeed
+	#shoot
+	if Input.is_action_just_pressed("click"):
+		pass
 
 func move_to(pos):
 	position = pos
@@ -34,7 +37,11 @@ func _physics_process(delta):
 	if is_on_floor():
 		$AnimatedSprite.play("running")
 	else:
-		$AnimatedSprite.play("jumping")
+		if velocity.y <= 0:
+			$AnimatedSprite.play("jumping")
+		else:
+			$AnimatedSprite.play("falling")
+			
 	#reset double jump
 	if jumping and is_on_floor():
 		jumping = false

@@ -29,19 +29,21 @@ scale = Vector2( 0.205509, -0.845884 )
 texture = SubResource( 1 )
 normal_map = SubResource( 2 )
 
-[node name="MiddleBackground" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/MiddleBackground"]
-
 [node name="RearBackground" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/RearBackground"]
 
 [node name="GameUI" parent="." instance=ExtResource( 4 )]
 
-[node name="Environment" parent="." instance=ExtResource( 2 )]
+[node name="Environment1" parent="." instance=ExtResource( 2 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 335, 380 )
 current = true
 zoom = Vector2( 0.65, 0.65 )
+
+[node name="Environment2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1024, 0 )
+
+[node name="MobSpawnPoint" type="Position2D" parent="."]
+position = Vector2( 1056, 402 )

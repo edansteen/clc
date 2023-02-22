@@ -1,7 +1,12 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://art/cat_sprites.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=47]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 144, 576, 144, 144 )
 
 [sub_resource type="StreamTexture" id=27]
 flags = 4
@@ -37,17 +42,17 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 432, 432, 144, 144 )
 
-[sub_resource type="AtlasTexture" id=33]
+[sub_resource type="AtlasTexture" id=50]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 576, 432, 144, 144 )
 
-[sub_resource type="AtlasTexture" id=34]
+[sub_resource type="AtlasTexture" id=51]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 576, 144, 144 )
 
-[sub_resource type="AtlasTexture" id=35]
+[sub_resource type="AtlasTexture" id=52]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 144, 576, 144, 144 )
@@ -109,6 +114,11 @@ region = Rect2( 144, 144, 144, 144 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ SubResource( 47 ) ],
+"loop": false,
+"name": "falling",
+"speed": 10.0
+}, {
 "frames": [ SubResource( 3 ) ],
 "loop": false,
 "name": "hit",
@@ -119,7 +129,7 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ) ],
 "loop": false,
 "name": "jumping",
 "speed": 10.0
@@ -147,8 +157,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
-animation = "running"
-frame = 3
+animation = "falling"
 playing = true
 offset = Vector2( 0, -3 )
 
@@ -156,6 +165,6 @@ offset = Vector2( 0, -3 )
 shape = SubResource( 2 )
 
 [node name="AttackRange" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 0, -1, 22, -21, 54, 0, 22, 21, 0, 10 )
+polygon = PoolVector2Array( 0, -22, 51, -21, 70, 0, 52, 21, 0, 21 )
 disabled = true
 one_way_collision_margin = 0.0
