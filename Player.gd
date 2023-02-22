@@ -1,29 +1,47 @@
 extends KinematicBody2D
 
-export (int) var gravity = 1200
-export (int) var jumpSpeed = 400
+export (int) var gravity = 1600
+export (int) var jumpSpeed = 600
 
 var jumping = false 
 var velocity = Vector2()
-
+var double_jumped = false
+var is_defeated = false
 
 func _ready():
-	pass # Replace with function body.
+	is_defeated = false
 
 func get_input():
-	if Input.is_action_just_pressed("jump"): 
+	if Input.is_action_just_pressed("jump") and !double_jumped: #double jump
 		jumping = true
+		double_jumped = true
 		velocity.y = jumpSpeed * (-1)
 
 func move_to(pos):
 	position = pos
 
+func defeat():
+	is_defeated = true
+	$AnimatedSprite.play("hit")
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if is_defeated:
+		return
+	
 	get_input()
 	
-	velocity.y += gravity * delta
-	
+	if is_on_floor():
+		$AnimatedSprite.play("running")
+	else:
+		$AnimatedSprite.play("jumping")
+	#reset double jump
 	if jumping and is_on_floor():
 		jumping = false
+		double_jumped = false
+		
+	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2(0,-1))
+	
+	
+

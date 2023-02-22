@@ -1,18 +1,142 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://art/icon.png" type="Texture" id=1]
+[ext_resource path="res://art/cat_sprites.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
+
+[sub_resource type="StreamTexture" id=27]
+flags = 4
+load_path = "res://.import/cat_sprites.png-8e83a92d7a5077b5226e7ff9bda74077.stex"
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = SubResource( 27 )
+region = Rect2( 288, 720, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 432, 144, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 576, 144, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 288, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 288, 432, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 432, 432, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 576, 432, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 576, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=35]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 144, 576, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=36]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 288, 288, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=37]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 432, 288, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=38]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 576, 288, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=39]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 432, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=40]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=41]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 144, 0, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 288, 0, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=43]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 432, 0, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=44]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 576, 0, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=45]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 144, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=46]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 144, 144, 144, 144 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
+"frames": [ SubResource( 3 ) ],
+"loop": false,
+"name": "hit",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ) ],
 "loop": true,
-"name": "default",
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
+"loop": false,
+"name": "jumping",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
+"loop": true,
+"name": "running",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
+"loop": true,
+"name": "sit",
 "speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 31, 31 )
+extents = Vector2( 22, 22 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -21,7 +145,17 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
+animation = "running"
+frame = 3
+playing = true
+offset = Vector2( 0, -3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[node name="AttackRange" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0, -1, 22, -21, 54, 0, 22, 21, 0, 10 )
+disabled = true
+one_way_collision_margin = 0.0

@@ -16,7 +16,6 @@ config/icon="res://art/icon.png"
 
 [display]
 
-window/size/resizable=false
 window/handheld/orientation="portrait"
 window/stretch/aspect="keep"
 
