@@ -10,8 +10,12 @@ config_version=4
 
 [application]
 
-config/name="SidescrollRPG"
+config/name="CLC"
 run/main_scene="res://Main.tscn"
+
+[autoload]
+
+Pause="*res://autoloads/Pause.tscn"
 
 [display]
 

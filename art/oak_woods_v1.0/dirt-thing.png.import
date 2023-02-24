@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/run.png-3090f267a2c3defc77c1434442169fc3.stex"
+path="res://.import/dirt-thing.png-6e7be4d9fac2618276bd48d3e4f035dc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Droid Zapper/run.png"
-dest_files=[ "res://.import/run.png-3090f267a2c3defc77c1434442169fc3.stex" ]
+source_file="res://art/oak_woods_v1.0/dirt-thing.png"
+dest_files=[ "res://.import/dirt-thing.png-6e7be4d9fac2618276bd48d3e4f035dc.stex" ]
 
 [params]
 
