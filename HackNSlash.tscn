@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://autoloads/HackNSlash.gd" type="Script" id=1]
+[ext_resource path="res://HackNSlash.gd" type="Script" id=1]
 
 [node name="HackNSlash" type="Node"]
 script = ExtResource( 1 )

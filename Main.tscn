@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Environment.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player_characters/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://environment/Environment.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Main.gd" type="Script" id=3]
 [ext_resource path="res://GameUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://art/black.png" type="Texture" id=5]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
@@ -24,3 +25,28 @@ position = Vector2( 1024, 0 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512, 300 )
 current = true
+
+[node name="Border" type="Node2D" parent="."]
+position = Vector2( -92, -144 )
+scale = Vector2( 5.65625, 1.46875 )
+
+[node name="Black" type="Sprite" parent="Border"]
+position = Vector2( 106.785, 178.383 )
+scale = Vector2( 1, 1.69504 )
+texture = ExtResource( 5 )
+offset = Vector2( 0, 279.966 )
+
+[node name="Black2" type="Sprite" parent="Border"]
+position = Vector2( 113.68, -112 )
+scale = Vector2( 1.65009, 2.19504 )
+texture = ExtResource( 5 )
+
+[node name="Black3" type="Sprite" parent="Border"]
+position = Vector2( -18.7403, 200.511 )
+scale = Vector2( 0.364641, 5.60638 )
+texture = ExtResource( 5 )
+
+[node name="Black4" type="Sprite" parent="Border"]
+position = Vector2( 238.674, 324.766 )
+scale = Vector2( 0.430939, 5.39007 )
+texture = ExtResource( 5 )
