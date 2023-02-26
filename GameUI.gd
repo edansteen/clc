@@ -13,7 +13,9 @@ func _ready():
 func _process(delta):
 	$ScoreDisplay.text = "%sm" % str(round(score))
 	$FishDisplay.text = str(fish_count)
-	score += delta*1.5
+
+func set_score(s):
+	score = s
 
 func get_score():
 	return score

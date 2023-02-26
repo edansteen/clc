@@ -170,7 +170,6 @@ offset = Vector2( 0, -3 )
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
-[node name="AttackRange" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 0, -22, 51, -21, 70, 0, 52, 21, 0, 21 )
+[node name="BuffHitbox" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -12, -81, 16, -81, 17, -51, 65, -40, 82, 17, 76, 48, 31, 50, 35, 86, -27, 87, -27, 52, -74, 46, -81, 4, -71, -41, -14, -51 )
 disabled = true
-one_way_collision_margin = 0.0

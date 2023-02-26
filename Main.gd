@@ -1,29 +1,25 @@
 extends Node
 
-var game_over = false
-var game_speed = 2
+export (int) var distance = 0
 
-#var env_obj1 = $Environment.new()
-#var env_obj2 = $Environment.new()
+var game_over = false
+var game_speed = 4
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	game_over = false
-	game_speed = 2
-	$Player.move_to($StartPosition.position)
+	game_speed = 4
+	$Player.spawn()
 	$Environment1.move(true)
 	$Environment2.move(true)
 	set_game_speed(game_speed)
-	
-#func spawn_mob():
-#	var m = mob.instance()
-#	m.spawn($MobSpawnPoint.global_position)
-#	call_deferred("add_child", m)
-	
+
+
 # Called every frame. '_delta' is the elapsed time since the previous frame.
 func _process(_delta):	
 	if game_over:
-		$Player.defeat()
+		$Player.hit()
 		$Environment1.move(false)
 		$Environment2.move(false)
 		#restart
@@ -32,9 +28,23 @@ func _process(_delta):
 			get_tree().quit()
 		return
 	
-	if $Player.position.x < -20 or $Player.position.y > get_viewport().size.y:
-		game_over = true
-		print("game over")
+	distance = $Environment1.get_distance()
+	
+	$GameUI.set_score(distance)
+	
+	if distance > 100:
+		if distance > 250:
+			if distance > 500:
+				if distance >= 1000:
+					print("good job!")
+					game_over = true	##victory
+				else:
+					set_game_speed(10)
+			else:
+				set_game_speed(8)
+		else:
+			set_game_speed(6)
+	
 
 func set_game_speed(s):
 	$Environment1.set_speed(s)

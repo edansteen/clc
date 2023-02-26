@@ -18,7 +18,7 @@ func _process(delta):
 		move_up = true
 	elif position.y <= 350:
 		move_up = false
-		
+	
 	if move_up:
 		velocity.y = 0-1
 	else:
@@ -27,7 +27,7 @@ func _process(delta):
 	velocity.x = 0-1
 	
 	var collision = move_and_collide(velocity)
-	if collision and collision.collider.has_method("transform"):
-			collision.collider.transform()
+	if collision and collision.collider.has_method("buff_transform"):
+			collision.collider.buff_transform()
 			queue_free()
 	

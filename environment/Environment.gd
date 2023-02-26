@@ -3,14 +3,16 @@ extends Node2D
 export var speed = 2
 export (bool) var moving = false
 
-var powerup = preload("res://environment/powerups/Powerup.tscn")
+var time = 0
+
+var powerup = preload("res://environment/env_elements/powerups/Powerup.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	speed = 2
 	moving = false
-	var o = powerup.instance()
-	call_deferred("add_child", o)
+	#var o = powerup.instance()
+	#call_deferred("add_child", o)
 
 func move(b):
 	moving = b
@@ -18,9 +20,13 @@ func move(b):
 func set_speed(s):
 	speed = s
 	
-func _process(_delta):
+func get_distance():
+	return round(speed*time)
+	
+func _process(delta):
 	if moving:
 		position.x -= speed 
+		time += delta
 	if position.x <= -1024:
 		position.x += 2048
 		reset_obstacles()
