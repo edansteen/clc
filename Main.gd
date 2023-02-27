@@ -29,7 +29,6 @@ func _process(_delta):
 		return
 	
 	distance = $Environment1.get_distance()
-	
 	$GameUI.set_score(distance)
 	
 	if distance > 100:

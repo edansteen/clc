@@ -10,7 +10,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	$ScoreDisplay.text = "%sm" % str(round(score))
 	$FishDisplay.text = str(fish_count)
 
