@@ -2,15 +2,17 @@ extends KinematicBody2D
 
 export (int) var gravity = 1600
 export (int) var jumpSpeed = 600
-export (int) var b_mode_timer_max = 10 #in s
+export (int) var b_mode_timer_max = 10 #timer for buff mode in s
 export (int) var starting_x = 250
 export (int) var starting_y = 280
+export (int) var r_mode_timer_max = 10 #timer for round mode in s
 
 var velocity = Vector2()
 var double_jumped = false
 var is_hit = false
 var buff_mode = false
-var buff_mode_timer = 0
+var mode_timer = 0
+var round_mode = false
 
 #chonk mode disables the double jump limit (holding space makes you float up, releasing let's you fall
 #var chonk_mode = false
@@ -19,11 +21,18 @@ var buff_mode_timer = 0
 
 func _ready():
 	buff_mode = false
-	buff_mode_timer = 0
+	round_mode = false
+	mode_timer = 0
 	is_hit = false
+	gravity = 1600
 
 
 func get_input():
+	if round_mode:
+		if Input.is_action_pressed("ui_up"):
+			velocity.y = (0-jumpSpeed)/1.5
+			
+		return
 	if Input.is_action_just_pressed("ui_up"): 
 		if buff_mode:
 			gravity = 2000
@@ -38,7 +47,6 @@ func get_input():
 	if Input.is_action_just_pressed("ui_down"):
 		velocity.y += jumpSpeed/2
 
-
 func spawn():
 	position.x = starting_x
 	position.y = starting_y
@@ -46,11 +54,19 @@ func spawn():
 
 func buff_transform():
 	buff_mode = true
-	buff_mode_timer = 0
+	round_mode = false
+	mode_timer = 0
 	$Hitbox.disabled = true
 	$BuffHitbox.disabled = false
-	position.y = 200
 	
+	
+func round_transform():
+	round_mode = true
+	buff_mode = false
+	mode_timer = 0
+	$Hitbox.disabled = true
+	$RoundHitbox.disabled = false
+
 
 func hit():
 	is_hit = true
@@ -63,11 +79,11 @@ func is_buff():
 		return true
 	return false
 
-
-#func is_chonk():
-#	if chonk_mode:
-#		return true
-#	return false
+func is_round():
+	if round_mode:
+		return true
+	else:
+		return false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -82,10 +98,17 @@ func _physics_process(delta):
 	
 	if buff_mode: 
 		$AnimatedSprite.play("buff")
-		buff_mode_timer += delta
-		if buff_mode_timer >= b_mode_timer_max:
+		mode_timer += delta
+		if mode_timer >= b_mode_timer_max:
 			buff_mode = false
 			$BuffHitbox.disabled = true
+			$Hitbox.disabled = false
+	elif round_mode:
+		$AnimatedSprite.play("round")
+		mode_timer += delta
+		if mode_timer >= r_mode_timer_max:
+			round_mode = false
+			$RoundHitbox.disabled = true
 			$Hitbox.disabled = false
 	else:
 		if is_on_floor():
@@ -99,6 +122,6 @@ func _physics_process(delta):
 	#reset double jump
 	if is_on_floor():
 		double_jumped = false
-		
+	
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2(0,-1))

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://GameUI.gd" type="Script" id=1]
+[ext_resource path="res://runner/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://art/fish_coin.png" type="Texture" id=2]
 
 [node name="GameUI" type="Control"]

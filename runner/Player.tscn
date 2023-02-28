@@ -1,22 +1,19 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://art/cat_sprites.png" type="Texture" id=1]
-[ext_resource path="res://player_characters/Player.gd" type="Script" id=2]
+[ext_resource path="res://runner/Player.gd" type="Script" id=2]
 [ext_resource path="res://art/SwoleKitten.png.png" type="Texture" id=3]
+[ext_resource path="res://art/round.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=47]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 144, 576, 144, 144 )
 
-[sub_resource type="StreamTexture" id=27]
+[sub_resource type="AtlasTexture" id=53]
 flags = 4
-load_path = "res://.import/cat_sprites.png-8e83a92d7a5077b5226e7ff9bda74077.stex"
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = SubResource( 27 )
-region = Rect2( 288, 720, 144, 144 )
+atlas = ExtResource( 1 )
+region = Rect2( 432, 576, 144, 144 )
 
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
@@ -125,7 +122,7 @@ animations = [ {
 "name": "falling",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 3 ) ],
+"frames": [ SubResource( 53 ) ],
 "loop": false,
 "name": "hit",
 "speed": 8.0
@@ -139,6 +136,11 @@ animations = [ {
 "loop": false,
 "name": "jumping",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "round",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
 "loop": true,
@@ -154,6 +156,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 22, 22 )
 
+[sub_resource type="CircleShape2D" id=54]
+radius = 43.0116
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 __meta__ = {
@@ -163,7 +168,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
-animation = "buff"
+animation = "round"
 playing = true
 offset = Vector2( 0, -3 )
 
@@ -172,4 +177,8 @@ shape = SubResource( 2 )
 
 [node name="BuffHitbox" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -12, -81, 16, -81, 17, -51, 65, -40, 82, 17, 76, 48, 31, 50, 35, 86, -27, 87, -27, 52, -74, 46, -81, 4, -71, -41, -14, -51 )
+disabled = true
+
+[node name="RoundHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource( 54 )
 disabled = true
