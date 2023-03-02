@@ -13,15 +13,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var pos = $SurvivorPlayer.position
-	
-	for m in $Mobs.get_children():
-		if m.has_method("get_player_pos"):
-			m.get_player_pos(pos)
-			
-	if get_child_count() < 1000:
-		#spawn mobs
-		spawn_mob()
+	#var pos = $SurvivorPlayer.position
+	#spawn mobs	
+	#if get_child_count() < 1000:
+		#spawn_mob()
+	pass
 
 func spawn_mob():
 	var m = mob.instance()

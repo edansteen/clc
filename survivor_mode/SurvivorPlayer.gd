@@ -13,16 +13,8 @@ func _ready():
 	$Camera2D.make_current()
 
 func get_input():
-	if Input.is_action_pressed("up"):
-		velocity.y = 0-1
-	if Input.is_action_pressed("down"):
-		velocity.y = 1
-	if Input.is_action_pressed("left"):
-		velocity.x = 0-1
-		$AnimatedSprite.flip_h = true
-	if Input.is_action_pressed("right"):
-		velocity.x = 1
-		$AnimatedSprite.flip_h = false
+	var input_dir = Input.get_vector("left", "right", "up", "down")
+	velocity = input_dir * speed
 	if Input.is_action_just_pressed("click"):
 		pass
 
@@ -31,14 +23,23 @@ func hit():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	velocity = Vector2()
-	
 	if game_over:
 		print("game_over")
 		return
+	velocity = Vector2()
+	
 	get_input()
 	
 	if velocity.x != 0 or velocity.y != 0:
+		if velocity.x >= 0:
+			$AnimatedSprite.flip_h = false
+		else: 
+			$AnimatedSprite.flip_h = true
 		$AnimatedSprite.play("run")
 	else:
 		$AnimatedSprite.play("idle")
+	
+	var collision = move_and_collide(velocity.normalized() * delta)
+	
+	if collision:
+		pass
