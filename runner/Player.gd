@@ -14,10 +14,6 @@ var buff_mode = false
 var mode_timer = 0
 var round_mode = false
 
-#chonk mode disables the double jump limit (holding space makes you float up, releasing let's you fall
-#var chonk_mode = false
-#var chonk_mode_timer = 0
-#var c_mode_timer_max = 10 #in s
 
 func _ready():
 	buff_mode = false
@@ -57,6 +53,7 @@ func buff_transform():
 	round_mode = false
 	mode_timer = 0
 	$Hitbox.disabled = true
+	$RoundHitbox.disabled = true
 	$BuffHitbox.disabled = false
 	
 	
@@ -65,6 +62,7 @@ func round_transform():
 	buff_mode = false
 	mode_timer = 0
 	$Hitbox.disabled = true
+	$BuffHitbox.disabled = true
 	$RoundHitbox.disabled = false
 
 

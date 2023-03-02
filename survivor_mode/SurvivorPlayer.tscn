@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://survivor_mode/survivor_player/SurvivorPlayer.gd" type="Script" id=1]
+[ext_resource path="res://survivor_mode/SurvivorPlayer.gd" type="Script" id=1]
 [ext_resource path="res://art/cat_sprites.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=3]

@@ -27,7 +27,11 @@ func _process(_delta):
 	velocity.x = 0-1
 	
 	var collision = move_and_collide(velocity)
-	if collision and collision.collider.has_method("buff_transform"):
-			collision.collider.buff_transform()
+	if collision and collision.collider.has_method("buff_transform") and collision.collider.has_method("round_transform"):
+			if randi() % 2: #make it a 50/50 as to which powerup is chosen
+				collision.collider.round_transform()
+			else:
+				collision.collider.buff_transform()
+			
 			queue_free()
 	

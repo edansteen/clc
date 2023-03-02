@@ -1,26 +1,32 @@
 extends KinematicBody2D
 
 export var speed = 1
+var player_pos = 1000
+var velocity = Vector2()
 
-	#spawn
-func _ready():
-	position = get_node("Player").position + Vector2(1000,0).rotated(RandomNumberGenerator.new().rand_rng(0, 2*PI))
+var rng = RandomNumberGenerator.new()
+
+
+func get_player_pos(pos):
+	player_pos = pos
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):	
-	if position.x >= (get_viewport().x+1000) or position.x < -1000 or position.y >= (get_viewport().y+1000) or position.y < -100:
+func _process(_delta):	
+	if position.x >= (get_viewport().size.x+1100) or position.x < -1100 or position.y >= (get_viewport().size.y+1000) or position.y < -100:
 		queue_free()
 		
-	var collision = move_and_collide(get_node("SurvivorPlayer").position - position)
-
+	velocity = Vector2()
+	
+	var collision = move_and_collide(velocity)
+	#$AnimatedSprite.play("move")
+	
 	if collision:
 		print(collision.collider.name) 
 		if collision.collider.has_method("hit"): #hit if it's the player
 			collision.collider.hit()
-		else:
+		elif !collision.collider.has_method("is_hit"): #prevent mobs from hurting eachother
 			is_hit()
-	else:
-		$AnimatedSprite.play("move")
+
 	
 func is_hit():
 	$AnimatedSprite.play("hit")
