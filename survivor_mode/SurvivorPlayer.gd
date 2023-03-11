@@ -31,9 +31,9 @@ func _physics_process(delta):
 	get_input()
 	
 	if velocity.x != 0 or velocity.y != 0:
-		if velocity.x >= 0:
+		if velocity.x > 0:
 			$AnimatedSprite.flip_h = false
-		else: 
+		elif velocity.x < 0: 
 			$AnimatedSprite.flip_h = true
 		$AnimatedSprite.play("run")
 	else:

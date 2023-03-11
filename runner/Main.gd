@@ -19,11 +19,10 @@ func _ready():
 # Called every frame. '_delta' is the elapsed time since the previous frame.
 func _process(_delta):	
 	if game_over:
-		$Player.hit()
 		$Environment1.move(false)
 		$Environment2.move(false)
 		#restart
-		if get_tree().change_scene("res://Main.tscn") != 0:
+		if get_tree().change_scene("res://runner/Main.tscn") != 0:
 			print("ERROR")
 			get_tree().quit()
 		return
@@ -44,6 +43,8 @@ func _process(_delta):
 		else:
 			set_game_speed(6)
 	
+	if $Player.is_hit:
+		game_over = true
 
 func set_game_speed(s):
 	$Environment1.set_speed(s)

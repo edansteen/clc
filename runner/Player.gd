@@ -83,6 +83,8 @@ func is_round():
 	else:
 		return false
 
+func is_hit():
+	return is_hit
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -123,3 +125,6 @@ func _physics_process(delta):
 	
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2(0,-1))
+	
+	if position.y > 600:
+		hit()

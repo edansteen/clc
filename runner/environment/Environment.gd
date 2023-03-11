@@ -42,7 +42,14 @@ func reset_obstacles():
 		$Obstacles.remove_child(node)
 	#add obstacles at random
 	if get_distance() > 10:
+		#randomize tilemap
+		$GroundPreloads.clear()
+		for i in range(16):
+			for j in range(7,9):
+				#$TileMap.set_cell(i,j)
+				pass
 		#create new instance of random obstacle in the array
-		$Obstacles.call_deferred("add_child", obstacles[rng.randi_range(0,len(obstacles)-1)].instance())
-		if randi() % 13: #have a small chance of spawning a powerup
+		#$Obstacles.call_deferred("add_child", obstacles[rng.randi_range(0,len(obstacles)-1)].instance())
+		
+		if rng.randi_range(0,50) == 50: #have a small chance of spawning a powerup
 			$Obstacles.call_deferred("add_child", powerup.instance())
