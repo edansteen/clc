@@ -1,0 +1,15 @@
+[gd_scene format=2]
+
+[node name="EnemyDeathEffect" type="CPUParticles2D"]
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 500.0
+initial_velocity_random = 0.8
+tangential_accel = 100.0
+tangential_accel_random = 1.0
