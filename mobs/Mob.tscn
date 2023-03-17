@@ -1,29 +1,110 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://mobs/mobAI.gd" type="Script" id=1]
-[ext_resource path="res://art/round.png" type="Texture" id=2]
+[ext_resource path="res://assets/Monsters_Creatures_Fantasy/Monsters_Creatures_Fantasy/Skeleton/Death.png" type="Texture" id=2]
+[ext_resource path="res://assets/Monsters_Creatures_Fantasy/Monsters_Creatures_Fantasy/Skeleton/Take Hit.png" type="Texture" id=3]
+[ext_resource path="res://assets/Monsters_Creatures_Fantasy/Monsters_Creatures_Fantasy/Skeleton/Walk.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 450, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 450, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 450, 0, 150, 150 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
-"name": "default",
+"name": "death",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "hit",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "move",
 "speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 16.0
+radius = 19.0
 height = 14.0
 
-[node name="Mob" type="KinematicBody2D"]
+[node name="Mob" type="KinematicBody2D" groups=["mobs"]]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.401042, 0.401042 )
+scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 1 )
+animation = "death"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 9, 0 )
 shape = SubResource( 2 )
+
+[node name="DamageLabel" type="Label" parent="."]
+visible = false
+margin_left = -20.0
+margin_top = -53.0
+margin_right = 20.0
+margin_bottom = -39.0
