@@ -141,3 +141,7 @@ smoothing_enabled = true
 [node name="EquippedWeapons" type="Node2D" parent="."]
 
 [node name="Bullets" type="Node2D" parent="."]
+
+[node name="ImmunityCooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="ImmunityCooldown" to="." method="_on_ImmunityCooldown_timeout"]

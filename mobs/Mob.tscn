@@ -108,3 +108,7 @@ margin_left = -20.0
 margin_top = -53.0
 margin_right = 20.0
 margin_bottom = -39.0
+
+[node name="HurtCooldown" type="Timer" parent="." groups=["mobs"]]
+
+[connection signal="timeout" from="HurtCooldown" to="." method="_on_HurtCooldown_timeout"]

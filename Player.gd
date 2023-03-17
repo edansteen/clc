@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export var speed = 200
 export var attack_dmg = 1000
+export var hp = 100
 
 var velocity := Vector2()
 var game_over := false
@@ -46,3 +47,7 @@ func _physics_process(delta):
 	if collision:
 		if collision.collider.has_method("hit_for"):
 			collision.collider.hit_for(attack_dmg)
+
+
+func _on_ImmunityCooldown_timeout():
+	pass # Replace with function body.

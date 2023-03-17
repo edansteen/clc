@@ -2,19 +2,19 @@ extends KinematicBody2D
 
 export var speed = 50.0
 export var hp = 100
+export var damage = 10
 
 var velocity = Vector2()
-
 var max_distance = 1200
+var immune = false
+var immunity_time = 0.3 #in s
 
 onready var player = get_tree().get_nodes_in_group("player")[0]
  
 var death_effect = preload("res://mobs/EnemyDeathEffect.tscn")
 
 func _ready():
-	var rng = RandomNumberGenerator.new()
-	position.x = player.global_position.x + rng.randi_range(1000-max_distance, max_distance-1000)
-	position.y = player.global_position.y + rng.randi_range(1000-max_distance, max_distance-1000)
+	$AnimatedSprite.play("move")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -48,4 +48,10 @@ func hit_for(dmg):
 			queue_free()
 	else:
 		$AnimatedSprite.play("hit")
+		immune = true
+		$HurtCooldown.start(immunity_time)
 		
+
+
+func _on_HurtCooldown_timeout():
+	immune = false

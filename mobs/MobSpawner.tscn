@@ -8,8 +8,8 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Mobs" type="Node2D" parent="."]
-
 [node name="CooldownTimer" type="Timer" parent="."]
+
+[node name="Mobs" type="Node2D" parent="."]
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]
