@@ -36,7 +36,6 @@ func set_spawn_delay(s):
 
 func get_random_position():
 	var vpr = get_viewport_rect().size * rng.randf_range(1.1,1.4)
-	var rand_pos = rng.randi_range(1,4)
 	var spawn_pos_1 = Vector2.ZERO
 	var spawn_pos_2 = Vector2.ZERO
 	var top_left = Vector2(player.global_position.x - vpr.x/2, player.global_position.y - vpr.y/2)
@@ -44,7 +43,7 @@ func get_random_position():
 	var bottom_left = Vector2(player.global_position.x - vpr.x/2, player.global_position.y + vpr.y/2)
 	var bottom_right = Vector2(player.global_position.x + vpr.x/2, player.global_position.y + vpr.y/2)
 	
-	match rand_pos:
+	match rng.randi_range(1,4):
 		1: #up
 			spawn_pos_1 = top_left
 			spawn_pos_2 = top_right

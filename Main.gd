@@ -1,19 +1,21 @@
 extends Node
 
-#https://www.youtube.com/watch?v=LgvLbahJOTA 
-#https://www.youtube.com/watch?v=Z2TaFnN7cdU
-
-export var score: int = 0
+export var xp: int = 0
+export var time = 0.0 #in s
+export var time_till_boss = 5*60
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$MobSpawner.set_active(true)
-
+	time = 0.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func _process(delta):
+	time += delta
+	#$UI.set_time(time)
 
+func get_time():
+	return time
 
-func _on_GameTimer_timeout():
-	pass # Replace with function body.
+func add_exp(n):
+	xp += n

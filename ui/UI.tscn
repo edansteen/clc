@@ -10,7 +10,7 @@ margin_right = 1024.0
 margin_bottom = 600.0
 rect_clip_content = true
 
-[node name="ScoreDisplay" type="Label" parent="Control"]
+[node name="TimeDisplay" type="Label" parent="Control"]
 margin_left = 30.0
 margin_top = 19.0
 margin_right = 109.0
@@ -29,5 +29,3 @@ margin_right = 998.0
 margin_bottom = 42.0
 text = "0"
 align = 2
-
-[node name="GameTimer" type="Timer" parent="."]

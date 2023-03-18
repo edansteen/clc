@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/cat_sprites.png" type="Texture" id=2]
@@ -119,6 +119,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 22, 19.5 )
 
+[sub_resource type="CircleShape2D" id=21]
+radius = 596.0
+
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 1 )
 __meta__ = {
@@ -138,10 +141,17 @@ shape = SubResource( 2 )
 current = true
 smoothing_enabled = true
 
-[node name="EquippedWeapons" type="Node2D" parent="."]
+[node name="ImmunityTimer" type="Timer" parent="."]
+wait_time = 0.2
 
-[node name="Bullets" type="Node2D" parent="."]
+[node name="Attacks" type="Node2D" parent="."]
 
-[node name="ImmunityCooldown" type="Timer" parent="."]
+[node name="EnemyDetectionArea" type="Area2D" parent="."]
+monitorable = false
 
-[connection signal="timeout" from="ImmunityCooldown" to="." method="_on_ImmunityCooldown_timeout"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
+shape = SubResource( 21 )
+
+[connection signal="timeout" from="ImmunityTimer" to="." method="_on_ImmunityTimer_timeout"]
+[connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_body_entered"]
+[connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_body_exited"]
