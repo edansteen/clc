@@ -1,3 +1,4 @@
+# Flies straight toward the nearest enemy
 extends Area2D
 
 var level = 1
@@ -12,7 +13,6 @@ var target = Vector2.ZERO
 var angle = Vector2.ZERO
 
 onready var player = get_tree().get_nodes_in_group("player")[0]
-
 
 func _ready():
 	angle = global_position.direction_to(target)

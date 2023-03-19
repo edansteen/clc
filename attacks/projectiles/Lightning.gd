@@ -1,6 +1,9 @@
+# Briefly strikes a random point on the screen dealing damage
 extends Area2D
 
 var damage = 20.0
+var area = 1.0
+var projectile_num = 1
 var duration = 0.5 #duration of animation in s
 var level = 1
 
@@ -14,9 +17,8 @@ func _ready():
 	match level:
 		1:
 			damage = 20.0
-	strike()
-	
-func strike():
+			area = 1.0
+			projectile_num = 1
 	#place in random position on the screen
 	var vpr = get_viewport_rect().size
 	global_position.x = rng.randf_range(margin_x,vpr.x-margin_x)

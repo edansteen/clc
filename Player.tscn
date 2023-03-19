@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/cat_sprites.png" type="Texture" id=2]
+[ext_resource path="res://ui/UI.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
@@ -122,6 +123,9 @@ extents = Vector2( 22, 19.5 )
 [sub_resource type="CircleShape2D" id=21]
 radius = 596.0
 
+[sub_resource type="CircleShape2D" id=22]
+radius = 37.1214
+
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 1 )
 __meta__ = {
@@ -136,6 +140,8 @@ animation = "idle"
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 3.5 )
 shape = SubResource( 2 )
+
+[node name="UI" parent="." instance=ExtResource( 3 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -152,6 +158,13 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
 shape = SubResource( 21 )
 
+[node name="GrabRange" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabRange"]
+shape = SubResource( 22 )
+
 [connection signal="timeout" from="ImmunityTimer" to="." method="_on_ImmunityTimer_timeout"]
 [connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_body_exited"]
+[connection signal="body_entered" from="GrabRange" to="." method="_on_GrabRange_body_entered"]

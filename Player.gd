@@ -1,27 +1,46 @@
 extends KinematicBody2D
 
-export var speed = 200.0
-export var attack_dmg = 1
-export var hp = 100
-export var invincible = false
+signal gameOver
 
+export var speed = 200.0
+export var attack_dmg = 1.0
+export var max_hp = 3
+export var hp = 3
+
+var invincible = false
+var invincibility_time = 1.0 #in s
 var velocity := Vector2()
 var game_over := false
-
 var immunity_time := 0.1
 
 #Enemy Related
-var enemy_close = []
+var enemy_close = [] #Array of all enemies within range
+var nearest_enemy
+
+#Attacks
+var attacks_array = [
+	preload("res://attacks/Field.tscn"), # field
+	preload("res://attacks/MagicMissile.tscn"), # magic missile
+	preload("res://attacks/LightningRod.tscn"), #lightning rod
+	preload("res://attacks/Orb.tscn") # orbs
+]
+
+#First weapon player equips
+var base_attack = attacks_array[0]
 
 # Nodes
 onready var sprite = $AnimatedSprite
+onready var attacks = $Attacks
+onready var ui = $UI
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	position.x = 0
 	position.y = 0
+	hp = max_hp
 	game_over = false
 	$Camera2D.make_current()
+	equip_attack(base_attack)
 
 #Get keyboard input for movement
 func get_input():
@@ -30,12 +49,15 @@ func get_input():
 
 #when hit
 func hit():
-	if !game_over:
-		game_over = true
-		sprite.play("hit")
-	#else: #if hit, make sure player gets brief invincibility
-	#	invincible = true
-	#	$ImmunityTimer.start(immunity_time)	
+	hp -= 1
+	ui.set_hearts(hp)
+	if hp <= 0:
+		if !game_over:
+			game_over = true
+			sprite.play("hit")
+	else: #if hit, make sure player gets brief invincibility
+		invincible = true
+		$ImmunityTimer.start(immunity_time)	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -60,20 +82,35 @@ func _physics_process(delta):
 		if collision.collider.has_method("grab"):
 			collision.collider.grab()
 
-func _on_ImmunityTimer_timeout():
-	invincible = false
 
-			
 func get_random_target():
 	if enemy_close.size() > 0:
 		return enemy_close.pick_random().global_position
 	else:
 		return Vector2.RIGHT
 
+#equip the preload of the specified attack
+func equip_attack(attack):
+	attacks.call_deferred("add_child", attack.instance())
+
+func _on_ImmunityTimer_timeout():
+	invincible = false
+
+
 func _on_EnemyDetectionArea_body_entered(body):
 	if !enemy_close.has(body):
 		enemy_close.append(body)
 
+
 func _on_EnemyDetectionArea_body_exited(body):
 	if enemy_close.has(body):
 		enemy_close.erase(body)
+
+#grab items
+func _on_GrabRange_body_entered(body):
+	if body.has_method("grab_xp"):
+		pass
+	elif body.has_method("grab_heart"):
+		if hp < max_hp:
+			hp += 1
+			ui.set_hearts(hp)

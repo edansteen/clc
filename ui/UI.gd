@@ -7,6 +7,8 @@ export var fish_count = 0
 var seconds = 0
 var minutes = 0
 
+onready var heart_container = $Control/HeartContainer
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	score = 0
@@ -26,3 +28,7 @@ func add_fish(n):
 
 func get_fish_count():
 	return fish_count
+
+func set_hearts(n):
+	pass
+

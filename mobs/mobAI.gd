@@ -1,13 +1,11 @@
 extends KinematicBody2D
 
 export var speed = 50.0
-export var hp = 100
+export var hp = 20
 export var damage = 10
 
 var velocity = Vector2()
 var max_distance = 1500
-var immune = false
-var immunity_time = 0.3 #in s
 
 onready var player = get_tree().get_nodes_in_group("player")[0]
 onready var sprite = $AnimatedSprite 
@@ -19,6 +17,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if hp <= 0:
+		return
 	var p_pos = player.global_position
 	if global_position.x >= (p_pos.x+max_distance) or global_position.x < 0-max_distance or global_position.y >= (p_pos.y+max_distance) or position.y < -max_distance:
 		queue_free()
@@ -43,16 +43,16 @@ func hit_for(dmg):
 	hp -= dmg
 	if hp <= 0:
 			sprite.play("death")
+			$Hitbox.queue_free()
 			var de = death_effect.instance()
 			de.position = position
 			get_parent().call_deferred("add_child", de)
-			queue_free()
 	else:
 		sprite.play("hit")
-		immune = true
-		$HurtCooldown.start(immunity_time)
-		
 
 
-func _on_HurtCooldown_timeout():
-	immune = false
+func _on_AnimatedSprite_animation_finished():
+	if hp <= 0:
+		queue_free()
+	else:
+		sprite.play("move")
