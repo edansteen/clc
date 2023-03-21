@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SwoleKitten.png.png-ef38fc090f6acdd593a1f82f0b758322.stex"
+path="res://.import/red_square.png-adc3b9583febc5dc7e8d383d949d18e8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SwoleKitten.png.png"
-dest_files=[ "res://.import/SwoleKitten.png.png-ef38fc090f6acdd593a1f82f0b758322.stex" ]
+source_file="res://assets/sprites/red_square.png"
+dest_files=[ "res://.import/red_square.png-adc3b9583febc5dc7e8d383d949d18e8.stex" ]
 
 [params]
 

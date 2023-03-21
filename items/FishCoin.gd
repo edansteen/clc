@@ -3,7 +3,7 @@ extends Area2D
 var xp_value = 20
 var target = global_position
 
-func _physics_process(delta):
+func _process(_delta):
 	pass
 
 func grab_xp():

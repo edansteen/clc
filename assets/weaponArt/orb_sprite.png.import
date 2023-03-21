@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/heart.png-9a2fa56e49d8a002fed7c28ce07513e0.stex"
+path="res://.import/orb_sprite.png-eab0536f21c59c84f1fe88fe10d5c2d4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/heart.png"
-dest_files=[ "res://.import/heart.png-9a2fa56e49d8a002fed7c28ce07513e0.stex" ]
+source_file="res://assets/weaponArt/orb_sprite.png"
+dest_files=[ "res://.import/orb_sprite.png-eab0536f21c59c84f1fe88fe10d5c2d4.stex" ]
 
 [params]
 

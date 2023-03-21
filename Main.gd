@@ -1,6 +1,5 @@
 extends Node
 
-export var xp: int = 0
 export var time = 0.0 #in s
 export var time_till_boss = 5*60
 
@@ -12,10 +11,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
-	#$UI.set_time(time)
 
 func get_time():
 	return time
 
-func add_exp(n):
-	xp += n

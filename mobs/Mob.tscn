@@ -1,9 +1,16 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://mobs/mobAI.gd" type="Script" id=1]
 [ext_resource path="res://assets/Monsters_Creatures_Fantasy/Monsters_Creatures_Fantasy/Skeleton/Death.png" type="Texture" id=2]
 [ext_resource path="res://assets/Monsters_Creatures_Fantasy/Monsters_Creatures_Fantasy/Skeleton/Take Hit.png" type="Texture" id=3]
 [ext_resource path="res://assets/Monsters_Creatures_Fantasy/Monsters_Creatures_Fantasy/Skeleton/Walk.png" type="Texture" id=4]
+[ext_resource path="res://assets/materials/hurt.tres" type="Shader" id=5]
+[ext_resource path="res://assets/animations/mobsHurt.tres" type="Animation" id=6]
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = ExtResource( 5 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/flashState = 0.0
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
@@ -94,11 +101,14 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 15 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 1 )
-animation = "death"
-frame = 3
+animation = "move"
 playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
+anims/Hurt = ExtResource( 6 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( 9, 0 )

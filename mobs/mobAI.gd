@@ -11,6 +11,7 @@ onready var player = get_tree().get_nodes_in_group("player")[0]
 onready var sprite = $AnimatedSprite 
 
 var death_effect = preload("res://mobs/EnemyDeathEffect.tscn")
+var xp = preload("res://items/FishCoin.tscn")
 
 func _ready():
 	sprite.play("move")
@@ -44,9 +45,11 @@ func hit_for(dmg):
 	if hp <= 0:
 			sprite.play("death")
 			$Hitbox.queue_free()
-			var de = death_effect.instance()
-			de.position = position
-			get_parent().call_deferred("add_child", de)
+			# add death effect
+			call_deferred("add_child", death_effect.instance())
+			var dropped_xp = xp.instance()
+			dropped_xp.global_position = global_position
+			get_parent().call_deferred("add_child", dropped_xp)
 	else:
 		sprite.play("hit")
 

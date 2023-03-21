@@ -1,11 +1,14 @@
 extends CanvasLayer
 
-export var score = 0
+var score = 0
 var time = 0
-export var fish_count = 0
+var xp_level = 1
+var xp_progress = 0 #percentage of progress to next level
 
 var seconds = 0
 var minutes = 0
+
+var active_hearts = 3
 
 onready var heart_container = $Control/HeartContainer
 
@@ -13,7 +16,8 @@ onready var heart_container = $Control/HeartContainer
 func _ready():
 	score = 0
 	time = 0
-	fish_count = 0
+	xp_level = 1
+	xp_progress = 0
 
 func set_time(t):
 	time = t
@@ -22,13 +26,12 @@ func set_time(t):
 func get_score():
 	return score
 
-func add_fish(n):
-	fish_count+=n
-	$Control/FishDisplay.text = str(fish_count)
+func add_xp(n):
+	pass
 
-func get_fish_count():
-	return fish_count
+func get_xp_level():
+	pass
 
 func set_hearts(n):
-	pass
+	active_hearts = n
 

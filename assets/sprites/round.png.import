@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Atlas.png-acf4b551c15757f0a3507a3d7f1547b4.stex"
+path="res://.import/round.png-1b4cdb90eaae710d0f7ace80b5fa612a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Atlas.png"
-dest_files=[ "res://.import/Atlas.png-acf4b551c15757f0a3507a3d7f1547b4.stex" ]
+source_file="res://assets/sprites/round.png"
+dest_files=[ "res://.import/round.png-1b4cdb90eaae710d0f7ace80b5fa612a.stex" ]
 
 [params]
 

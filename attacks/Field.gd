@@ -19,15 +19,15 @@ func _ready():
 			area = 1.0
 		2:
 			damage *= 2
-			area *= 1+(1/3)
+			area *= 1.25
 		3:
-			damage *= 1+(1/3)
+			damage *= 1.25
 			area *= 1.1
 		4:
-			damage *= 1+(1/3)
+			damage *= 1.25
 			area *= 1.1
 		5:
-			damage *= 1+(1/3)
+			damage *= 1.25
 			area *= 1.1
 		6:
 			damage *= 2
@@ -48,7 +48,7 @@ func level_up():
 	
 
 func get_description():
-	return "a force field";
+	return "A force field";
 	
 	
 func _on_Field_body_entered(body):

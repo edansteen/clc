@@ -26,7 +26,7 @@ var attacks_array = [
 ]
 
 #First weapon player equips
-var base_attack = attacks_array[0]
+var base_attack = attacks_array[3]
 
 # Nodes
 onready var sprite = $AnimatedSprite
@@ -53,6 +53,7 @@ func hit():
 	ui.set_hearts(hp)
 	if hp <= 0:
 		if !game_over:
+			emit_signal("gameOver")
 			game_over = true
 			sprite.play("hit")
 	else: #if hit, make sure player gets brief invincibility

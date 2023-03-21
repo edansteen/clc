@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://autoloads/Pause.gd" type="Script" id=1]
-[ext_resource path="res://assets/black.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/black.png" type="Texture" id=2]
 
 [node name="Pause" type="CanvasLayer"]
 pause_mode = 2
