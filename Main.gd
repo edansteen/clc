@@ -7,6 +7,7 @@ export var time_till_boss = 5*60
 func _ready():
 	$MobSpawner.set_active(true)
 	time = 0.0
+	$Music.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -14,4 +15,3 @@ func _process(delta):
 
 func get_time():
 	return time
-

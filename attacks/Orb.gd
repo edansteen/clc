@@ -1,43 +1,60 @@
 extends Node2D
 
 var level = 1
-var projectiles = 1
+var orb_count = 1 #number of orbs
 var damage = 8.0
-var rotation_speed = 1.0
+var rotation_speed = 0.03
 var orb_size = 1.0
-var radius = 5.0
-
+var radius = 100
 var angle = 0
 
 var orb = preload("res://attacks/projectiles/OrbProjectile.tscn")
 
 #array with all active orbs
-var orbs = [
-	orb.instance()
-]
+var orbs = []
 
 onready var point = $OriginPoint.global_position
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_lvl(1, 1)
-	call_deferred("add_child",orbs[0])
+	if orb_count != 0:
 	#place orbs 
-	orbs[0].position = point + Vector2(cos(angle), sin(angle)) * radius
-
+		for i in range(orb_count):
+			#add to array, position, and place in scene
+			angle = (2*PI)/orb_count * (i)
+			orbs.append(orb.instance())
+			orbs[i].position = point + Vector2(cos(angle), sin(angle)) * radius
+			call_deferred("add_child",orbs[i])
 
 func set_lvl(lvl, dmg_multiplier):
-	match level:
+	level = lvl
+	match lvl:
+		0: 
+			orb_count = 0
 		1:
-			projectiles = 1
+			orb_count = 1
 			damage = 8.0
-			rotation_speed = 1.0
+			rotation_speed = 0.03
 			orb_size = 1.0
-			radius = 5.0
+			radius = 100
+		2:
+			damage = 12
+			orb_count = 2
+			rotation_speed = 0.05
+		3:
+			orb_count = 3
+		4:
+			orb_count = 4
+		5:
+			orb_count = 5
+		6:
+			orb_count = 6
 	for node in orbs:
 		node.set_level(lvl, dmg_multiplier)
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	orbs[0].position = point + (orbs[0].position - point).rotated(angle)
+	for o in orbs:
+		o.position = point + (o.position - point).rotated(rotation_speed)

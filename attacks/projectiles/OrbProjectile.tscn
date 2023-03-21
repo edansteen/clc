@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/materials/orb.tres" type="Shader" id=1]
+[ext_resource path="res://assets/shaders/orb.tres" type="Shader" id=1]
 [ext_resource path="res://assets/weaponArt/orb_sprite.png" type="Texture" id=2]
 [ext_resource path="res://attacks/projectiles/OrbProjectile.gd" type="Script" id=3]
 

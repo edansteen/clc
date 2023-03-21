@@ -22,6 +22,7 @@ Pause="*res://autoloads/Pause.tscn"
 window/size/resizable=false
 window/size/borderless=true
 window/size/fullscreen=true
+window/size/always_on_top=true
 window/stretch/aspect="keep"
 
 [gui]

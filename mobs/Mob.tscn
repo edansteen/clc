@@ -1,13 +1,16 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://mobs/mobAI.gd" type="Script" id=1]
 [ext_resource path="res://assets/Monsters_Creatures_Fantasy/Monsters_Creatures_Fantasy/Skeleton/Death.png" type="Texture" id=2]
 [ext_resource path="res://assets/Monsters_Creatures_Fantasy/Monsters_Creatures_Fantasy/Skeleton/Take Hit.png" type="Texture" id=3]
 [ext_resource path="res://assets/Monsters_Creatures_Fantasy/Monsters_Creatures_Fantasy/Skeleton/Walk.png" type="Texture" id=4]
-[ext_resource path="res://assets/materials/hurt.tres" type="Shader" id=5]
+[ext_resource path="res://assets/shaders/hurt.tres" type="Shader" id=5]
 [ext_resource path="res://assets/animations/mobsHurt.tres" type="Animation" id=6]
+[ext_resource path="res://assets/animations/hurt.tres" type="Animation" id=7]
+[ext_resource path="res://assets/sfx/hit.mp3" type="AudioStream" id=8]
 
 [sub_resource type="ShaderMaterial" id=15]
+resource_local_to_scene = true
 shader = ExtResource( 5 )
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/flashState = 0.0
@@ -108,12 +111,15 @@ animation = "move"
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
+reset_on_save = false
 anims/Hurt = ExtResource( 6 )
+anims/hurt = ExtResource( 7 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( 9, 0 )
 shape = SubResource( 2 )
 
 [node name="HitSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

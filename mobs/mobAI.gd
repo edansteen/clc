@@ -9,9 +9,10 @@ var max_distance = 1500
 
 onready var player = get_tree().get_nodes_in_group("player")[0]
 onready var sprite = $AnimatedSprite 
+onready var animation_player = $AnimatedSprite/AnimationPlayer
 
 var death_effect = preload("res://mobs/EnemyDeathEffect.tscn")
-var xp = preload("res://items/FishCoin.tscn")
+var xp = preload("res://items/ExpPoint.tscn")
 
 func _ready():
 	sprite.play("move")
@@ -41,17 +42,18 @@ func _physics_process(delta):
 			collision.collider.hit()
 	
 func hit_for(dmg):
-	hp -= dmg
-	if hp <= 0:
-			sprite.play("death")
-			$Hitbox.queue_free()
-			# add death effect
-			call_deferred("add_child", death_effect.instance())
-			var dropped_xp = xp.instance()
-			dropped_xp.global_position = global_position
-			get_parent().call_deferred("add_child", dropped_xp)
-	else:
-		sprite.play("hit")
+	if hp >= 0: #avoids small bug where mob is hit while despawning
+		hp -= dmg
+		$AnimatedSprite/AnimationPlayer.play("hurt")
+		$HitSoundEffect.play()
+		if hp <= 0:
+				sprite.play("death")
+				$Hitbox.queue_free()
+				# add death effect
+				call_deferred("add_child", death_effect.instance())
+				var dropped_xp = xp.instance()
+				dropped_xp.global_position = global_position
+				get_parent().call_deferred("add_child", dropped_xp)
 
 
 func _on_AnimatedSprite_animation_finished():

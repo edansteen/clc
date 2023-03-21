@@ -6,6 +6,10 @@ export var speed = 200.0
 export var attack_dmg = 1.0
 export var max_hp = 3
 export var hp = 3
+export var xp_level = 1
+export var xp = 0
+var xp_to_next_lvl = 10
+var xp_increase_multiplier = 1.1 #amount xp needed increases by after level up
 
 var invincible = false
 var invincibility_time = 1.0 #in s
@@ -20,18 +24,19 @@ var nearest_enemy
 #Attacks
 var attacks_array = [
 	preload("res://attacks/Field.tscn"), # field
+	preload("res://attacks/Orb.tscn"), # orbs
 	preload("res://attacks/MagicMissile.tscn"), # magic missile
-	preload("res://attacks/LightningRod.tscn"), #lightning rod
-	preload("res://attacks/Orb.tscn") # orbs
+	preload("res://attacks/LightningRod.tscn") #lightning rod
 ]
 
 #First weapon player equips
-var base_attack = attacks_array[3]
+var base_attack = attacks_array[0]
 
 # Nodes
 onready var sprite = $AnimatedSprite
 onready var attacks = $Attacks
 onready var ui = $UI
+onready var animation_player = $AnimatedSprite/AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,6 +55,7 @@ func get_input():
 #when hit
 func hit():
 	hp -= 1
+	animation_player.play("hurt")
 	ui.set_hearts(hp)
 	if hp <= 0:
 		if !game_over:
@@ -58,7 +64,7 @@ func hit():
 			sprite.play("hit")
 	else: #if hit, make sure player gets brief invincibility
 		invincible = true
-		$ImmunityTimer.start(immunity_time)	
+		$ImmunityTimer.start(immunity_time)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -94,24 +100,34 @@ func get_random_target():
 func equip_attack(attack):
 	attacks.call_deferred("add_child", attack.instance())
 
+func add_xp(n):
+	xp += n
+	if xp >= xp_to_next_lvl:
+		xp_level += 1
+		xp -= xp_to_next_lvl
+		xp_to_next_lvl *= xp_increase_multiplier
+		ui.add_xp(xp,xp_to_next_lvl,xp_level)
+
 func _on_ImmunityTimer_timeout():
 	invincible = false
-
 
 func _on_EnemyDetectionArea_body_entered(body):
 	if !enemy_close.has(body):
 		enemy_close.append(body)
-
 
 func _on_EnemyDetectionArea_body_exited(body):
 	if enemy_close.has(body):
 		enemy_close.erase(body)
 
 #grab items
-func _on_GrabRange_body_entered(body):
-	if body.has_method("grab_xp"):
-		pass
-	elif body.has_method("grab_heart"):
+func _on_GrabRange_area_entered(area):
+	if area.has_method("grab_xp"):
+		add_xp(area.grab_xp())
+		area.queue_free()
+		$ItemPickup.play()
+	elif area.has_method("grab_heart"):
 		if hp < max_hp:
 			hp += 1
 			ui.set_hearts(hp)
+			area.queue_free()
+			$ItemPickup.play()
