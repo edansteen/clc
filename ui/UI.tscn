@@ -31,20 +31,22 @@ layer = 0
 script = ExtResource( 3 )
 
 [node name="Control" type="Control" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_clip_content = true
 
 [node name="ProgressBar" type="ProgressBar" parent="Control"]
-margin_right = 1024.0
-margin_bottom = 24.0
+anchor_right = 1.0
+margin_bottom = 2.0
+rect_min_size = Vector2( 1024, 24 )
 max_value = 10.0
 rounded = true
 percent_visible = false
 
 [node name="HeartContainer" type="HBoxContainer" parent="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 0.194
+anchor_bottom = 0.17
+margin_right = 0.343994
 
 [node name="Heart" type="AnimatedSprite" parent="Control/HeartContainer"]
 position = Vector2( 34, 56 )
@@ -60,14 +62,3 @@ animation = "full"
 position = Vector2( 162, 56 )
 frames = SubResource( 3 )
 animation = "full"
-
-[node name="TimeDisplay" type="Label" parent="Control"]
-margin_left = 450.0
-margin_top = 44.0
-margin_right = 529.0
-margin_bottom = 63.0
-text = "0"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-margin_right = 40.0
-margin_bottom = 40.0

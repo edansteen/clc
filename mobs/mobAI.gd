@@ -22,9 +22,9 @@ func _physics_process(delta):
 	if hp <= 0:
 		return
 	var p_pos = player.global_position
-	if global_position.x >= (p_pos.x+max_distance) or global_position.x < 0-max_distance or global_position.y >= (p_pos.y+max_distance) or position.y < -max_distance:
-		queue_free()
-		
+	
+	#despawn if too far from player
+	
 	var direction = global_position.direction_to(p_pos)
 	velocity = direction.normalized() * speed
 

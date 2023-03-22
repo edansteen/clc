@@ -1,24 +1,5 @@
-[gd_resource type="Animation" load_steps=3 format=2]
-
-[ext_resource path="res://assets/shaders/hurt.tres" type="Shader" id=1]
-
-[sub_resource type="ShaderMaterial" id=15]
-shader = ExtResource( 1 )
-shader_param/color = Color( 1, 1, 1, 1 )
-shader_param/flashState = 0.0
+[gd_resource type="Animation" format=2]
 
 [resource]
 resource_name = "Hurt"
 length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:material")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7, 1.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ SubResource( 15 ), SubResource( 15 ), SubResource( 15 ) ]
-}

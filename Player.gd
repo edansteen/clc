@@ -4,8 +4,8 @@ signal gameOver
 
 export var speed = 200.0
 export var attack_dmg = 1.0
-export var max_hp = 3
-export var hp = 3
+export var max_hp = 1
+export var hp = 1
 export var xp_level = 1
 export var xp = 0
 var xp_to_next_lvl = 10
@@ -54,14 +54,17 @@ func get_input():
 
 #when hit
 func hit():
+	if game_over:
+		return
 	hp -= 1
 	animation_player.play("hurt")
 	ui.set_hearts(hp)
 	if hp <= 0:
-		if !game_over:
-			emit_signal("gameOver")
-			game_over = true
-			sprite.play("hit")
+		emit_signal("gameOver")
+		for n in attacks.get_children():
+			n.queue_free()
+		game_over = true
+		sprite.play("hit")
 	else: #if hit, make sure player gets brief invincibility
 		invincible = true
 		$ImmunityTimer.start(immunity_time)
@@ -131,3 +134,8 @@ func _on_GrabRange_area_entered(area):
 			ui.set_hearts(hp)
 			area.queue_free()
 			$ItemPickup.play()
+
+#despawn enemies that are too far from the player
+func _on_EnemyRange_body_exited(body):
+	if body.has_method("hit_for"):
+		body.queue_free()

@@ -2,7 +2,7 @@ extends Node2D
 
 #maximum number of mobs that can be spawned
 export var mob_cap: int = 50
-export var spawn_delay: float = 2.0 #in s
+export var spawn_delay: float = 1.0 #in s
 export var active: bool = false
 
 var max_spawn_distance = 1000

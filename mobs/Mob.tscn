@@ -94,7 +94,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 19.0
+radius = 15.0
 height = 14.0
 
 [node name="Mob" type="KinematicBody2D" groups=["mobs"]]
@@ -111,7 +111,6 @@ animation = "move"
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
-reset_on_save = false
 anims/Hurt = ExtResource( 6 )
 anims/hurt = ExtResource( 7 )
 

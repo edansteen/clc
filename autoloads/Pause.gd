@@ -14,12 +14,16 @@ func set_visible(is_visible):
 	for node in get_children():
 		node.visible = is_visible
 
-func _on_Quit_pressed():
-	get_tree().quit()
-
-func _on_Resume_pressed():
+func unpause():
 	get_tree().paused = false
 	set_visible(false)
+
+func _on_Quit_pressed():
+	unpause()
+	get_tree().change_scene("res://TitleScreen.tscn")
+
+func _on_Resume_pressed():
+	unpause()
 
 func _on_Button_pressed():
 	pass

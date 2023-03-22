@@ -1,6 +1,6 @@
 extends Area2D
 
-var level = 1
+var level = 0
 var damage = 8
 var area = 1.0
 var attack_cooldown = 1.0 #interval between every time field attacks a mob
@@ -12,6 +12,18 @@ onready var sprite = $Sprite
 onready var attack_area = $AttackArea
 
 func _ready():
+	level_up()
+	$CooldownTimer.start(attack_cooldown)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	sprite.rotate(0.01)
+
+
+func level_up():
+	if level < 6:
+		level += 1
 	match level:
 		1:
 			damage = 8
@@ -34,21 +46,10 @@ func _ready():
 			area *= 1.1
 	attack_area.scale *= area
 	sprite.scale *= area
-	$CooldownTimer.start(attack_cooldown)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	sprite.rotate(0.01)
-
-
-func level_up():
-	if level > 6:
-		level += 1
 	
 
 func get_description():
-	return "A force field";
+	return "Damages enemies entering its field";
 	
 	
 func _on_Field_body_entered(body):
