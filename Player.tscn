@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/cat_sprites.png" type="Texture" id=2]
@@ -138,9 +138,6 @@ radius = 596.0
 [sub_resource type="CircleShape2D" id=22]
 radius = 37.1214
 
-[sub_resource type="CircleShape2D" id=25]
-radius = 1389.12
-
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 1 )
 __meta__ = {
@@ -186,14 +183,7 @@ shape = SubResource( 22 )
 [node name="ItemPickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 
-[node name="EnemyRange" type="Area2D" parent="."]
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyRange"]
-shape = SubResource( 25 )
-
 [connection signal="timeout" from="ImmunityTimer" to="." method="_on_ImmunityTimer_timeout"]
 [connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_body_exited"]
 [connection signal="area_entered" from="GrabRange" to="." method="_on_GrabRange_area_entered"]
-[connection signal="body_exited" from="EnemyRange" to="." method="_on_EnemyRange_body_exited"]

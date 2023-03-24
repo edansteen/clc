@@ -18,7 +18,7 @@ var game_over := false
 var immunity_time := 0.1
 
 #Enemy Related
-var enemy_close = [] #Array of all enemies within range
+var targets_close = [] #Array of all enemies within range
 var nearest_enemy
 
 #Attacks
@@ -30,7 +30,7 @@ var attacks_array = [
 ]
 
 #First weapon player equips
-var base_attack = attacks_array[0]
+var base_attack = attacks_array[2]
 
 # Nodes
 onready var sprite = $AnimatedSprite
@@ -94,10 +94,22 @@ func _physics_process(delta):
 
 
 func get_random_target():
-	if enemy_close.size() > 0:
-		return enemy_close.pick_random().global_position
+	if targets_close.size() > 0:
+		return targets_close.pick_random().global_position
 	else:
 		return Vector2.RIGHT
+
+func get_nearest_target():
+	if targets_close.size() == 0:
+		return Vector2.ZERO
+	var n
+	var shortest_distance
+	for node in targets_close:
+		var distance = Vector2.ZERO.distance_to(node)
+		if distance < shortest_distance:
+			n = node
+			shortest_distance = distance
+	return n
 
 #equip the preload of the specified attack
 func equip_attack(attack):
@@ -115,12 +127,13 @@ func _on_ImmunityTimer_timeout():
 	invincible = false
 
 func _on_EnemyDetectionArea_body_entered(body):
-	if !enemy_close.has(body):
-		enemy_close.append(body)
+	if !targets_close.has(body):
+		targets_close.append(body)
+		
 
 func _on_EnemyDetectionArea_body_exited(body):
-	if enemy_close.has(body):
-		enemy_close.erase(body)
+	if targets_close.has(body):
+		targets_close.erase(body)
 
 #grab items
 func _on_GrabRange_area_entered(area):
@@ -134,8 +147,3 @@ func _on_GrabRange_area_entered(area):
 			ui.set_hearts(hp)
 			area.queue_free()
 			$ItemPickup.play()
-
-#despawn enemies that are too far from the player
-func _on_EnemyRange_body_exited(body):
-	if body.has_method("hit_for"):
-		body.queue_free()

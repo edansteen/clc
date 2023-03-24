@@ -16,12 +16,17 @@ func _process(delta):
 		return
 	time += delta
 
+
 func get_time():
 	return time
 
 
 func _on_Player_gameOver():
 	game_over = true
-	$GameOverScreen.make_visible()
 	$MobSpawner.set_active(false)
 	$Music.stop()
+	$GameOverScreenTimer.start(1.0)
+
+
+func _on_GameOverScreenTimer_timeout():
+	$GameOverScreen.make_visible()

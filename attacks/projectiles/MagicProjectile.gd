@@ -1,0 +1,52 @@
+#projectile that automatically heads toward the nearest enemy
+extends Area2D
+
+var level = 1
+var lifetime = 10.0 #projectile lifetime
+var damage = 10.0
+var speed = 10.0
+var area = 1.0
+var knockback = 30.0
+var piercing = 1 #number of enemies projectile pierces before disappearing
+
+var target = Vector2.ZERO
+var angle = Vector2.RIGHT
+
+func _ready():
+	var mobs = get_tree().get_nodes_in_group("mobs")
+	if mobs.size() == 0:
+		return null
+	var nearest_mob = mobs[0]
+	for mob in mobs:
+		if mob.global_position.distance_to(global_position) < nearest_mob.global_position.distance_to(global_position):
+			nearest_mob = mob
+	target = nearest_mob
+	look_at(target.global_position)
+	angle = (target.global_position - global_position).normalized()
+
+func set_level(lvl) -> void:
+	level = lvl
+	match level:
+		1:
+			damage = 10.0
+			speed = 300.0
+			area = 1.0
+			knockback = 30.0
+			piercing = 1
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	global_position += angle*speed*delta
+
+
+func _on_LifetimeTimer_timeout():
+	queue_free()
+
+
+func _on_MagicProjectile_body_entered(body):
+	if body.has_method("hit_for"):
+		body.hit_for(damage)
+		piercing -= 1
+		if piercing <= 0:
+			queue_free()

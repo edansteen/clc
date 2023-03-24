@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/sfx/temp_theme.wav" type="AudioStream" id=3]
 [ext_resource path="res://mobs/MobSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/GameOverScreen.tscn" type="PackedScene" id=5]
 
@@ -34,10 +33,9 @@ margin_top = -14.0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
-[node name="MobSpawner" parent="." instance=ExtResource( 4 )]
+[node name="MobSpawner" parent="." groups=["main"] instance=ExtResource( 4 )]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
 volume_db = -10.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -45,4 +43,7 @@ environment = SubResource( 1 )
 
 [node name="GameOverScreen" parent="." instance=ExtResource( 5 )]
 
+[node name="GameOverScreenTimer" type="Timer" parent="."]
+
 [connection signal="gameOver" from="Player" to="." method="_on_Player_gameOver"]
+[connection signal="timeout" from="GameOverScreenTimer" to="." method="_on_GameOverScreenTimer_timeout"]

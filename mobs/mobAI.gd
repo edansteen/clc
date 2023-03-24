@@ -40,7 +40,8 @@ func _physics_process(delta):
 	if collision:
 		if collision.collider.has_method("hit"): #hit if it's the player
 			collision.collider.hit()
-	
+
+
 func hit_for(dmg):
 	if hp >= 0: #avoids small bug where mob is hit while despawning
 		hp -= dmg

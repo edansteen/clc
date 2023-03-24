@@ -12,7 +12,9 @@ onready var player = get_tree().get_nodes_in_group("player")[0]
 var rng := RandomNumberGenerator.new()
 
 #preload of all mobs
-var mobs = preload("res://mobs/Mob.tscn")
+var mobs = [
+	preload("res://mobs/Mob.tscn")
+	]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,7 +24,7 @@ func _ready():
 func _process(_delta):
 	if active and $Mobs.get_child_count() < mob_cap:
 		#spawn mobs
-		var m = mobs.instance()
+		var m = mobs[0].instance()
 		m.global_position = get_random_position()
 		$Mobs.call_deferred("add_child", m)
 		active = false
