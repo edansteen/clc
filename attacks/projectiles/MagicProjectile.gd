@@ -1,8 +1,6 @@
 #projectile that automatically heads toward the nearest enemy
 extends Area2D
 
-var level = 1
-var lifetime = 10.0 #projectile lifetime
 var damage = 10.0
 var speed = 10.0
 var area = 1.0
@@ -25,8 +23,7 @@ func _ready():
 	angle = (target.global_position - global_position).normalized()
 
 func set_level(lvl) -> void:
-	level = lvl
-	match level:
+	match lvl:
 		1:
 			damage = 10.0
 			speed = 300.0

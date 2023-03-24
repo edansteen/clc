@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/cat_sprites.png" type="Texture" id=2]
@@ -132,9 +132,6 @@ length = 0.8
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 22, 19.5 )
 
-[sub_resource type="CircleShape2D" id=21]
-radius = 596.0
-
 [sub_resource type="CircleShape2D" id=22]
 radius = 37.1214
 
@@ -168,12 +165,6 @@ smoothing_enabled = true
 
 [node name="Attacks" type="Node2D" parent="."]
 
-[node name="EnemyDetectionArea" type="Area2D" parent="."]
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
-shape = SubResource( 21 )
-
 [node name="GrabRange" type="Area2D" parent="."]
 monitorable = false
 
@@ -184,6 +175,4 @@ shape = SubResource( 22 )
 stream = ExtResource( 6 )
 
 [connection signal="timeout" from="ImmunityTimer" to="." method="_on_ImmunityTimer_timeout"]
-[connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_body_entered"]
-[connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_body_exited"]
 [connection signal="area_entered" from="GrabRange" to="." method="_on_GrabRange_area_entered"]

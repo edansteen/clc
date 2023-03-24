@@ -17,20 +17,17 @@ var velocity := Vector2()
 var game_over := false
 var immunity_time := 0.1
 
-#Enemy Related
-var targets_close = [] #Array of all enemies within range
-var nearest_enemy
-
 #Attacks
 var attacks_array = [
 	preload("res://attacks/Field.tscn"), # field
 	preload("res://attacks/Orb.tscn"), # orbs
 	preload("res://attacks/MagicMissile.tscn"), # magic missile
-	preload("res://attacks/LightningRod.tscn") #lightning rod
+	preload("res://attacks/LightningRod.tscn"), #lightning rod
+	preload("res://attacks/Dagger.tscn")
 ]
 
 #First weapon player equips
-var base_attack = attacks_array[2]
+var base_attack = attacks_array[3]
 
 # Nodes
 onready var sprite = $AnimatedSprite
@@ -93,24 +90,6 @@ func _physics_process(delta):
 			collision.collider.grab()
 
 
-func get_random_target():
-	if targets_close.size() > 0:
-		return targets_close.pick_random().global_position
-	else:
-		return Vector2.RIGHT
-
-func get_nearest_target():
-	if targets_close.size() == 0:
-		return Vector2.ZERO
-	var n
-	var shortest_distance
-	for node in targets_close:
-		var distance = Vector2.ZERO.distance_to(node)
-		if distance < shortest_distance:
-			n = node
-			shortest_distance = distance
-	return n
-
 #equip the preload of the specified attack
 func equip_attack(attack):
 	attacks.call_deferred("add_child", attack.instance())
@@ -123,17 +102,12 @@ func add_xp(n):
 		xp_to_next_lvl *= xp_increase_multiplier
 		ui.add_xp(xp,xp_to_next_lvl,xp_level)
 
+func get_vel():
+	return velocity.normalized()
+
 func _on_ImmunityTimer_timeout():
 	invincible = false
 
-func _on_EnemyDetectionArea_body_entered(body):
-	if !targets_close.has(body):
-		targets_close.append(body)
-		
-
-func _on_EnemyDetectionArea_body_exited(body):
-	if targets_close.has(body):
-		targets_close.erase(body)
 
 #grab items
 func _on_GrabRange_area_entered(area):

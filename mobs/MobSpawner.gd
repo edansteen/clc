@@ -19,7 +19,7 @@ var mobs = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	active = false
-	spawn_delay = 2.0
+	spawn_delay = 1.0
 	
 func _process(_delta):
 	if active and $Mobs.get_child_count() < mob_cap:

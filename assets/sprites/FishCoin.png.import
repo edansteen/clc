@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fish_coin.png-18b9746bc1d93704bbbcac3b45158093.stex"
+path="res://.import/FishCoin.png-9c10ebbce5f0e63e7cea433f6fefa6f1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/fish_coin.png"
-dest_files=[ "res://.import/fish_coin.png-18b9746bc1d93704bbbcac3b45158093.stex" ]
+source_file="res://assets/sprites/FishCoin.png"
+dest_files=[ "res://.import/FishCoin.png-9c10ebbce5f0e63e7cea433f6fefa6f1.stex" ]
 
 [params]
 
