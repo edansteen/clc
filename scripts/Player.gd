@@ -3,7 +3,6 @@ extends KinematicBody2D
 signal gameOver
 
 export var speed = 200.0
-export var attack_dmg = 1.0
 export var max_hp = 100
 export var hp = 100
 export var xp_level = 1
@@ -27,7 +26,7 @@ var attacks_array = [
 ]
 
 #First weapon player equips
-var base_attack = attacks_array[2]
+var base_attack = attacks_array[0]
 
 # Nodes
 onready var sprite = $AnimatedSprite
@@ -36,6 +35,7 @@ onready var gui = $GUI
 onready var animation_player = $AnimatedSprite/AnimationPlayer
 onready var levelup_panel = $GUI/Control/LevelUp
 onready var xp_bar = $GUI/Control/ProgressBar
+onready var level_label = $GUI/Control/ProgressBar/LevelLabel
 
 
 # Called when the node enters the scene tree for the first time.
@@ -45,12 +45,11 @@ func _ready():
 	hp = max_hp
 	game_over = false
 	$Camera2D.make_current()
+	xp_level = 1
 	xp_bar.max_value = xp_to_next_lvl
 	xp_bar.value = xp
 	equip_attack(base_attack)
-	equip_attack(attacks_array[0])
-	equip_attack(attacks_array[1])
-	equip_attack(attacks_array[3])
+
 
 #Get keyboard input for movement
 func get_input():
@@ -116,14 +115,15 @@ func add_xp(n):
 	
 func level_up():
 	get_tree().paused = true
+	$GUI/Control/LevelUp/LevelUpSound.play()
 	levelup_panel.show()
+	level_label.text = "Level %s" % str(xp_level)
 
 func get_vel():
 	return velocity.normalized()
 
 func _on_ImmunityTimer_timeout():
 	invincible = false
-
 
 #grab items
 func _on_GrabRange_area_entered(area):

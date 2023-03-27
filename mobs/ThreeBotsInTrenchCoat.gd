@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
 export var speed = 50.0
-export var hp = 15
+export var hp = 40
+export var damage = 15
 
 var velocity = Vector2()
 var max_distance = 1500
@@ -10,9 +11,7 @@ onready var player = get_tree().get_nodes_in_group("player")[0]
 onready var sprite = $AnimatedSprite 
 onready var animation_player = $AnimatedSprite/AnimationPlayer
 
-var death_effect = preload("res://mobs/EnemyDeathEffect.tscn")
-var explosion = preload("res://mobs/mob_projectiles/Explosion.tscn")
-var xp = preload("res://items/ExpPoint.tscn")
+var microbots = preload("res://mobs/Microbot.tscn")
 
 func _ready():
 	sprite.play("move")
@@ -37,8 +36,8 @@ func _physics_process(delta):
 			
 	var collision = move_and_collide(velocity * delta)	
 	if collision:
-		if collision.collider.has_method("hit"): #explode if it's the player
-			hit_for(hp)
+		if collision.collider.has_method("hit"): #hit if it's the player
+			collision.collider.hit(damage)
 
 
 func hit_for(dmg):
@@ -49,22 +48,16 @@ func hit_for(dmg):
 		if hp <= 0:
 				sprite.play("death")
 				$Hitbox.queue_free()
-
-
-func explode():
-	# add death effect
-	call_deferred("add_child", death_effect.instance())
-	var dropped_xp = xp.instance()
-	dropped_xp.global_position = global_position
-	get_parent().call_deferred("add_child", dropped_xp)
-	var death_explosion = explosion.instance()
-	death_explosion.global_position = global_position
-	get_parent().call_deferred("add_child", death_explosion)
+				# add death effect
+				for i in range(3):
+					var bots = microbots.instance()
+					bots.position.x = position.x
+					bots.position.y = position.y - 20 + (20*i)
+					get_parent().call_deferred("add_child", bots)
 
 
 func _on_AnimatedSprite_animation_finished():
 	if hp <= 0:
-		explode()
 		queue_free()
 	else:
 		sprite.play("move")
