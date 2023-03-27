@@ -2,8 +2,6 @@ extends Node2D
 
 export var active: bool = false
 
-var max_spawn_distance = 1000
-
 #difficulty level
 var mob_cap: int = 50 #maximum number of mobs that can be spawned
 var spawn_delay: float = 1.0 #in s
@@ -63,6 +61,10 @@ func set_level(n):
 			spawn_delay = 0.2
 			mob_cap = 120
 			spawn_probability = [0.0,1.0,1.0]
+		5:
+			spawn_delay = 0.1
+			mob_cap = 150
+			spawn_probability = [1.0,1.0,1.0]
 
 #Select which mob to spawn based on probability
 func rand_mob():

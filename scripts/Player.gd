@@ -16,6 +16,7 @@ var velocity := Vector2()
 var game_over := false
 var immunity_time := 0.1
 
+
 #Attacks
 var attacks_array = [
 	preload("res://attacks/Field.tscn"), # field
@@ -24,6 +25,8 @@ var attacks_array = [
 	preload("res://attacks/LightningRod.tscn"), #lightning rod
 	preload("res://attacks/Dagger.tscn"), #the magic dagger
 ]
+
+var attacks_level = []
 
 #First weapon player equips
 var base_attack = attacks_array[0]
@@ -48,7 +51,9 @@ func _ready():
 	xp_level = 1
 	xp_bar.max_value = xp_to_next_lvl
 	xp_bar.value = xp
-	equip_attack(base_attack)
+	for i in range(attacks_array.size()):
+		attacks_level.append(0)
+	equip_attack(0)
 
 
 #Get keyboard input for movement
@@ -98,8 +103,9 @@ func _physics_process(delta):
 
 
 #equip the preload of the specified attack
-func equip_attack(attack):
-	attacks.call_deferred("add_child", attack.instance())
+func equip_attack(attack_index):
+	attacks.call_deferred("add_child", attacks_array[attack_index].instance())
+	attacks_level[attack_index] += 1
 
 func add_xp(n):
 	xp += n
@@ -118,6 +124,7 @@ func level_up():
 	$GUI/Control/LevelUp/LevelUpSound.play()
 	levelup_panel.show()
 	level_label.text = "Level %s" % str(xp_level)
+	#choose random options
 
 func get_vel():
 	return velocity.normalized()
