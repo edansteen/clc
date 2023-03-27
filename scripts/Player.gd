@@ -1,0 +1,143 @@
+extends KinematicBody2D
+
+signal gameOver
+
+export var speed = 200.0
+export var attack_dmg = 1.0
+export var max_hp = 100
+export var hp = 100
+export var xp_level = 1
+export var xp = 0
+var xp_to_next_lvl = 30
+var xp_increase_multiplier = 1.5 #amount xp needed increases by after level up
+
+var invincible = false
+var invincibility_time = 1.0 #in s
+var velocity := Vector2()
+var game_over := false
+var immunity_time := 0.1
+
+#Attacks
+var attacks_array = [
+	preload("res://attacks/Field.tscn"), # field
+	preload("res://attacks/Orb.tscn"), # orbs
+	preload("res://attacks/MagicMissile.tscn"), # magic missile
+	preload("res://attacks/LightningRod.tscn"), #lightning rod
+	preload("res://attacks/Dagger.tscn"), #the magic dagger
+]
+
+#First weapon player equips
+var base_attack = attacks_array[2]
+
+# Nodes
+onready var sprite = $AnimatedSprite
+onready var attacks = $Attacks
+onready var gui = $GUI
+onready var animation_player = $AnimatedSprite/AnimationPlayer
+onready var levelup_panel = $GUI/Control/LevelUp
+onready var xp_bar = $GUI/Control/ProgressBar
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	position.x = 0
+	position.y = 0
+	hp = max_hp
+	game_over = false
+	$Camera2D.make_current()
+	xp_bar.max_value = xp_to_next_lvl
+	xp_bar.value = xp
+	equip_attack(base_attack)
+	equip_attack(attacks_array[0])
+	equip_attack(attacks_array[1])
+	equip_attack(attacks_array[3])
+
+#Get keyboard input for movement
+func get_input():
+	velocity = Vector2()
+	velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+
+#when hit
+func hit(dmg):
+	if game_over:
+		return
+	hp -= dmg
+	animation_player.play("hurt")
+	if hp <= 0:
+		emit_signal("gameOver")
+		for n in attacks.get_children():
+			n.queue_free()
+		game_over = true
+		sprite.play("hit")
+	else: #if hit, make sure player gets brief invincibility
+		invincible = true
+		$ImmunityTimer.start(immunity_time)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta):
+	if game_over:
+		sprite.rotate(0.1)
+		return
+		
+	get_input()
+	
+	if velocity.x != 0 or velocity.y != 0:
+		if velocity.x > 0:
+			sprite.flip_h = false
+		elif velocity.x < 0: 
+			sprite.flip_h = true
+		sprite.play("run")
+	else:
+		sprite.play("idle")
+	
+	var collision = move_and_collide(velocity.normalized()*speed*delta)
+	#grab items that can be picked up
+	if collision:
+		if collision.collider.has_method("grab"):
+			collision.collider.grab()
+
+
+#equip the preload of the specified attack
+func equip_attack(attack):
+	attacks.call_deferred("add_child", attack.instance())
+
+func add_xp(n):
+	xp += n
+	if xp >= xp_to_next_lvl: # LEVEL UP
+		xp_bar.value = xp_bar.max_value
+		level_up()
+		xp_level += 1
+		xp -= xp_to_next_lvl
+		xp_to_next_lvl *= xp_increase_multiplier
+		xp_bar.value = xp
+		xp_bar.max_value = xp_to_next_lvl
+	xp_bar.value = xp
+	
+func level_up():
+	get_tree().paused = true
+	levelup_panel.show()
+
+func get_vel():
+	return velocity.normalized()
+
+func _on_ImmunityTimer_timeout():
+	invincible = false
+
+
+#grab items
+func _on_GrabRange_area_entered(area):
+	if area.has_method("grab_xp"):
+		add_xp(area.grab_xp())
+		area.queue_free()
+		$ItemPickup.play()
+	elif area.has_method("grab_heart"):
+		if hp < max_hp:
+			hp += 1
+			area.queue_free()
+			$ItemPickup.play()
+
+
+func _on_Option_1_pressed():
+	get_tree().paused = false
+	levelup_panel.hide()

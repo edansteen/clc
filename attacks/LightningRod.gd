@@ -30,7 +30,7 @@ func set_damage(d):
 
 
 func _on_CooldownTimer_timeout():
-	for i in range(projectile_num):
+	for _i in range(projectile_num):
 		var l = lightning.instance()
 		l.set_level(level)
 		#strike random enemy in range

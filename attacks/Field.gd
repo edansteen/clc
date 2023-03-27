@@ -1,6 +1,6 @@
 extends Area2D
 
-var level = 0
+export var level = 0
 var damage = 8
 var area = 1.0
 var attack_cooldown = 1.0 #interval between every time field attacks a mob

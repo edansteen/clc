@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var speed = 50.0
 export var hp = 20
-export var damage = 10
+export var damage = 5
 
 var velocity = Vector2()
 var max_distance = 1500
@@ -34,18 +34,17 @@ func _physics_process(delta):
 		elif velocity.x < 0: 
 			sprite.flip_h = true
 			sprite.play("move")
-	
-	var collision = move_and_collide(velocity * delta)
-	
+			
+	var collision = move_and_collide(velocity * delta)	
 	if collision:
 		if collision.collider.has_method("hit"): #hit if it's the player
-			collision.collider.hit()
+			collision.collider.hit(damage)
 
 
 func hit_for(dmg):
 	if hp >= 0: #avoids small bug where mob is hit while despawning
 		hp -= dmg
-		$AnimatedSprite/AnimationPlayer.play("hurt")
+		animation_player.play("hurt")
 		$HitSoundEffect.play()
 		if hp <= 0:
 				sprite.play("death")

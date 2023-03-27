@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/Pause.tscn" type="PackedScene" id=3]
 [ext_resource path="res://mobs/MobSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/GameOverScreen.tscn" type="PackedScene" id=5]
 
@@ -41,7 +42,10 @@ volume_db = -10.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
+[node name="Pause" parent="." instance=ExtResource( 3 )]
+
 [node name="GameOverScreen" parent="." instance=ExtResource( 5 )]
+visible = false
 
 [node name="GameOverScreenTimer" type="Timer" parent="."]
 

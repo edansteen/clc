@@ -1,11 +1,12 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/cat_sprites.png" type="Texture" id=2]
-[ext_resource path="res://ui/UI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sprites/FishCoin.png" type="Texture" id=3]
 [ext_resource path="res://assets/animations/hurt.tres" type="Animation" id=4]
 [ext_resource path="res://assets/shaders/hurt.tres" type="Shader" id=5]
 [ext_resource path="res://assets/sfx/xp-ding.mp3" type="AudioStream" id=6]
+[ext_resource path="res://LevelUp.gd" type="Script" id=8]
 
 [sub_resource type="ShaderMaterial" id=24]
 resource_local_to_scene = true
@@ -155,8 +156,6 @@ anims/hurt = ExtResource( 4 )
 position = Vector2( 1, 3.5 )
 shape = SubResource( 2 )
 
-[node name="UI" parent="." instance=ExtResource( 3 )]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 smoothing_enabled = true
@@ -174,5 +173,85 @@ shape = SubResource( 22 )
 [node name="ItemPickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 
+[node name="GUI" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Control" type="Control" parent="GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ProgressBar" type="ProgressBar" parent="GUI/Control"]
+anchor_right = 1.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 1024, 24 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -80.0
+margin_top = 30.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 80, 30 )
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Control/HBoxContainer"]
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+
+[node name="GoldCollected" type="Label" parent="GUI/Control/HBoxContainer"]
+margin_left = 34.0
+margin_top = 8.0
+margin_right = 42.0
+margin_bottom = 22.0
+text = "0"
+
+[node name="LevelUp" type="Panel" parent="GUI/Control"]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -225.0
+margin_right = 200.0
+margin_bottom = 225.0
+script = ExtResource( 8 )
+
+[node name="LevelUpLabel" type="Label" parent="GUI/Control/LevelUp"]
+anchor_right = 1.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 300, 80 )
+text = "Level Up!"
+align = 1
+valign = 1
+
+[node name="UpgradeOptions" type="VBoxContainer" parent="GUI/Control/LevelUp"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -125.0
+margin_top = 100.0
+margin_right = 125.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 250, 60 )
+
+[node name="Option 1" type="Button" parent="GUI/Control/LevelUp/UpgradeOptions"]
+margin_right = 250.0
+margin_bottom = 20.0
+flat = true
+
+[node name="Label" type="Label" parent="GUI/Control/LevelUp/UpgradeOptions/Option 1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Option 1"
+align = 1
+valign = 1
+
+[node name="LevelUp" type="AudioStreamPlayer" parent="GUI/Control/LevelUp"]
+
 [connection signal="timeout" from="ImmunityTimer" to="." method="_on_ImmunityTimer_timeout"]
 [connection signal="area_entered" from="GrabRange" to="." method="_on_GrabRange_area_entered"]
+[connection signal="pressed" from="GUI/Control/LevelUp/UpgradeOptions/Option 1" to="." method="_on_Option_1_pressed"]

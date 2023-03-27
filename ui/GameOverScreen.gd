@@ -5,12 +5,15 @@ func _ready():
 	set_visible(false)
 
 func make_visible():
+	get_tree().paused = true
 	set_visible(true)
-
+	
 
 func _on_Play_Again_pressed():
+	get_tree().paused = false
 	get_tree().change_scene("res://Main.tscn")
 
 
 func _on_Quit_pressed():
+	get_tree().paused = false
 	get_tree().change_scene("res://TitleScreen.tscn")

@@ -13,10 +13,6 @@ config_version=4
 config/name="CLC"
 run/main_scene="res://Main.tscn"
 
-[autoload]
-
-Pause="*res://autoloads/Pause.tscn"
-
 [display]
 
 window/size/resizable=false

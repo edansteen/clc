@@ -1,6 +1,6 @@
 extends Area2D
 
-var xp_value = 20
+var xp_value = 10
 var target = null
 var speed = 0
 
