@@ -16,29 +16,29 @@ var velocity := Vector2()
 var game_over := false
 var immunity_time := 0.1
 
+var rng = RandomNumberGenerator.new()
 
-#Attacks
-var attacks_array = [
+#Weapons
+var weapons_array = [
 	preload("res://attacks/Field.tscn"), # field
 	preload("res://attacks/Orb.tscn"), # orbs
 	preload("res://attacks/MagicMissile.tscn"), # magic missile
 	preload("res://attacks/LightningRod.tscn"), #lightning rod
-	preload("res://attacks/Dagger.tscn"), #the magic dagger
+	preload("res://attacks/Dagger.tscn") #the magic dagger
 ]
 
-var attacks_level = []
-
-#First weapon player equips
-var base_attack = attacks_array[0]
+#Index of first weapon player equips (based on position in attacks_array)
+var base_attack = 0
 
 # Nodes
 onready var sprite = $AnimatedSprite
-onready var attacks = $Attacks
+onready var weapons = $Weapons
 onready var gui = $GUI
 onready var animation_player = $AnimatedSprite/AnimationPlayer
 onready var levelup_panel = $GUI/Control/LevelUp
 onready var xp_bar = $GUI/Control/ProgressBar
 onready var level_label = $GUI/Control/ProgressBar/LevelLabel
+onready var upgrade_options = $GUI/Control/LevelUp/UpgradeOptions
 
 
 # Called when the node enters the scene tree for the first time.
@@ -51,15 +51,20 @@ func _ready():
 	xp_level = 1
 	xp_bar.max_value = xp_to_next_lvl
 	xp_bar.value = xp
-	for i in range(attacks_array.size()):
-		attacks_level.append(0)
-	equip_attack(0)
-
+	
+	#equip all weapons at level 0 (where they do nothing)
+	for i in range(weapons_array.size()):
+		weapons_array[i] = weapons_array[i].instance() #transform to instance of itself
+		weapons.call_deferred("add_child", weapons_array[i])
+		
+	#level up the base weapon
+	level_up_weapon(base_attack)
 
 #Get keyboard input for movement
 func get_input():
 	velocity = Vector2()
 	velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+
 
 #when hit
 func hit(dmg):
@@ -69,7 +74,7 @@ func hit(dmg):
 	animation_player.play("hurt")
 	if hp <= 0:
 		emit_signal("gameOver")
-		for n in attacks.get_children():
+		for n in weapons.get_children():
 			n.queue_free()
 		game_over = true
 		sprite.play("hit")
@@ -102,16 +107,18 @@ func _physics_process(delta):
 			collision.collider.grab()
 
 
-#equip the preload of the specified attack
-func equip_attack(attack_index):
-	attacks.call_deferred("add_child", attacks_array[attack_index].instance())
-	attacks_level[attack_index] += 1
+#level up the specified weapon
+func level_up_weapon(weapon_index):
+	if weapon_index < weapons_array.size():
+		weapons_array[weapon_index].level_up()
+	else:
+		print("Error: invalid index")
 
 func add_xp(n):
 	xp += n
 	if xp >= xp_to_next_lvl: # LEVEL UP
 		xp_bar.value = xp_bar.max_value
-		level_up()
+		level_up_player()
 		xp_level += 1
 		xp -= xp_to_next_lvl
 		xp_to_next_lvl *= xp_increase_multiplier
@@ -119,15 +126,20 @@ func add_xp(n):
 		xp_bar.max_value = xp_to_next_lvl
 	xp_bar.value = xp
 	
-func level_up():
+func level_up_player():
 	get_tree().paused = true
 	$GUI/Control/LevelUp/LevelUpSound.play()
 	levelup_panel.show()
 	level_label.text = "Level %s" % str(xp_level)
+	
 	#choose random options
+	var selected = []
+	for button in upgrade_options.get_children():
+		var i = rng.randi_range(weapons_array.size())
+		if !(i in selected):
+			selected.append(i)
+			button.set_value(i)
 
-func get_vel():
-	return velocity.normalized()
 
 func _on_ImmunityTimer_timeout():
 	invincible = false
@@ -145,6 +157,16 @@ func _on_GrabRange_area_entered(area):
 			$ItemPickup.play()
 
 
-func _on_Option_1_pressed():
+func _on_UpgradeOption_pressed():
+	get_tree().paused = false
+	levelup_panel.hide()
+
+
+func _on_UpgradeOption2_pressed():
+	get_tree().paused = false
+	levelup_panel.hide()
+
+
+func _on_UpgradeOption3_pressed():
 	get_tree().paused = false
 	levelup_panel.hide()

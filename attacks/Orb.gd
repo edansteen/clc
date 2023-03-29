@@ -16,20 +16,11 @@ var orbs = []
 onready var point = $OriginPoint.global_position
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	set_lvl(1, 1)
-	if orb_count != 0:
-	#place orbs 
-		for i in range(orb_count):
-			#add to array, position, and place in scene
-			angle = (2*PI)/orb_count * (i)
-			orbs.append(orb.instance())
-			orbs[i].position = point + Vector2(cos(angle), sin(angle)) * radius
-			call_deferred("add_child",orbs[i])
-
-func set_lvl(lvl, dmg_multiplier):
-	level = lvl
-	match lvl:
+func level_up():
+	level += 1
+	for node in orbs:
+		node.erase()
+	match level:
 		0: 
 			orb_count = 0
 		1:
@@ -50,8 +41,14 @@ func set_lvl(lvl, dmg_multiplier):
 			orb_count = 5
 		6:
 			orb_count = 6
-	for node in orbs:
-		node.set_level(lvl, dmg_multiplier)
+	
+	for i in range(orb_count):
+			#add to array, position, and place in scene
+			angle = (2*PI)/orb_count * (i)
+			orbs.append(orb.instance())
+			orbs[i].position = point + Vector2(cos(angle), sin(angle)) * radius
+			orbs[i].set_level(level, 1.0)
+			call_deferred("add_child",orbs[i])
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

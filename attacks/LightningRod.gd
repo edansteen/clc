@@ -4,7 +4,7 @@ var damage = 20.0
 var area = 1.0
 var projectile_num = 1
 var cooldown_time = 4.0 #in s
-var level = 1
+var level = 0
 
 var rng = RandomNumberGenerator.new()
 #find mobs on the screen
@@ -13,21 +13,19 @@ var mobs_in_range = []
 var lightning = preload("res://attacks/projectiles/Lightning.tscn")
 
 onready var main = get_tree().get_nodes_in_group("main")[0]
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
+	
+func level_up():
+	level += 1
+	$CooldownTimer.stop()
 	match level:
 		1:
 			damage = 20.0
 			area = 1.0
 			projectile_num = 1
 	$CooldownTimer.start(cooldown_time)
-	
-
 
 func set_damage(d):
 	damage = d
-
 
 func _on_CooldownTimer_timeout():
 	for _i in range(projectile_num):

@@ -12,18 +12,20 @@ onready var sprite = $Sprite
 onready var attack_area = $AttackArea
 
 func _ready():
-	level_up()
-	$CooldownTimer.start(attack_cooldown)
-
+	level = 0
+	self.visible = false
+	$AttackArea.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(_delta):	
 	sprite.rotate(0.01)
 
 
 func level_up():
-	if level < 6:
-		level += 1
+	$CooldownTimer.stop()
+	level += 1
+	self.visible = true
+	attack_area.disabled = false
 	match level:
 		1:
 			damage = 8
@@ -44,9 +46,19 @@ func level_up():
 		6:
 			damage *= 2
 			area *= 1.1
-	attack_area.scale *= area
-	sprite.scale *= area
-	
+	#attack_area.scale *= area
+	#sprite.scale *= area
+	$CooldownTimer.start(attack_cooldown)
+
+
+func get_name():
+	return "Force Field"
+
+func get_level():
+	return level
+
+func get_icon():
+	return "res://assets/weaponArt/force_field.png"
 
 func get_description():
 	return "Damages enemies entering its field";

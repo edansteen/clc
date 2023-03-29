@@ -1,20 +1,18 @@
 extends Node2D
 
-var level = 1
+var level = 0
 var cooldown_time = 2.0
 
 var projectile = preload("res://attacks/projectiles/MagicProjectile.tscn") 
 
 onready var main = get_tree().get_nodes_in_group("main")[0]
 
-func _ready():
-	$CooldownTimer.start(cooldown_time)
-
-func set_level(lvl):
-	level = lvl
+func level_up():
+	$CooldownTimer.stop()
 	match level:
 		1:
 			cooldown_time = 2.0
+	$CooldownTimer.start(cooldown_time)
 
 
 func _on_CooldownTimer_timeout():

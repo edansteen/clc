@@ -1,29 +1,42 @@
 extends Node
 
-export var time = 0.0 #in s
-export var time_till_boss = 5*60
+var time = 0.0 #in s
+var seconds = 0
+var minutes = 0
+var spawner_level = 1
+
+var time_till_boss = 5*60
 var game_over = false
+
+onready var clock = $Clock/ClockDisplay/TimeDisplay
+onready var spawner = $MobSpawner
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$MobSpawner.set_active(true)
+	spawner.set_active(true)
 	time = 0.0
+	seconds = 0
+	minutes = 0
+	spawner_level = 1
+	spawner.set_level(spawner_level)
 	$Music.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if game_over:
 		return
-	time += delta
-
-
-func get_time():
-	return time
+	seconds += delta
+	if seconds >= 60:
+		minutes += 1
+		seconds = 0
+		spawner_level += 1
+		spawner.set_level(spawner_level)
+	clock.text = str(minutes).pad_zeros(2) + ":" + str(round(seconds)).pad_zeros(2)
 
 
 func _on_Player_gameOver():
 	game_over = true
-	$MobSpawner.set_active(false)
+	spawner.set_active(false)
 	$Music.stop()
 	$GameOverScreenTimer.start(1.0)
 
