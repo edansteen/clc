@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/laser-flash.png-df66b94cbf07dffc77770eba2ea155f3.stex"
+path="res://.import/health_bar-1.png.png-01ec2502ba8f43d6dbaa49ea48c10d8c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/laser-flash.png"
-dest_files=[ "res://.import/laser-flash.png-df66b94cbf07dffc77770eba2ea155f3.stex" ]
+source_file="res://assets/sprites/health_bar/health_bar-1.png.png"
+dest_files=[ "res://.import/health_bar-1.png.png-01ec2502ba8f43d6dbaa49ea48c10d8c.stex" ]
 
 [params]
 

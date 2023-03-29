@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/cat_sprites.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/sfx/xp-ding.mp3" type="AudioStream" id=6]
 [ext_resource path="res://assets/fonts/text_font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://ui/UpgradeOption.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/sprites/health_bar/health_bar-2.png.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/health_bar/health_bar-1.png.png" type="Texture" id=10]
 
 [sub_resource type="ShaderMaterial" id=24]
 resource_local_to_scene = true
@@ -199,6 +201,15 @@ margin_bottom = 8.0
 custom_fonts/font = ExtResource( 7 )
 text = "Level 0"
 
+[node name="HealthBar" type="TextureProgress" parent="GUI/Control"]
+margin_left = 10.0
+margin_top = 60.0
+margin_right = 298.0
+margin_bottom = 84.0
+value = 100.0
+texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
+
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Control"]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -253,10 +264,18 @@ margin_bottom = 160.0
 rect_min_size = Vector2( 250, 60 )
 
 [node name="UpgradeOption" parent="GUI/Control/LevelUp/UpgradeOptions" instance=ExtResource( 8 )]
+margin_top = 0.0
+margin_right = 300.0
 
 [node name="UpgradeOption2" parent="GUI/Control/LevelUp/UpgradeOptions" instance=ExtResource( 8 )]
+margin_top = 104.0
+margin_right = 300.0
+margin_bottom = 204.0
 
 [node name="UpgradeOption3" parent="GUI/Control/LevelUp/UpgradeOptions" instance=ExtResource( 8 )]
+margin_top = 208.0
+margin_right = 300.0
+margin_bottom = 308.0
 
 [node name="LevelUpSound" type="AudioStreamPlayer" parent="GUI/Control/LevelUp"]
 

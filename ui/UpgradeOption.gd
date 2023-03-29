@@ -10,11 +10,11 @@ func get_value():
 	return value
 
 func set_option(weapon_object):
-	$VBoxContainer/HBoxContainer/Icon.draw_texture_rect(weapon_object.get_icon())
+	$VBoxContainer/HBoxContainer/Icon.texture = load(weapon_object.get_icon())
 	$VBoxContainer/HBoxContainer/Name.text = weapon_object.get_name()
 	var level = weapon_object.get_level()
 	if level == 0:
 		$VBoxContainer/HBoxContainer/LevelIndicator.text = "(New!)"
 	else:
-		$VBoxContainer/HBoxContainer/LevelIndicator.text = "Level" + str(level)
-	$VBoxContainer/Description.text = weapon_object.get_description()
+		$VBoxContainer/HBoxContainer/LevelIndicator.text = "Level:" + str(level)
+	$VBoxContainer/Description.text = weapon_object.get_desc()

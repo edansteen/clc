@@ -1,6 +1,6 @@
 extends Node2D
 
-var level = 1
+var level = 0
 var orb_count = 1 #number of orbs
 var damage = 8.0
 var rotation_speed = 0.03
@@ -13,45 +13,57 @@ var orb = preload("res://attacks/projectiles/OrbProjectile.tscn")
 #array with all active orbs
 var orbs = []
 
-onready var point = $OriginPoint.global_position
-
 # Called when the node enters the scene tree for the first time.
 func level_up():
 	level += 1
-	for node in orbs:
-		node.erase()
+	for i in range(orbs.size()):
+		orbs[i].queue_free()
+		orbs.erase(i)
 	match level:
-		0: 
-			orb_count = 0
 		1:
-			orb_count = 1
+			orb_count = 2
 			damage = 8.0
 			rotation_speed = 0.03
 			orb_size = 1.0
-			radius = 100
+			radius = 90
 		2:
 			damage = 12
-			orb_count = 2
-			rotation_speed = 0.05
-		3:
 			orb_count = 3
-		4:
+			rotation_speed = 0.05
+			radius = 100
+		3:
 			orb_count = 4
-		5:
+		4:
 			orb_count = 5
-		6:
+		5:
 			orb_count = 6
+		6:
+			orb_count = 7
 	
 	for i in range(orb_count):
 			#add to array, position, and place in scene
 			angle = (2*PI)/orb_count * (i)
 			orbs.append(orb.instance())
-			orbs[i].position = point + Vector2(cos(angle), sin(angle)) * radius
+			orbs[i].position = $OriginPoint.position + Vector2(cos(angle), sin(angle)) * radius
 			orbs[i].set_level(level, 1.0)
 			call_deferred("add_child",orbs[i])
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	var p = $OriginPoint.position
 	for o in orbs:
-		o.position = point + (o.position - point).rotated(rotation_speed)
+		o.position = p + (o.position - p).rotated(rotation_speed)
+
+
+func get_name():
+	return "Cosmic Orbs"
+	
+func get_icon():
+	return "res://assets/weaponArt/orb_sprite.png"
+
+func get_level():
+	return level
+
+func get_desc():
+	return "Summons orbs that rotate around the player, dealing damage to enemies."

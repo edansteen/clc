@@ -20,8 +20,8 @@ func set_level(lvl) -> void:
 			piercing = 1
 
 
-func set_dir(d):
-	dir = d
+func set_dir(angle):
+	dir = Vector2(cos(angle), sin(angle))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

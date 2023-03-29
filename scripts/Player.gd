@@ -24,7 +24,7 @@ var weapons_array = [
 	preload("res://attacks/Orb.tscn"), # orbs
 	preload("res://attacks/MagicMissile.tscn"), # magic missile
 	preload("res://attacks/LightningRod.tscn"), #lightning rod
-	preload("res://attacks/Dagger.tscn") #the magic dagger
+	preload("res://attacks/MagicGun.tscn") #the magic dagger
 ]
 
 #Index of first weapon player equips (based on position in attacks_array)
@@ -37,6 +37,7 @@ onready var gui = $GUI
 onready var animation_player = $AnimatedSprite/AnimationPlayer
 onready var levelup_panel = $GUI/Control/LevelUp
 onready var xp_bar = $GUI/Control/ProgressBar
+onready var healthbar = $GUI/Control/HealthBar
 onready var level_label = $GUI/Control/ProgressBar/LevelLabel
 onready var upgrade_options = $GUI/Control/LevelUp/UpgradeOptions
 
@@ -51,6 +52,8 @@ func _ready():
 	xp_level = 1
 	xp_bar.max_value = xp_to_next_lvl
 	xp_bar.value = xp
+	healthbar.max_value = hp
+	healthbar.value = hp
 	
 	#equip all weapons at level 0 (where they do nothing)
 	for i in range(weapons_array.size()):
@@ -71,6 +74,7 @@ func hit(dmg):
 	if game_over:
 		return
 	hp -= dmg
+	healthbar.value = hp
 	animation_player.play("hurt")
 	if hp <= 0:
 		emit_signal("gameOver")
@@ -105,7 +109,7 @@ func _physics_process(delta):
 	if collision:
 		if collision.collider.has_method("grab"):
 			collision.collider.grab()
-
+	
 
 #level up the specified weapon
 func level_up_weapon(weapon_index):
@@ -131,14 +135,14 @@ func level_up_player():
 	$GUI/Control/LevelUp/LevelUpSound.play()
 	levelup_panel.show()
 	level_label.text = "Level %s" % str(xp_level)
-	
 	#choose random options
 	var selected = []
 	for button in upgrade_options.get_children():
-		var i = rng.randi_range(weapons_array.size())
+		var i = rng.randi_range(0,weapons_array.size()-1)
 		if !(i in selected):
 			selected.append(i)
 			button.set_value(i)
+			button.set_option(weapons_array[i])
 
 
 func _on_ImmunityTimer_timeout():
@@ -160,13 +164,16 @@ func _on_GrabRange_area_entered(area):
 func _on_UpgradeOption_pressed():
 	get_tree().paused = false
 	levelup_panel.hide()
+	level_up_weapon($GUI/Control/LevelUp/UpgradeOptions/UpgradeOption.get_value())
 
 
 func _on_UpgradeOption2_pressed():
 	get_tree().paused = false
 	levelup_panel.hide()
+	level_up_weapon($GUI/Control/LevelUp/UpgradeOptions/UpgradeOption2.get_value())
 
 
 func _on_UpgradeOption3_pressed():
 	get_tree().paused = false
 	levelup_panel.hide()
+	level_up_weapon($GUI/Control/LevelUp/UpgradeOptions/UpgradeOption3.get_value())

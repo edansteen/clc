@@ -16,24 +16,36 @@ onready var main = get_tree().get_nodes_in_group("main")[0]
 	
 func level_up():
 	level += 1
-	$CooldownTimer.stop()
 	match level:
 		1:
 			damage = 20.0
 			area = 1.0
 			projectile_num = 1
-	$CooldownTimer.start(cooldown_time)
 
 func set_damage(d):
 	damage = d
 
+func get_name():
+	return "Lightning Rod"
+	
+func get_icon():
+	return "res://assets/weaponArt/orb_sprite.png"
+
+func get_level():
+	return level
+
+func get_desc():
+	return "Periodically strikes a random enemy with lightning, dealing high damage"
+
+
 func _on_CooldownTimer_timeout():
-	for _i in range(projectile_num):
-		var l = lightning.instance()
-		l.set_level(level)
-		#strike random enemy in range
-		l.global_position = mobs_in_range[rng.randi_range(0,mobs_in_range.size()-1)].global_position
-		main.call_deferred("add_child", l)
+	if level != 0:
+		for _i in range(projectile_num):
+			var l = lightning.instance()
+			l.set_level(level)
+			#strike random enemy in range
+			l.global_position = mobs_in_range[rng.randi_range(0,mobs_in_range.size()-1)].global_position
+			main.call_deferred("add_child", l)
 	$CooldownTimer.start(cooldown_time)
 
 

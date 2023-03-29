@@ -9,6 +9,7 @@ extents = Vector2( 1024, 600 )
 script = ExtResource( 1 )
 
 [node name="CooldownTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="Range" type="Area2D" parent="."]
 monitorable = false
