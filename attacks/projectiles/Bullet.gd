@@ -2,7 +2,7 @@ extends Area2D
 
 
 var damage = 12.0
-var speed = 10.0
+var speed = 300.0
 var area = 1.0
 var knockback = 30.0
 var piercing = 1 #number of enemies projectile pierces before disappearing

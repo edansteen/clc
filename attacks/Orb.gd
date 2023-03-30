@@ -18,7 +18,7 @@ func level_up():
 	level += 1
 	for i in range(orbs.size()):
 		orbs[i].queue_free()
-		orbs.erase(i)
+	orbs = []
 	match level:
 		1:
 			orb_count = 2

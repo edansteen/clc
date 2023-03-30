@@ -27,20 +27,20 @@ func level_up():
 			attack_cooldown = 0.8
 			area = 1.0
 		2:
-			damage *= 2.0
-			area *= 1.25
+			damage *= 1.1
+			area *= 1.1
 		3:
-			damage *= 1.25
+			damage *= 1.1
 			area *= 1.1
 		4:
-			damage *= 1.25
+			damage *= 1.1
 			area *= 1.1
 		5:
-			damage *= 1.25
-			area *= 1.1
+			damage *= 1.1
+			area *= 1.05
 		6:
 			damage *= 2.0
-			area *= 1.1
+			area *= 1.05
 	$AttackArea.scale *= area
 	$Sprite.scale *= area
 

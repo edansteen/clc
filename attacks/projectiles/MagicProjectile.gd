@@ -2,7 +2,7 @@
 extends Area2D
 
 var damage = 10.0
-var speed = 10.0
+var speed = 300.0
 var area = 1.0
 var knockback = 30.0
 var piercing = 1 #number of enemies projectile pierces before disappearing
@@ -30,8 +30,21 @@ func set_level(lvl) -> void:
 			area = 1.0
 			knockback = 30.0
 			piercing = 1
-
-
+		2:
+			damage *= 1.5
+			piercing = 1
+		3:
+			damage *= 1.5
+			piercing = 2
+		4:
+			damage *= 1.5
+			piercing = 1
+		5:
+			damage *= 1.5
+			piercing = 3
+		6:
+			damage *= 1.5
+			piercing = 4
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	global_position += angle*speed*delta

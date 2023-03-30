@@ -27,7 +27,17 @@ func level_up():
 	match level:
 		1:
 			cooldown_time = 1.0
-
+		2:
+			cooldown_time = 0.6
+		3:
+			cooldown_time = 0.3
+		4:
+			cooldown_time = 0.1
+		5:
+			cooldown_time = 0.05
+		6:
+			cooldown_time = 0
+		
 func get_name():
 	return "Magic Gun"
 	

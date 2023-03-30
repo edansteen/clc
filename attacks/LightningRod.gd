@@ -21,6 +21,22 @@ func level_up():
 			damage = 20.0
 			area = 1.0
 			projectile_num = 1
+		2:
+			projectile_num = 2
+			area *= 1.1
+		3:
+			projectile_num = 3
+			area *= 1.1
+		4:
+			projectile_num = 4
+			area *= 1.1
+		5:
+			projectile_num = 5
+			area *= 1.1
+		6:
+			projectile_num = 6
+			area *= 1.1
+	$Range/CollisionShape2D.scale *= area
 
 func set_damage(d):
 	damage = d

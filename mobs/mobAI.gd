@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var speed = 50.0
 export var hp = 20
-export var damage = 5
+export var damage = 1
 
 var velocity = Vector2()
 var max_distance = 1500
@@ -41,14 +41,14 @@ func _physics_process(delta):
 			collision.collider.hit(damage)
 
 
-func hit_for(dmg):
-	if hp >= 0: #avoids small bug where mob is hit while despawning
+func hit_for(dmg): #ERROR: Bug when 2 weapons hit at the same time, causing hitbox to be freed and then is attempted to be freed again
+	if hp >= 0: 
 		hp -= dmg
 		animation_player.play("hurt")
 		$HitSoundEffect.play()
 		if hp <= 0:
 				sprite.play("death")
-				$Hitbox.queue_free()
+				$Hitbox.set_deferred("disabled", true)
 				# add death effect
 				call_deferred("add_child", death_effect.instance())
 				var dropped_xp = xp.instance()

@@ -16,5 +16,5 @@ func set_option(weapon_object):
 	if level == 0:
 		$VBoxContainer/HBoxContainer/LevelIndicator.text = "(New!)"
 	else:
-		$VBoxContainer/HBoxContainer/LevelIndicator.text = "Level:" + str(level)
+		$VBoxContainer/HBoxContainer/LevelIndicator.text = "Level:" + str(level+1)
 	$VBoxContainer/Description.text = weapon_object.get_desc()
