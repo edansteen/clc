@@ -1,8 +1,11 @@
 extends Area2D
 
-var damage = 50.0
+var damage = 40.0
 var speed = 200.0
 var dir = Vector2.ZERO
+
+func _ready():
+	$AnimatedSprite.play("default")
 
 func set_dir(angle):
 	dir = Vector2(cos(angle), sin(angle))
@@ -13,8 +16,9 @@ func _process(delta):
 
 func _on_Lifetime_timeout():
 	queue_free()
+	
 
-func _on_DaggerProjectile_body_entered(body):
+func _on_MobBullet_body_entered(body):
 	if body.has_method("hit"):
 		body.hit(damage)
 		queue_free()

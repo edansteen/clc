@@ -58,5 +58,10 @@ visible = false
 
 [node name="GameOverScreenTimer" type="Timer" parent="."]
 
+[node name="SpawnerLevelUpTimer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
 [connection signal="gameOver" from="Player" to="." method="_on_Player_gameOver"]
 [connection signal="timeout" from="GameOverScreenTimer" to="." method="_on_GameOverScreenTimer_timeout"]
+[connection signal="timeout" from="SpawnerLevelUpTimer" to="." method="_on_SpawnerLevelUpTimer_timeout"]

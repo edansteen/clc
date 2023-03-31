@@ -29,8 +29,6 @@ func _process(delta):
 	if seconds >= 60:
 		minutes += 1
 		seconds = 0
-		spawner_level += 1
-		spawner.set_level(spawner_level)
 	clock.text = str(minutes).pad_zeros(2) + ":" + str(round(seconds)).pad_zeros(2)
 
 
@@ -43,3 +41,10 @@ func _on_Player_gameOver():
 
 func _on_GameOverScreenTimer_timeout():
 	$GameOverScreen.make_visible()
+
+
+func _on_SpawnerLevelUpTimer_timeout():
+	#level up every 30 seconds
+	spawner_level += 1
+	spawner.set_level(spawner_level)
+	$SpawnerLevelUpTimer.start(45)

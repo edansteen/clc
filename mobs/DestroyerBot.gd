@@ -1,20 +1,29 @@
 extends KinematicBody2D
 
 export var speed = 50.0
-export var hp = 80
-export var damage = 15
+export var hp = 500
+export var damage = 20
+export var shoot_cooldown = 6.0
 
 var velocity = Vector2()
 var max_distance = 1500
 
 onready var player = get_tree().get_nodes_in_group("player")[0]
+onready var main = get_tree().get_nodes_in_group("main")[0]
+
 onready var sprite = $AnimatedSprite 
 onready var animation_player = $AnimatedSprite/AnimationPlayer
 
-var microbots = preload("res://mobs/Microbot.tscn")
+onready var muzzles = [$Muzzle1, $Muzzle2]
+
+var death_effect = preload("res://mobs/EnemyDeathEffect.tscn")
+var xp = preload("res://items/ExpPoint.tscn")
+
+var bullet = preload("res://mobs/mob_projectiles/MobBullet.tscn")
 
 func _ready():
 	sprite.play("move")
+	$ShootCooldown.start(shoot_cooldown)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -40,20 +49,21 @@ func _physics_process(delta):
 			collision.collider.hit(damage)
 
 
-func hit_for(dmg):
-	if hp >= 0: #avoids small bug where mob is hit while despawning
+func hit_for(dmg): #ERROR: Bug when 2 weapons hit at the same time, causing hitbox to be freed and then is attempted to be freed again
+	if hp >= 0: 
 		hp -= dmg
 		animation_player.play("hurt")
 		$HitSoundEffect.play()
-		if hp <= 0:
+		if hp < 200:
+			shoot_cooldown = 4.0
+			if hp <= 0:
 				sprite.play("death")
-				$Hitbox.queue_free()
+				$Hitbox.set_deferred("disabled", true)
 				# add death effect
-				for i in range(3):
-					var bots = microbots.instance()
-					bots.position.x = position.x
-					bots.position.y = position.y - 20 + (20*i)
-					get_parent().call_deferred("add_child", bots)
+				call_deferred("add_child", death_effect.instance())
+				var dropped_xp = xp.instance()
+				dropped_xp.global_position = global_position
+				get_parent().call_deferred("add_child", dropped_xp)
 
 
 func _on_AnimatedSprite_animation_finished():
@@ -61,3 +71,13 @@ func _on_AnimatedSprite_animation_finished():
 		queue_free()
 	else:
 		sprite.play("move")
+
+
+func _on_ShootCooldown_timeout():
+	for muzzle in muzzles:
+		var b = bullet.instance()
+		main.call_deferred("add_child", b)
+		b.global_position = muzzle.global_position
+		b.set_dir(muzzle.get_angle_to(player.global_position))
+	$ShootCooldown.start(shoot_cooldown)
+	

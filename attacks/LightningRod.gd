@@ -55,7 +55,7 @@ func get_desc():
 
 
 func _on_CooldownTimer_timeout():
-	if level != 0:
+	if level != 0 and mobs_in_range.size() > 0:
 		for _i in range(projectile_num):
 			var l = lightning.instance()
 			l.set_level(level)

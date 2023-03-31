@@ -8,7 +8,7 @@ export var hp = 100
 export var xp_level = 1
 export var xp = 0
 var xp_to_next_lvl = 30
-var xp_increase_multiplier = 1.5 #amount xp needed increases by after level up
+var xp_increase_multiplier = 1.2 #amount xp needed increases by after level up
 
 var invincible = false
 var invincibility_time = 1.0 #in s
@@ -113,7 +113,9 @@ func _physics_process(delta):
 
 #level up the specified weapon
 func level_up_weapon(weapon_index):
-	if weapon_index < weapons_array.size():
+	if weapon_index == -1:
+		heal(40)
+	elif weapon_index < weapons_array.size():
 		weapons_array[weapon_index].level_up()
 	else:
 		print("Error: invalid index")
@@ -130,6 +132,14 @@ func add_xp(n):
 		xp_bar.max_value = xp_to_next_lvl
 	xp_bar.value = xp
 	
+#heal player for n
+func heal(n):
+	hp += n
+	if hp > max_hp:
+		hp = max_hp
+	healthbar.value = hp
+	
+	
 func level_up_player():
 	get_tree().paused = true
 	$GUI/Control/LevelUp/LevelUpSound.play()
@@ -139,11 +149,12 @@ func level_up_player():
 	var selected = []
 	for button in upgrade_options.get_children():
 		var i = rng.randi_range(0,weapons_array.size()-1)
-		if !(i in selected):
+		if !(i in selected) and weapons_array[i].get_level() < 6:
 			selected.append(i)
 			button.set_value(i)
 			button.set_option(weapons_array[i])
-
+		else:
+			button.set_option(null)
 
 func _on_ImmunityTimer_timeout():
 	invincible = false

@@ -18,13 +18,13 @@ func level_up():
 		2:
 			cooldown_time = 1.0
 		3:
-			cooldown_time = 0.5
+			cooldown_time = 0.75
 		4:
-			cooldown_time = 0.25
+			cooldown_time = 0.5
 		5:
-			cooldown_time = 0.1
+			cooldown_time = 0.25
 		6:
-			cooldown_time = 0.05
+			cooldown_time = 0.1
 
 
 func get_name():
