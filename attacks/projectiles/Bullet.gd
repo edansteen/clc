@@ -2,7 +2,7 @@ extends Area2D
 
 
 var damage = 12.0
-var speed = 300.0
+var speed = 500.0
 var area = 1.0
 var knockback = 30.0
 var piercing = 1 #number of enemies projectile pierces before disappearing
@@ -22,6 +22,7 @@ func set_level(lvl) -> void:
 
 func set_dir(angle):
 	dir = Vector2(cos(angle), sin(angle))
+	$Sprite.rotation = dir.angle()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

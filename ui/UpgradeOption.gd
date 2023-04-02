@@ -12,7 +12,7 @@ func get_value():
 func set_option(weapon_object):
 	if weapon_object == null:
 		value = -1
-		$VBoxContainer/HBoxContainer/Icon.texture = load("res://assets/sprites/FishCoin.png")
+		$VBoxContainer/HBoxContainer/Icon.texture = load("res://assets/sprites/heart_sprite.png")
 		$VBoxContainer/HBoxContainer/Name.text = "Heal"
 		$VBoxContainer/HBoxContainer/LevelIndicator.text = "(Powerup)"
 		$VBoxContainer/Description.text = "Heal for 40 hp"

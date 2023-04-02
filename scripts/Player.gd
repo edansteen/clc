@@ -28,7 +28,7 @@ var weapons_array = [
 ]
 
 #Index of first weapon player equips (based on position in attacks_array)
-var base_attack = 0
+var base_attack = 2
 
 # Nodes
 onready var sprite = $AnimatedSprite
@@ -165,11 +165,6 @@ func _on_GrabRange_area_entered(area):
 		add_xp(area.grab_xp())
 		area.queue_free()
 		$ItemPickup.play()
-	elif area.has_method("grab_heart"):
-		if hp < max_hp:
-			hp += 1
-			area.queue_free()
-			$ItemPickup.play()
 
 
 func _on_UpgradeOption_pressed():

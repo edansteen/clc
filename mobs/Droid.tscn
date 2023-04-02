@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://mobs/mobAI.gd" type="Script" id=1]
+[ext_resource path="res://mobs/mob_scripts/mobAI.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/mobArt/run.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/mobArt/damaged and death.png" type="Texture" id=3]
 [ext_resource path="res://assets/shaders/hurt.tres" type="Shader" id=5]
@@ -94,7 +94,7 @@ position = Vector2( -1, -22 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "move"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]

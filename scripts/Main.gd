@@ -48,3 +48,7 @@ func _on_SpawnerLevelUpTimer_timeout():
 	spawner_level += 1
 	spawner.set_level(spawner_level)
 	$SpawnerLevelUpTimer.start(45)
+
+
+func _on_GameTimer_timeout():
+	spawner.set_level(8) #spawn the snake boss

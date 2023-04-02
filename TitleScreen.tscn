@@ -19,8 +19,14 @@ font_data = ExtResource( 7 )
 [sub_resource type="Theme" id=1]
 
 [node name="TitleScreen" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
 script = ExtResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -28,24 +34,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.117647, 0.156863, 0.188235, 1 )
 
-[node name="Label" type="Label" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -300.0
-margin_right = 300.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 600, 200 )
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_left = -5.0
+margin_top = 5.0
+margin_right = 1029.0
+margin_bottom = 595.0
+rect_min_size = Vector2( 1024, 600 )
+rect_scale = Vector2( 1.0012, 1 )
+alignment = 1
+
+[node name="Label" type="Label" parent="Menu"]
+margin_right = 1034.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 600, 100 )
 custom_fonts/font = SubResource( 2 )
 text = "Cats vs Robots"
 align = 1
 valign = 1
 
-[node name="Menu" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-alignment = 1
-
 [node name="CenterRow" type="HBoxContainer" parent="Menu"]
+margin_top = 104.0
 margin_right = 1034.0
 margin_bottom = 555.0
 size_flags_vertical = 3
@@ -53,13 +61,13 @@ alignment = 1
 
 [node name="CenterContainer2" type="CenterContainer" parent="Menu/CenterRow"]
 margin_right = 341.0
-margin_bottom = 555.0
+margin_bottom = 451.0
 rect_min_size = Vector2( 300, 300 )
 
 [node name="Image1" type="TextureRect" parent="Menu/CenterRow/CenterContainer2"]
-margin_top = 107.0
+margin_top = 55.0
 margin_right = 341.0
-margin_bottom = 448.0
+margin_bottom = 396.0
 rect_min_size = Vector2( 341, 341 )
 texture = ExtResource( 1 )
 expand = true
@@ -68,16 +76,16 @@ stretch_mode = 1
 [node name="Buttons" type="VBoxContainer" parent="Menu/CenterRow"]
 margin_left = 345.0
 margin_right = 689.0
-margin_bottom = 555.0
+margin_bottom = 451.0
 rect_min_size = Vector2( 344, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="Play" type="Button" parent="Menu/CenterRow/Buttons"]
-margin_top = 151.0
+margin_top = 99.0
 margin_right = 344.0
-margin_bottom = 211.0
+margin_bottom = 159.0
 rect_min_size = Vector2( 344, 60 )
 flat = true
 icon_align = 1
@@ -95,9 +103,9 @@ align = 1
 valign = 1
 
 [node name="Shop" type="Button" parent="Menu/CenterRow/Buttons"]
-margin_top = 215.0
+margin_top = 163.0
 margin_right = 344.0
-margin_bottom = 275.0
+margin_bottom = 223.0
 rect_min_size = Vector2( 344, 60 )
 flat = true
 
@@ -116,9 +124,9 @@ valign = 1
 stream = ExtResource( 4 )
 
 [node name="Options" type="Button" parent="Menu/CenterRow/Buttons"]
-margin_top = 279.0
+margin_top = 227.0
 margin_right = 344.0
-margin_bottom = 339.0
+margin_bottom = 287.0
 rect_min_size = Vector2( 344, 60 )
 flat = true
 icon_align = 1
@@ -138,9 +146,9 @@ valign = 1
 stream = ExtResource( 6 )
 
 [node name="Quit" type="Button" parent="Menu/CenterRow/Buttons"]
-margin_top = 343.0
+margin_top = 291.0
 margin_right = 344.0
-margin_bottom = 403.0
+margin_bottom = 351.0
 rect_min_size = Vector2( 344, 60 )
 flat = true
 
@@ -158,13 +166,13 @@ valign = 1
 [node name="CenterContainer" type="CenterContainer" parent="Menu/CenterRow"]
 margin_left = 693.0
 margin_right = 1034.0
-margin_bottom = 555.0
+margin_bottom = 451.0
 rect_min_size = Vector2( 300, 300 )
 
 [node name="Image2" type="TextureRect" parent="Menu/CenterRow/CenterContainer"]
-margin_top = 107.0
+margin_top = 55.0
 margin_right = 341.0
-margin_bottom = 448.0
+margin_bottom = 396.0
 rect_min_size = Vector2( 341, 341 )
 texture = ExtResource( 8 )
 expand = true

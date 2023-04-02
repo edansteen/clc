@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://mobs/ThreeBotsInTrenchCoat.gd" type="Script" id=1]
+[ext_resource path="res://mobs/mob_scripts/ThreeBotsInTrenchCoat.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/mobArt/trenchcoatbot.png" type="Texture" id=2]
 [ext_resource path="res://assets/shaders/hurt.tres" type="Shader" id=5]
 [ext_resource path="res://assets/animations/mobsHurt.tres" type="Animation" id=6]

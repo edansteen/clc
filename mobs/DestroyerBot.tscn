@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://mobs/DestroyerBot.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/mobArt/Destroyer.png" type="Texture" id=2]
+[ext_resource path="res://mobs/mob_scripts/DestroyerBot.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/mobArt/DestroyerRobot.png" type="Texture" id=2]
 [ext_resource path="res://assets/shaders/hurt.tres" type="Shader" id=5]
 [ext_resource path="res://assets/animations/mobsHurt.tres" type="Animation" id=6]
 [ext_resource path="res://assets/animations/hurt.tres" type="Animation" id=7]
@@ -13,29 +13,49 @@ shader = ExtResource( 5 )
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/flashState = 0.0
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 864, 0, 288, 288 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 288, 288, 288 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 288, 288, 288, 288 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 576, 288, 288, 288 )
+
+[sub_resource type="AtlasTexture" id=24]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 288, 288 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=25]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 288, 0, 288, 288 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=26]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 576, 0, 288, 288 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [  ],
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
 "loop": false,
 "name": "death",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
 "loop": true,
 "name": "move",
 "speed": 8.0
@@ -52,7 +72,7 @@ material = SubResource( 15 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "move"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]

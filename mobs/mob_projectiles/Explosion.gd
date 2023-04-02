@@ -4,6 +4,7 @@ var damage = 40
 
 func _ready():
 	$AnimatedSprite.play("default")
+	$ExplodeSound.play()
 
 func _on_Explosion_body_entered(body):
 	if body.has_method("hit_for"):

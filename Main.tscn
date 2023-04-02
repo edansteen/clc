@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game_elements/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/Pause.tscn" type="PackedScene" id=3]
-[ext_resource path="res://mobs/MobSpawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game_elements/MobSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/GameOverScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/fonts/clock_font.tres" type="DynamicFont" id=6]
 
@@ -51,6 +51,10 @@ volume_db = -10.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 300.0
+autostart = true
+
 [node name="Pause" parent="." instance=ExtResource( 3 )]
 
 [node name="GameOverScreen" parent="." instance=ExtResource( 5 )]
@@ -63,5 +67,6 @@ wait_time = 30.0
 autostart = true
 
 [connection signal="gameOver" from="Player" to="." method="_on_Player_gameOver"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
 [connection signal="timeout" from="GameOverScreenTimer" to="." method="_on_GameOverScreenTimer_timeout"]
 [connection signal="timeout" from="SpawnerLevelUpTimer" to="." method="_on_SpawnerLevelUpTimer_timeout"]
