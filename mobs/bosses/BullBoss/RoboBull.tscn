@@ -2,7 +2,6 @@
 
 [ext_resource path="res://mobs/bosses/BullBoss/RoboBull.gd" type="Script" id=1]
 [ext_resource path="res://mobs/bosses/BullBoss/RoboBull-1.png.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/mobArt/damaged and death.png" type="Texture" id=3]
 [ext_resource path="res://mobs/bosses/BullBoss/bull_prep_charge.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/shaders/hurt.tres" type="Shader" id=5]
 [ext_resource path="res://assets/animations/mobsHurt.tres" type="Animation" id=6]
@@ -20,29 +19,33 @@ flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 288, 288 )
 
+[sub_resource type="StreamTexture" id=29]
+flags = 4
+load_path = "res://.import/damaged and death.png-8e097eb9da27e9fb9245d91c3b19b96b.stex"
+
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = SubResource( 29 )
 region = Rect2( 0, 123, 58, 41 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = SubResource( 29 )
 region = Rect2( 0, 164, 58, 41 )
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = SubResource( 29 )
 region = Rect2( 0, 205, 58, 41 )
 
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = SubResource( 29 )
 region = Rect2( 0, 246, 58, 41 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = SubResource( 29 )
 region = Rect2( 0, 287, 58, 41 )
 
 [sub_resource type="AtlasTexture" id=27]

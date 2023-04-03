@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/damaged and death.png-8e097eb9da27e9fb9245d91c3b19b96b.stex"
+path="res://.import/droid.png-69ed515e86ddb126d3a98a1040c8c26a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/mobArt/damaged and death.png"
-dest_files=[ "res://.import/damaged and death.png-8e097eb9da27e9fb9245d91c3b19b96b.stex" ]
+source_file="res://assets/sprites/mobArt/droid.png"
+dest_files=[ "res://.import/droid.png-69ed515e86ddb126d3a98a1040c8c26a.stex" ]
 
 [params]
 

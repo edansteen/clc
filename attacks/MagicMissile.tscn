@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://assets/sfx/magic_projectile.wav" type="AudioStream" id=1]
 [ext_resource path="res://attacks/weapon_scripts/MagicMissile.gd" type="Script" id=2]
 
 [node name="MagicMissile" type="Node2D"]
@@ -10,5 +11,8 @@ __meta__ = {
 
 [node name="CooldownTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]

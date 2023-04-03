@@ -24,6 +24,7 @@ func level_up():
 		5:
 			cooldown_time = 0.25
 		6:
+			#explode on hit
 			cooldown_time = 0.1
 
 
@@ -46,4 +47,5 @@ func _on_CooldownTimer_timeout():
 		p.set_level(level)
 		main.call_deferred("add_child", p)
 		p.global_position = global_position
+		$Shoot.play()
 	$CooldownTimer.start(cooldown_time)

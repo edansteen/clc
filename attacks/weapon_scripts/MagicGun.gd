@@ -5,11 +5,13 @@ extends Node2D
 var level = 0
 var cooldown_time = 1.0
 var ready_to_fire = true
-var ammo = 1
+var spread = 0.0 #bullet spread (+/- the given angle in radians)
 
 var projectile = preload("res://attacks/projectiles/Bullet.tscn") 
 
 var dir = Vector2.RIGHT
+
+var rng = RandomNumberGenerator.new()
 
 onready var main = get_tree().get_nodes_in_group("player")[0].get_parent()
 onready var sprite = $Sprite
@@ -31,7 +33,7 @@ func _process(_delta):
 			if ready_to_fire:
 				var p = projectile.instance()
 				p.set_level(level)
-				p.set_dir(dir)
+				p.set_dir(dir + rng.randf_range(0-spread, spread))
 				main.call_deferred("add_child", p)
 				p.global_position = global_position
 				ready_to_fire = false
@@ -71,7 +73,4 @@ func get_desc():
 
 
 func _on_Cooldown_timeout():
-	ready_to_fire = true
-
-func _on_Reload_finished():
 	ready_to_fire = true

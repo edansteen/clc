@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://attacks/weapon_scripts/MagicGun.gd" type="Script" id=1]
 [ext_resource path="res://assets/weaponArt/revolver.png" type="Texture" id=2]
 [ext_resource path="res://assets/sfx/gunshot.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/sfx/reload.mp3" type="AudioStream" id=4]
 
 [node name="MagicGun" type="Node2D"]
 script = ExtResource( 1 )
@@ -18,8 +17,4 @@ texture = ExtResource( 2 )
 [node name="Shot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 
-[node name="Reload" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
-[connection signal="finished" from="Reload" to="." method="_on_Reload_finished"]
