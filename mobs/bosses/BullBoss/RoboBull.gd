@@ -11,10 +11,12 @@ var hp = 2000
 var damage = 50
 var velocity = Vector2()
 var target_position = Vector2.ZERO #the position bull charges towards
+var direction = Vector2.ZERO
 
 var charge_coooldown = 6.0
 enum phase {IDLE,PREP,CHARGE,SLOW}
 var state = phase.IDLE
+
 
 var death_effect = preload("res://mobs/mob_projectiles/ExplosionDeathEffect.tscn")
 
@@ -25,26 +27,44 @@ onready var charge_timer = $ChargeCooldown
 
 func _ready():
 	sprite.play("idle")
+	state = phase.IDLE
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if hp <= 0:
 		return
-	var p_pos = player.global_position
 	
-	var direction = global_position.direction_to(p_pos)
-	velocity = direction.normalized() * speed
+	match(state):
+		phase.IDLE:
+			speed = 40
+			target_position = player.global_position
+		phase.PREP:
+			speed = 0
+		phase.CHARGE:
+			speed = 500
+			#check if passed the original position
+		phase.SLOW:
+			$ChargingSound.stop()
+			if speed > 0:
+				speed -= 10
+			#slow to a stop
+			$Huff.play()
+	
+	if state != phase.CHARGE:
+		direction = global_position.direction_to(player.global_position)
+	
+	if direction.x >= 0:
+		sprite.flip_h = true
+	else:
+		sprite.flip_h = false
 
-	if velocity.x != 0 or velocity.y != 0:
-		if velocity.x > 0:
-			sprite.flip_h = true
-		elif velocity.x < 0: 
-			sprite.flip_h = false
+	if speed > 60:
 		sprite.play("charge")
 	else:
 		sprite.play("idle")
-		
-	var collision = move_and_collide(velocity * delta)	
+	
+	
+	var collision = move_and_collide(direction.normalized() * speed * delta)
 	if collision:
 		if collision.collider.has_method("hit"): #hit if it's the player
 			collision.collider.hit(damage)
@@ -52,7 +72,6 @@ func _physics_process(delta):
 		elif collision.collider.has_method("hit_for"): #also hit mobs if charging
 			if state == phase.CHARGE or state == phase.SLOW: 
 				collision.collider.hit_for(damage)
-
 
 func hit_for(dmg):
 	if hp >= 0: 
@@ -65,8 +84,13 @@ func hit_for(dmg):
 				# add death effect
 				call_deferred("add_child", death_effect.instance())
 
-func charge_at(pos):
-	pass
+
+func charge():
+	$Sounds/ChargingSound.play()
+	target_position = player.global_position
+	direction = global_position.direction_to(target_position)
+	speed = 300
+
 
 func _on_AnimatedSprite_animation_finished():
 	if hp <= 0:
@@ -76,4 +100,9 @@ func _on_AnimatedSprite_animation_finished():
 
 
 func _on_ChargeCooldown_timeout():
-	charge_at(target_position)
+	state = phase.PREP
+	$Sounds/PrepCharge.play()
+
+func _on_PrepCharge_finished():
+	state = phase.CHARGE
+	charge()

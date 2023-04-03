@@ -98,6 +98,7 @@ func spawn_boss(n):
 	active = false
 
 #Select which mob to spawn based on probability
+#idea for improvement: make mobs spawn more frequently in the direction the player is heading
 func rand_mob():
 	var a = []
 	var largest := 0.0

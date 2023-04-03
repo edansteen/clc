@@ -1,12 +1,15 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://mobs/bosses/BullBoss/RoboBull.gd" type="Script" id=1]
 [ext_resource path="res://mobs/bosses/BullBoss/RoboBull-1.png.png" type="Texture" id=2]
+[ext_resource path="res://mobs/bosses/BullBoss/bull_charging.wav" type="AudioStream" id=3]
 [ext_resource path="res://mobs/bosses/BullBoss/bull_prep_charge.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/shaders/hurt.tres" type="Shader" id=5]
 [ext_resource path="res://assets/animations/mobsHurt.tres" type="Animation" id=6]
 [ext_resource path="res://assets/animations/hurt.tres" type="Animation" id=7]
 [ext_resource path="res://assets/sfx/metal_ting.wav" type="AudioStream" id=8]
+[ext_resource path="res://mobs/bosses/BullBoss/huff.wav" type="AudioStream" id=9]
+[ext_resource path="res://mobs/bosses/BullBoss/bull_death_effect.wav" type="AudioStream" id=10]
 
 [sub_resource type="ShaderMaterial" id=15]
 resource_local_to_scene = true
@@ -21,7 +24,6 @@ region = Rect2( 0, 0, 288, 288 )
 
 [sub_resource type="StreamTexture" id=29]
 flags = 4
-load_path = "res://.import/damaged and death.png-8e097eb9da27e9fb9245d91c3b19b96b.stex"
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
@@ -98,9 +100,23 @@ shape = SubResource( 2 )
 stream = ExtResource( 8 )
 
 [node name="ChargeCooldown" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
 
-[node name="ChargeSound" type="AudioStreamPlayer" parent="."]
+[node name="Sounds" type="Node" parent="."]
+
+[node name="PrepCharge" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 4 )
+
+[node name="ChargingSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 3 )
+
+[node name="Huff" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 9 )
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 10 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="ChargeCooldown" to="." method="_on_ChargeCooldown_timeout"]
+[connection signal="finished" from="Sounds/PrepCharge" to="." method="_on_PrepCharge_finished"]

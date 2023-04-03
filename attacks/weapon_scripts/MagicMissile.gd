@@ -38,8 +38,19 @@ func get_level():
 	return level
 
 func get_desc():
-	return "Shoots magic projectiles that target the nearest enemy"
-
+	match level:
+		0:
+			return "Shoots magic missiles at the nearest enemy"
+		1:
+			return "Cooldown reduced by 50%"
+		2:
+			return "Cooldown reduced by 25%. Piercing +1"
+		3:
+			return "Cooldown reduced by 33%"
+		4:
+			return "Cooldown reduced by 50%"
+		5:
+			return "Projectiles explode on collision"
 
 func _on_CooldownTimer_timeout():
 	if level != 0:
