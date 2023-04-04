@@ -44,12 +44,14 @@ func _physics_process(delta):
 			speed = 500
 			#check if near target point
 				#if passed it, go into slow phase
+			if global_position.distance_to(target_position) < 1:
+				slow_down()
 		phase.SLOW:
-			$ChargingSound.stop()
+			#slow to a stop
 			if speed > 0:
 				speed -= 10
-			#slow to a stop
-			$Huff.play()
+			elif speed < 0:
+				speed = 0
 	
 	if state != phase.CHARGE:
 		direction = global_position.direction_to(player.global_position)
@@ -92,6 +94,10 @@ func charge():
 	direction = global_position.direction_to(target_position)
 	speed = 300
 
+func slow_down():
+	state = phase.SLOW
+	$Sounds/Huff.play()
+	$ChargingSound.stop()
 
 func _on_AnimatedSprite_animation_finished():
 	if hp <= 0:
