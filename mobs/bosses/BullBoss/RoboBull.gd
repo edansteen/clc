@@ -36,13 +36,14 @@ func _physics_process(delta):
 	
 	match(state):
 		phase.IDLE:
-			speed = 40
+			speed = 50
 			target_position = player.global_position
 		phase.PREP:
 			speed = 0
 		phase.CHARGE:
 			speed = 500
-			#check if passed the original position
+			#check if near target point
+				#if passed it, go into slow phase
 		phase.SLOW:
 			$ChargingSound.stop()
 			if speed > 0:
