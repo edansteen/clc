@@ -4,6 +4,7 @@ var time = 0.0 #in s
 var seconds = 0
 var minutes = 0
 var spawner_level = 1
+var victory = false
 
 var time_till_boss = 5*60
 var game_over = false
@@ -31,16 +32,21 @@ func _process(delta):
 		seconds = 0
 	clock.text = str(minutes).pad_zeros(2) + ":" + str(round(seconds)).pad_zeros(2)
 
+func boss_defeated():
+	victory = true
+	end_game()
 
-func _on_Player_gameOver():
+func end_game():
 	game_over = true
 	spawner.set_active(false)
 	$Music.stop()
 	$GameOverScreenTimer.start(1.0)
 
+func _on_Player_gameOver():
+	end_game()
 
 func _on_GameOverScreenTimer_timeout():
-	$GameOverScreen.make_visible()
+	$GameOverScreen.make_visible(victory)
 
 
 func _on_SpawnerLevelUpTimer_timeout():

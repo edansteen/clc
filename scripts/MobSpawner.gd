@@ -1,8 +1,5 @@
 extends Node2D
 
-#emit when boss is defeated
-signal gameCompleted
-
 export var active: bool = false
 
 #difficulty level
@@ -18,12 +15,13 @@ var mobs = [
 	preload("res://mobs/Droid.tscn"),
 	preload("res://mobs/Boombot.tscn"),
 	preload("res://mobs/ThreeBotsInTrenchCoat.tscn"),
+	preload("res://mobs/DogBot.tscn"),
 	preload("res://mobs/DestroyerBot.tscn")
 ]
 
 # Probability of spawning mob measured as a float from 0 to 1. 
 #spawn_probability[0] refers to probability of spawning the mob at mobs[0] (which would be the droid)
-var spawn_probability = [1.0, 0.0, 0.0, 0.0]
+var spawn_probability = [1.0, 0.0, 0.0, 0.0, 0.0]
 
 #preload all bosses
 var bosses = [
@@ -55,29 +53,29 @@ func set_level(n):
 		1:
 			spawn_delay = 0.8
 			mob_cap = 50
-			spawn_probability = [1.0, 0.0, 0.0,0.0]
+			spawn_probability = [1.0, 0.0, 0.0, 0.0, 0.0]
 		2: 
 			spawn_delay = 0.6
 			mob_cap = 80
-			spawn_probability = [0.75, 0.25, 0.0,0.0]
+			spawn_probability = [0.75, 0.25, 0.0, 0.0, 0.0]
 		3:
 			spawn_delay = 0.4
 			mob_cap = 120
-			spawn_probability = [0.6,0.1,0.3,0.0]
+			spawn_probability = [0.6, 0.1, 0.3, 0.0, 0.0]
 		4:
 			spawn_delay = 0.2
 			mob_cap = 120
-			spawn_probability = [0.0,1.0,1.0,0.0]
+			spawn_probability = [0.0, 0.8, 0.9, 0.3, 0.0]
 		5:
 			spawn_delay = 0.1
 			mob_cap = 150
-			spawn_probability = [1.0,1.0,1.0,0.1]
+			spawn_probability = [1.0,1.0,1.0, 0.1 ,0.1]
 		6:
 			spawn_delay = 0.05
 			mob_cap = 200
-			spawn_probability = [1.0,0.0,0.0,0.5]
+			spawn_probability = [1.0 ,0.0 ,0.0 , 0.0, 0.5]
 		7:
-			spawn_probability = [0.0,0.0,0.0,1.0]
+			spawn_probability = [0.0, 0.0 ,0.0 ,0.0 ,1.0]
 		8:
 			for mob in get_tree().get_nodes_in_group("mobs"):
 				mob.queue_free()
@@ -85,7 +83,7 @@ func set_level(n):
 				projectile.queue_free()
 			active = false
 			mob_cap = 0
-			spawn_probability = [0.0,0.0,0.0,0.0]
+			spawn_probability = [0.0,0.0,0.0,0.0,0.0]
 			spawn_boss(0)
 		9:
 			active = false
@@ -93,8 +91,8 @@ func set_level(n):
 
 func spawn_boss(n):
 	var b = bosses[n].instance()
-	b.global_position = get_random_position()
-	$Mobs.call_deferred("add_child", b)
+	b.global_position = Vector2(player.global_position.x + 500, player.global_position.y)
+	$Bosses.call_deferred("add_child", b)
 	active = false
 
 #Select which mob to spawn based on probability

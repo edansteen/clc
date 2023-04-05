@@ -15,10 +15,11 @@ func _input(event):
 			get_tree().paused = true
 			set_visible(true)
 			game_paused = true
+			$MenuOpened.play()
 	
 	
 func set_visible(is_visible):
-	for node in get_children():
+	for node in $VisualElements.get_children():
 		node.visible = is_visible
 
 func unpause():

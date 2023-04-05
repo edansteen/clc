@@ -24,11 +24,12 @@ var weapons_array = [
 	preload("res://attacks/Orb.tscn"), # orbs
 	preload("res://attacks/MagicMissile.tscn"), # magic missile
 	preload("res://attacks/LightningRod.tscn"), #lightning rod
-	preload("res://attacks/MagicGun.tscn") #the magic dagger
+	preload("res://attacks/MagicGun.tscn"), #the magic gun
+	preload("res://attacks/TimeStop.tscn") #Time stop
 ]
 
 #Index of first weapon player equips (based on position in attacks_array)
-var base_attack = 2
+var base_attack = 4
 
 # Nodes
 onready var sprite = $AnimatedSprite
@@ -119,6 +120,7 @@ func level_up_weapon(weapon_index):
 		weapons_array[weapon_index].level_up()
 	else:
 		print("Error: invalid index")
+	$WeaponEquipped.play()
 
 func add_xp(n):
 	xp += n

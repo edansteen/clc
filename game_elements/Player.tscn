@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/cat_sprites.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://ui/UpgradeOption.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/sprites/health_bar/health_bar-2.png.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/health_bar/health_bar-1.png.png" type="Texture" id=10]
+[ext_resource path="res://assets/sfx/item_pickup.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sfx/item_found.wav" type="AudioStream" id=12]
 
 [sub_resource type="ShaderMaterial" id=24]
 resource_local_to_scene = true
@@ -176,9 +178,12 @@ shape = SubResource( 22 )
 
 [node name="ItemPickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -10.0
+
+[node name="WeaponEquipped" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
-layer = 0
 
 [node name="Control" type="Control" parent="GUI"]
 anchor_right = 1.0
@@ -279,6 +284,8 @@ margin_right = 300.0
 margin_bottom = 308.0
 
 [node name="LevelUpSound" type="AudioStreamPlayer" parent="GUI/Control/LevelUp"]
+stream = ExtResource( 12 )
+volume_db = 5.0
 
 [connection signal="timeout" from="ImmunityTimer" to="." method="_on_ImmunityTimer_timeout"]
 [connection signal="area_entered" from="GrabRange" to="." method="_on_GrabRange_area_entered"]

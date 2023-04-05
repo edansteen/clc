@@ -6,8 +6,11 @@
 
 extends KinematicBody2D
 
-var speed = 100.0
-var hp = 2000
+const move_speed = 60.0
+var charge_speed = 400.0
+var speed = move_speed
+var hp_max = 2000
+var hp = hp_max
 var damage = 50
 var velocity = Vector2()
 var target_position = Vector2.ZERO #the position bull charges towards
@@ -21,56 +24,52 @@ var state = phase.IDLE
 var death_effect = preload("res://mobs/mob_projectiles/ExplosionDeathEffect.tscn")
 
 onready var player = get_tree().get_nodes_in_group("player")[0]
-onready var sprite = $AnimatedSprite 
-onready var animation_player = $AnimatedSprite/AnimationPlayer
+onready var sprite = $Sprite
+onready var warning = $VisualWarning 
+onready var animation_player = $Sprite/AnimationPlayer
 onready var charge_timer = $ChargeCooldown
 
 func _ready():
-	sprite.play("idle")
+	sprite.play("move")
 	state = phase.IDLE
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if hp <= 0:
 		return
-	
+		
 	match(state):
 		phase.IDLE:
-			speed = 50
 			target_position = player.global_position
-		phase.PREP:
-			speed = 0
+			direction = global_position.direction_to(target_position)
 		phase.CHARGE:
-			speed = 500
 			#check if near target point
 				#if passed it, go into slow phase
-			if global_position.distance_to(target_position) < 1:
-				slow_down()
+			if global_position.distance_to(target_position) < 5:
+				state = phase.SLOW
 		phase.SLOW:
 			#slow to a stop
-			if speed > 0:
-				speed -= 10
-			elif speed < 0:
-				speed = 0
-	
-	if state != phase.CHARGE:
-		direction = global_position.direction_to(player.global_position)
-	
+			speed -= 10
+			if speed <= 0:
+				state = phase.IDLE
+				speed = move_speed
+				sprite.speed_scale = 1
+				warning.set_deferred("visible", false)
+				$Sounds/Huff.play()
+				$Sounds/ChargingSound.stop()
+				charge_timer.start(charge_coooldown)
+
 	if direction.x >= 0:
 		sprite.flip_h = true
 	else:
 		sprite.flip_h = false
-
-	if speed > 60:
-		sprite.play("charge")
-	else:
-		sprite.play("idle")
-	
 	
 	var collision = move_and_collide(direction.normalized() * speed * delta)
 	if collision:
 		if collision.collider.has_method("hit"): #hit if it's the player
 			collision.collider.hit(damage)
+			$Sounds/ChargingSound.stop()
+			$Sounds/Huff.play()
 			
 		elif collision.collider.has_method("hit_for"): #also hit mobs if charging
 			if state == phase.CHARGE or state == phase.SLOW: 
@@ -80,36 +79,46 @@ func hit_for(dmg):
 	if hp >= 0: 
 		hp -= dmg
 		animation_player.play("hurt")
-		$HitSoundEffect.play()
+		$Sounds/HitSoundEffect.play()
 		if hp <= 0:
-				sprite.play("death")
+				#add death effect
+				$Sounds/DeathSound.play()
 				$Hitbox.set_deferred("disabled", true)
 				# add death effect
 				call_deferred("add_child", death_effect.instance())
+				get_tree().get_nodes_in_group("player")[0].get_parent().boss_defeated()
+		elif state == phase.IDLE:
+			if hp <= hp_max/2:
+				if hp <= hp_max/6:
+					charge_coooldown = 1.0
+				charge_speed = 450.0
+				charge_coooldown = 4.0
 
+func prep_charge():
+	speed = 0
+	state = phase.PREP
+	$Sounds/PrepCharge.play()
+	warning.set_deferred("visible", true)
 
-func charge():
-	$Sounds/ChargingSound.play()
-	target_position = player.global_position
-	direction = global_position.direction_to(target_position)
-	speed = 300
-
-func slow_down():
-	state = phase.SLOW
-	$Sounds/Huff.play()
-	$ChargingSound.stop()
 
 func _on_AnimatedSprite_animation_finished():
 	if hp <= 0:
 		queue_free()
 	else:
-		sprite.play("idle")
+		sprite.play("move")
 
 
 func _on_ChargeCooldown_timeout():
-	state = phase.PREP
-	$Sounds/PrepCharge.play()
+	prep_charge()
 
 func _on_PrepCharge_finished():
 	state = phase.CHARGE
-	charge()
+	speed = charge_speed
+	sprite.speed_scale = 2
+	$Sounds/ChargingSound.play()
+	target_position = player.global_position
+	direction = global_position.direction_to(target_position)
+
+#charge if off screen
+func _on_VisibilityNotifier2D_screen_exited():
+	prep_charge()

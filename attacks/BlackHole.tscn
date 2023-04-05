@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/sfx/fireball.wav" type="AudioStream" id=1]
+
+[node name="BlackHole" type="Node2D"]
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )

@@ -4,7 +4,11 @@ extends CanvasLayer
 func _ready():
 	set_visible(false)
 
-func make_visible():
+func make_visible(result):
+	if result == true: #VICTORY!
+		$PanelContainer/MarginContainer/VBoxContainer/Title.text = "Good job!"
+	else:	#loss...
+		$PanelContainer/MarginContainer/VBoxContainer/Title.text = "Me-Ouch..."
 	get_tree().paused = true
 	set_visible(true)
 	
