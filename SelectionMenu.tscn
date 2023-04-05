@@ -1,0 +1,141 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/sprites/cat_sprites.png" type="Texture" id=1]
+[ext_resource path="res://SelectionMenu.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/FishCoin.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/nav_font.tres" type="DynamicFont" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 432, 144, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 576, 144, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 288, 144, 144 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "average_cat",
+"speed": 5.0
+} ]
+
+[node name="SelectionMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0.0392157, 0.462745, 0.423529 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TopBar" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+alignment = 2
+
+[node name="BackButton" type="Button" parent="VBoxContainer/TopBar"]
+margin_left = 993.0
+margin_right = 1005.0
+margin_bottom = 100.0
+
+[node name="GoldDisplay" type="HBoxContainer" parent="VBoxContainer/TopBar"]
+margin_left = 1009.0
+margin_right = 1024.0
+margin_bottom = 100.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TopBar/GoldDisplay"]
+margin_bottom = 100.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="GoldCount" type="Label" parent="VBoxContainer/TopBar/GoldDisplay"]
+margin_left = 4.0
+margin_top = 40.0
+margin_right = 15.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+
+[node name="MiddleContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 104.0
+margin_right = 1024.0
+margin_bottom = 404.0
+rect_min_size = Vector2( 0, 300 )
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MiddleContainer"]
+margin_left = 504.0
+margin_right = 504.0
+margin_bottom = 300.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="VBoxContainer/MiddleContainer/CenterContainer"]
+position = Vector2( -504, 0 )
+frames = SubResource( 4 )
+animation = "average_cat"
+playing = true
+
+[node name="Confirm" type="Button" parent="VBoxContainer/MiddleContainer"]
+margin_left = 508.0
+margin_right = 520.0
+margin_bottom = 300.0
+flat = true
+
+[node name="Label" type="Label" parent="VBoxContainer/MiddleContainer/Confirm"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="BottomBar" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 408.0
+margin_right = 1024.0
+margin_bottom = 558.0
+rect_min_size = Vector2( 0, 150 )
+
+[node name="LevelSelection" type="Panel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelSelection"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Level1" type="Button" parent="LevelSelection/HBoxContainer"]
+margin_right = 12.0
+margin_bottom = 40.0
+
+[node name="Level2" type="Button" parent="LevelSelection/HBoxContainer"]
+margin_left = 16.0
+margin_right = 28.0
+margin_bottom = 40.0
+
+[node name="Level3" type="Button" parent="LevelSelection/HBoxContainer"]
+margin_left = 32.0
+margin_right = 44.0
+margin_bottom = 40.0
+
+[node name="Endless" type="Button" parent="LevelSelection/HBoxContainer"]
+margin_left = 48.0
+margin_right = 60.0
+margin_bottom = 40.0
