@@ -83,7 +83,7 @@ material = SubResource( 15 )
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 1 )
 animation = "move"
-frame = 1
+frame = 2
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
@@ -97,4 +97,11 @@ shape = SubResource( 26 )
 [node name="HitSoundEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="FreeTimer" type="Timer" parent="."]
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="FreeTimer" to="." method="_on_FreeTimer_timeout"]

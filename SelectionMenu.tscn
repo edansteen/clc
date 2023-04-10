@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/sprites/cat_sprites.png" type="Texture" id=1]
 [ext_resource path="res://SelectionMenu.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/FishCoin.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/nav_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 5 )
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -28,6 +32,12 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="DynamicFont" id=5]
+size = 32
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
 [node name="SelectionMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -48,10 +58,22 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
 alignment = 2
 
+[node name="TopBanner" type="ColorRect" parent="VBoxContainer/TopBar"]
+margin_left = 89.0
+margin_right = 989.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 900, 0 )
+
 [node name="BackButton" type="Button" parent="VBoxContainer/TopBar"]
 margin_left = 993.0
 margin_right = 1005.0
 margin_bottom = 100.0
+
+[node name="Label" type="Label" parent="VBoxContainer/TopBar/BackButton"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 6 )
+text = "< Back"
 
 [node name="GoldDisplay" type="HBoxContainer" parent="VBoxContainer/TopBar"]
 margin_left = 1009.0
@@ -80,31 +102,43 @@ rect_min_size = Vector2( 0, 300 )
 alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MiddleContainer"]
-margin_left = 504.0
-margin_right = 504.0
+margin_left = 512.0
+margin_right = 512.0
 margin_bottom = 300.0
 
+[node name="Sprite" type="Sprite" parent="VBoxContainer/MiddleContainer/CenterContainer"]
+position = Vector2( -242, 262.486 )
+scale = Vector2( 2.5303, 0.517354 )
+texture = ExtResource( 3 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="VBoxContainer/MiddleContainer/CenterContainer"]
-position = Vector2( -504, 0 )
+position = Vector2( -246, 174 )
+scale = Vector2( 2, 2 )
 frames = SubResource( 4 )
 animation = "average_cat"
 playing = true
-
-[node name="Confirm" type="Button" parent="VBoxContainer/MiddleContainer"]
-margin_left = 508.0
-margin_right = 520.0
-margin_bottom = 300.0
-flat = true
-
-[node name="Label" type="Label" parent="VBoxContainer/MiddleContainer/Confirm"]
-margin_right = 40.0
-margin_bottom = 14.0
 
 [node name="BottomBar" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 408.0
 margin_right = 1024.0
 margin_bottom = 558.0
 rect_min_size = Vector2( 0, 150 )
+
+[node name="Confirm" type="Button" parent="VBoxContainer/BottomBar"]
+margin_right = 12.0
+margin_bottom = 150.0
+flat = true
+
+[node name="Label" type="Label" parent="VBoxContainer/BottomBar/Confirm"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 5 )
+text = "Confirm >"
+
+[node name="BottomBanner" type="ColorRect" parent="VBoxContainer/BottomBar"]
+margin_left = 16.0
+margin_right = 16.0
+margin_bottom = 150.0
 
 [node name="LevelSelection" type="Panel" parent="."]
 visible = false
@@ -123,7 +157,16 @@ margin_bottom = 40.0
 
 [node name="Level1" type="Button" parent="LevelSelection/HBoxContainer"]
 margin_right = 12.0
+margin_bottom = 20.0
+
+[node name="TextureRect" type="TextureRect" parent="LevelSelection/HBoxContainer/Level1"]
+margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="LevelSelection/HBoxContainer/Level1"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Level 1"
 
 [node name="Level2" type="Button" parent="LevelSelection/HBoxContainer"]
 margin_left = 16.0
@@ -139,3 +182,6 @@ margin_bottom = 40.0
 margin_left = 48.0
 margin_right = 60.0
 margin_bottom = 40.0
+
+[connection signal="pressed" from="VBoxContainer/TopBar/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/BottomBar/Confirm" to="." method="_on_Confirm_pressed"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/sprites/Swole Kitten Undies.png.png" type="Texture" id=1]
+[ext_resource path="res://attacks/projectiles/BirdDrones.gd" type="Script" id=2]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -10,7 +11,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Stand" type="Node2D"]
+[node name="Drones" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.523438, 0.523438 )

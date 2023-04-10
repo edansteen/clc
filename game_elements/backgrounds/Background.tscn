@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://game_elements/backgrounds/Background.gd" type="Script" id=1]
+
+[node name="Background" type="CanvasLayer"]
+layer = -2
+follow_viewport_enable = true
+script = ExtResource( 1 )

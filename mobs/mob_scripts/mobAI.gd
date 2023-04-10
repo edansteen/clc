@@ -66,3 +66,15 @@ func _on_AnimatedSprite_animation_finished():
 		queue_free()
 	else:
 		sprite.play("move")
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	$FreeTimer.start(15)
+
+
+func _on_FreeTimer_timeout():
+	queue_free()
+
+
+func _on_VisibilityNotifier2D_screen_entered():
+	$FreeTimer.stop()

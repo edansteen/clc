@@ -10,7 +10,7 @@ var rng = RandomNumberGenerator.new()
 #find mobs on the screen
 var mobs_in_range = []
 
-var lightning = preload("res://attacks/projectiles/Lightning.tscn")
+var lightning = preload("res://attacks/projectiles/LaserStrikeProjectile.tscn")
 
 onready var main = get_tree().get_nodes_in_group("player")[0].get_parent()
 	
@@ -42,7 +42,7 @@ func set_damage(d):
 	damage = d
 
 func get_name():
-	return "Lightning Rod"
+	return "Laser Strike"
 	
 func get_icon():
 	return "res://assets/weaponArt/orb_sprite.png"

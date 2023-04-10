@@ -1,7 +1,7 @@
 #This will handle saving and loading all the player data
 extends Control
 
-const SAVE_FILE = "user://save_file.save"
+const SAVE_FILE = "user://save_file.res"
 
 var game_data = {}
 
@@ -15,8 +15,12 @@ func _ready():
 	$VBoxContainer/TopBar/GoldDisplay/GoldCount.text = str(game_data.gold)
 
 func load_data():
-	var file = File.new()
-	if not file.file_exists(SAVE_FILE):
+	if ResourceLoader.exists(SAVE_FILE):
+		game_data = ResourceLoader.load(SAVE_FILE)
+		if typeof(game_data) != TYPE_DICTIONARY: # Check that the data is valid
+			print("Error. Corrupted data")
+			return 1
+	else:
 		game_data =  {
 			"first_time_playing" : true,
 			"gold" : 0,
@@ -27,15 +31,16 @@ func load_data():
 			"level2_completed" : false,
 			"level3_completed" : false
 		}
-	else:
-		file.open(SAVE_FILE,File.READ)
-		game_data = file.get_var()
-		file.close()
 	
 
 func save_data():
-	var file = File.new()
-	file.open(SAVE_FILE, File.WRITE)
-	file.store_var(game_data)
-	file.close()
+	var result = ResourceSaver.save(SAVE_FILE, game_data)
+	assert(result == OK)
 
+
+func _on_BackButton_pressed():
+	get_tree().change_scene("res://TitleScreen.tscn")
+
+
+func _on_Confirm_pressed():
+	get_tree().change_scene("res://Main.tscn")
