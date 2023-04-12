@@ -7,7 +7,7 @@ func _ready():
 
 
 func _on_Play_pressed():
-	get_tree().change_scene("res://SelectionMenu.tscn")
+	get_tree().change_scene("res://ui/selection_menu/SelectionMenu.tscn")
 
 
 func _on_Shop_pressed():

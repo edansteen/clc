@@ -14,17 +14,16 @@ onready var main = get_tree().get_nodes_in_group("player")[0].get_parent()
 func _process(_delta):
 	dir = get_angle_to(get_global_mouse_position())
 	if Input.is_mouse_button_pressed( 1 ) or Input.is_action_pressed("special"):
-		if level != 0:
-			if ready_to_strike:
-					var s = slash.instance()
-					s.set_level(level)
-					main.call_deferred("add_child", s)
-					s.global_position = global_position
-					s.rotate(dir)
-					ready_to_strike = false
-					$Slash.play()
-					$Cooldown.start(cooldown_time)
-	
+		if level != 0 and ready_to_strike:
+			var s = slash.instance()
+			s.set_level(level)
+			s.rotate(dir)
+			main.call_deferred("add_child", s)
+			s.global_position = global_position
+			ready_to_strike = false
+			$Slash.play()
+			$Cooldown.start(cooldown_time)
+
 
 func level_up():
 	level += 1
@@ -53,7 +52,6 @@ func get_level():
 
 func get_desc():
 	return "Short-range slash when you click"
-
 
 func _on_Cooldown_timeout():
 	ready_to_strike  = true

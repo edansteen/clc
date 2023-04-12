@@ -12,7 +12,7 @@ func _ready():
 		game_data.first_time_playing = false
 		#play cutscene and show controls
 	#show gold
-	$VBoxContainer/TopBar/GoldDisplay/GoldCount.text = str(game_data.gold)
+	$VBoxContainer/TopBar/HBoxContainer/GoldDisplay/GoldCount.text = str(game_data.gold)
 
 func load_data():
 	if ResourceLoader.exists(SAVE_FILE):
