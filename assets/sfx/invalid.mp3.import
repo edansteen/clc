@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/invalid.mp3-ad74ed37f50310d33abf0b9ea6bac661.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/invalid.mp3"
+dest_files=[ "res://.import/invalid.mp3-ad74ed37f50310d33abf0b9ea6bac661.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

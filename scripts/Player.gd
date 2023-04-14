@@ -27,13 +27,13 @@ var weapons_array = [
 	preload("res://attacks/ChainLightning.tscn"), #chain lightning
 	preload("res://attacks/MagicSword.tscn"), #magic sword
 	preload("res://attacks/MagicGun.tscn"), #the magic gun
-	preload("res://attacks/TimeStop.tscn"), #Time stop
-	preload("res://attacks/DVDLogo.tscn"), #DVD Logo
-	preload("res://attacks/BlackHole.tscn") #Black hole
+	#preload("res://attacks/TimeStop.tscn"), #Time stop
+	#preload("res://attacks/DVDLogo.tscn"), #DVD Logo
+	#preload("res://attacks/BlackHole.tscn") #Black hole
 ]
 
 #Index of first weapon player equips (based on position in attacks_array)
-var base_attack = 5
+var base_attack = 0
 
 # Nodes
 onready var sprite = $AnimatedSprite

@@ -5,6 +5,8 @@ const SAVE_FILE = "user://save_file.res"
 
 var game_data = {}
 
+onready var lvl_selection_menu = $LevelSelectionMenu
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_data()
@@ -13,6 +15,13 @@ func _ready():
 		#play cutscene and show controls
 	#show gold
 	$VBoxContainer/TopBar/HBoxContainer/GoldDisplay/GoldCount.text = str(game_data.gold)
+	
+	#unlock levels
+	if game_data.level1_completed:
+		$LevelSelectionMenu.unlock_level_two()
+	if game_data.level2_completed:
+		$LevelSelectionMenu.unlock_level_three()
+
 
 func load_data():
 	if ResourceLoader.exists(SAVE_FILE):
@@ -24,14 +33,14 @@ func load_data():
 		game_data =  {
 			"first_time_playing" : true,
 			"gold" : 0,
-			"endless_highscore" : 0,
+			#"endless_highscore" : 0,
 			"rambocat_unlocked" : false,
 			"jotarocat_unlocked" : false,
 			"level1_completed" : false,
 			"level2_completed" : false,
 			"level3_completed" : false
 		}
-	
+
 
 func save_data():
 	var result = ResourceSaver.save(SAVE_FILE, game_data)
@@ -43,4 +52,4 @@ func _on_BackButton_pressed():
 
 
 func _on_Confirm_pressed():
-	get_tree().change_scene("res://Main.tscn")
+	lvl_selection_menu.call_deferred("set_visible", true)

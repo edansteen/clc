@@ -10,9 +10,6 @@ func _on_Play_pressed():
 	get_tree().change_scene("res://ui/selection_menu/SelectionMenu.tscn")
 
 
-func _on_Shop_pressed():
-	$Menu/CenterRow/Buttons/Shop/AudioStreamPlayer.play()
-
 
 func _on_Options_pressed():
 	$Menu/CenterRow/Buttons/Options/AudioStreamPlayer.play()

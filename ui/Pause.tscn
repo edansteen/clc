@@ -15,7 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.54902 )
 
-[node name="Buttons" type="VBoxContainer" parent="VisualElements"]
+[node name="MarginContainer" type="MarginContainer" parent="VisualElements"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -25,12 +25,16 @@ margin_top = -22.0
 margin_right = 45.5
 margin_bottom = 22.0
 
-[node name="Resume" type="Button" parent="VisualElements/Buttons"]
+[node name="Buttons" type="VBoxContainer" parent="VisualElements/MarginContainer"]
+margin_right = 91.0
+margin_bottom = 44.0
+
+[node name="Resume" type="Button" parent="VisualElements/MarginContainer/Buttons"]
 margin_right = 91.0
 margin_bottom = 20.0
 text = "Resume"
 
-[node name="Quit" type="Button" parent="VisualElements/Buttons"]
+[node name="Quit" type="Button" parent="VisualElements/MarginContainer/Buttons"]
 margin_top = 24.0
 margin_right = 91.0
 margin_bottom = 44.0
@@ -39,6 +43,6 @@ text = "Quit To Title"
 [node name="MenuOpened" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 
-[connection signal="pressed" from="VisualElements/Buttons/Resume" to="." method="_on_Resume_pressed"]
-[connection signal="pressed" from="VisualElements/Buttons/Resume" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="VisualElements/Buttons/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="VisualElements/MarginContainer/Buttons/Resume" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VisualElements/MarginContainer/Buttons/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="VisualElements/MarginContainer/Buttons/Quit" to="." method="_on_Quit_pressed"]

@@ -15,6 +15,9 @@ var dir = Vector2(0.1,0.1)
 
 onready var hurtbox = $CollisionShape2D
 
+func _ready():
+	get_tree().get_nodes_in_group("player")[0].get_parent().call_deferred("add_child", self)
+
 func level_up():
 	level += 1
 	match level:

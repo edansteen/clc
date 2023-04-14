@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/sprites/cat_sprites.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/FishCoin.png" type="Texture" id=3]
 [ext_resource path="res://ui/selection_menu/SelectionMenu.gd" type="Script" id=4]
 [ext_resource path="res://assets/fonts/nav_font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://ui/selection_menu/LevelSelection.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=6]
 outline_size = 1
@@ -48,11 +49,17 @@ script = ExtResource( 4 )
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0.0392157, 0.462745, 0.423529 )
+color = Color( 0, 0.0196078, 0.172549, 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
 
 [node name="TopBar" type="AspectRatioContainer" parent="VBoxContainer"]
 margin_right = 1024.0
@@ -64,6 +71,7 @@ margin_left = 124.0
 margin_right = 1024.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 900, 100 )
+color = Color( 0, 0, 0, 0.627451 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TopBar"]
 margin_left = 800.0
@@ -125,13 +133,16 @@ margin_bottom = 390.0
 rect_min_size = Vector2( 500, 300 )
 
 [node name="Sprite" type="Sprite" parent="VBoxContainer/MiddleContainer/CenterContainer"]
+position = Vector2( 136, 266 )
 scale = Vector2( 2.5303, 0.517354 )
 texture = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="VBoxContainer/MiddleContainer/CenterContainer"]
+position = Vector2( 136, 172 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 4 )
 animation = "average_cat"
+frame = 2
 playing = true
 
 [node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/MiddleContainer"]
@@ -164,6 +175,7 @@ alignment_horizontal = 0
 margin_right = 900.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 900, 0 )
+color = Color( 0, 0, 0, 0.627451 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BottomBar"]
 margin_right = 100.0
@@ -172,48 +184,8 @@ margin_bottom = 100.0
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/BottomBar/HBoxContainer"]
 margin_bottom = 100.0
 
-[node name="LevelSelection" type="Panel" parent="."]
+[node name="LevelSelectionMenu" parent="." instance=ExtResource( 6 )]
 visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="LevelSelection"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="Level1" type="Button" parent="LevelSelection/HBoxContainer"]
-margin_right = 12.0
-margin_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="LevelSelection/HBoxContainer/Level1"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="Label" type="Label" parent="LevelSelection/HBoxContainer/Level1"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Level 1"
-
-[node name="Level2" type="Button" parent="LevelSelection/HBoxContainer"]
-margin_left = 16.0
-margin_right = 28.0
-margin_bottom = 40.0
-
-[node name="Level3" type="Button" parent="LevelSelection/HBoxContainer"]
-margin_left = 32.0
-margin_right = 44.0
-margin_bottom = 40.0
-
-[node name="Endless" type="Button" parent="LevelSelection/HBoxContainer"]
-margin_left = 48.0
-margin_right = 60.0
-margin_bottom = 40.0
 
 [connection signal="pressed" from="VBoxContainer/TopBar/HBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/MiddleContainer/CenterContainer2/Confirm" to="." method="_on_Confirm_pressed"]

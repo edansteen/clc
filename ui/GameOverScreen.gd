@@ -8,7 +8,15 @@ func make_visible(result):
 	if result == true: #VICTORY!
 		$PanelContainer/MarginContainer/VBoxContainer/Title.text = "Good job!"
 	else:	#loss...
-		$PanelContainer/MarginContainer/VBoxContainer/Title.text = "Me-Ouch..."
+		var string = "Me-Ouch..." #default in case something goes wrong
+		match RandomNumberGenerator.new().randi_range(0,2):
+			0:
+				pass #leave it as default
+			1:
+				string = "Tough luck champ..."
+			2:
+				string = "At least you have 9 lives..."
+		$PanelContainer/MarginContainer/VBoxContainer/Title.text = string
 	get_tree().paused = true
 	set_visible(true)
 	
