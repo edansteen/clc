@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/sprites/Swole Kitten Undies.png.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/title_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/fonts/buttonStyle.tres" type="StyleBox" id=3]
+[ext_resource path="res://ui/selection_menu/LevelSelection.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/TitleScreen.gd" type="Script" id=5]
 [ext_resource path="res://assets/sfx/menu_button_sound.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" type="DynamicFontData" id=7]
@@ -118,7 +119,7 @@ text = "Options"
 align = 1
 valign = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Menu/CenterRow/Buttons/Options"]
+[node name="Clicked" type="AudioStreamPlayer" parent="Menu/CenterRow/Buttons/Options"]
 stream = ExtResource( 6 )
 
 [node name="Quit" type="Button" parent="Menu/CenterRow/Buttons"]
@@ -162,6 +163,9 @@ margin_bottom = 600.0
 custom_fonts/font = ExtResource( 9 )
 text = "Version 1.0
 Created by Edan Steen"
+
+[node name="LevelSelectionMenu" parent="." instance=ExtResource( 4 )]
+visible = false
 
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Options" to="." method="_on_Options_pressed"]

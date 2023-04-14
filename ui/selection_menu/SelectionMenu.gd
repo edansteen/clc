@@ -2,7 +2,6 @@
 extends Control
 
 const SAVE_FILE = "user://save_file.res"
-
 var game_data = {}
 
 onready var lvl_selection_menu = $LevelSelectionMenu
@@ -41,15 +40,13 @@ func load_data():
 			"level3_completed" : false
 		}
 
-
 func save_data():
 	var result = ResourceSaver.save(SAVE_FILE, game_data)
 	assert(result == OK)
 
-
 func _on_BackButton_pressed():
 	get_tree().change_scene("res://TitleScreen.tscn")
 
-
 func _on_Confirm_pressed():
+	$VBoxContainer/MiddleContainer/CenterContainer2/Confirm/Clicked
 	lvl_selection_menu.call_deferred("set_visible", true)

@@ -7,12 +7,12 @@ func _ready():
 
 
 func _on_Play_pressed():
-	get_tree().change_scene("res://ui/selection_menu/SelectionMenu.tscn")
+	$LevelSelectionMenu.call_deferred("set_visible", true)
 
 
 
 func _on_Options_pressed():
-	$Menu/CenterRow/Buttons/Options/AudioStreamPlayer.play()
+	$Menu/CenterRow/Buttons/Options/Clicked.play()
 
 
 func _on_Quit_pressed():
