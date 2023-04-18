@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="VolumeSlider" type="HSlider"]
+margin_right = 500.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 500, 20 )
+max_value = 6.0
+value = 6.0
+rounded = true
+tick_count = 7
+ticks_on_borders = true

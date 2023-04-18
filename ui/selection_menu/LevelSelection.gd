@@ -9,10 +9,35 @@ var selected_level = levelOptions.NA
 
 #load data
 func _ready():
-	pass
-	#make level 2 and 3 available based on the loaded data
+	if ResourceLoader.exists(SAVE_FILE):
+		game_data = ResourceLoader.load(SAVE_FILE)
+		if typeof(game_data) != TYPE_DICTIONARY: # Check that the data is valid
+			print("Error. Corrupted data")
+			return 1
+	else:
+		game_data =  {
+			"first_time_playing" : true,
+			#"endless_highscore" : 0,
+			"level1_completed" : false,
+			"level2_completed" : false,
+			"level3_completed" : false
+		}
+		
+		#play starting cutscene if first time playing
+		if game_data.first_time_playing:
+			#do things
+			pass
+	
+	#unlock levels based on loaded data
+	$LevelMenu/HBoxContainer/LevelOne.unlock()
+	if game_data.level1_completed:
+		$LevelMenu/HBoxContainer/LevelTwo.unlock()
+	if game_data.level2_completed:
+		$LevelMenu/HBoxContainer/LevelThree.unlock()
 
 func get_level_description(lvl):
+	$LevelDescription.set_deferred("visible", true)
+	
 	match lvl:
 		levelOptions.ONE:
 			return "The robot army has taken over the city. Luckily, one cat in particular is on the scene..."
@@ -23,22 +48,11 @@ func get_level_description(lvl):
 		levelOptions.NA:
 			return "What have we here?"
 
-#unlock levels
-func unlock_level_two():
-	$LevelMenu/HBoxContainer/LevelTwo/Lock.queue_free()
-
-func unlock_level_three():
-	$LevelMenu/HBoxContainer/LevelThree/Lock.queue_free()
-
-func _on_Back_pressed():
-	self.set_deferred("visible", false)
-
-
 func _on_LevelOne_pressed():
 	if selected_level != levelOptions.ONE:
 		selected_level = levelOptions.ONE
 	else:
-		get_tree().change_scene("res://Main.tscn")
+		get_tree().change_scene("res://levels/level_one/LevelOne.tscn")
 
 
 func _on_LevelTwo_pressed():

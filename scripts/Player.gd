@@ -32,9 +32,6 @@ var weapons_array = [
 	#preload("res://attacks/BlackHole.tscn") #Black hole
 ]
 
-#Index of first weapon player equips (based on position in attacks_array)
-var base_attack = 0
-
 # Nodes
 onready var sprite = $AnimatedSprite
 onready var weapons = $Weapons
@@ -64,9 +61,6 @@ func _ready():
 	for i in range(weapons_array.size()):
 		weapons_array[i] = weapons_array[i].instance() #transform to instance of itself
 		weapons.call_deferred("add_child", weapons_array[i])
-		
-	#level up the base weapon
-	level_up_weapon(base_attack)
 
 #Get keyboard input for movement
 func get_input():

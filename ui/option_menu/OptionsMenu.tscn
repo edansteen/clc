@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/option_menu/OptionsMenu.gd" type="Script" id=1]
-[ext_resource path="res://assets/fonts/BackButtonFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://ui/common_elements/MenuBackButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/PageTitleFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/fonts/OptionsFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://ui/option_menu/options_elements/VolumeSlider.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sfx/menu_button_sound.wav" type="AudioStream" id=6]
 
 [node name="OptionsMenu" type="Control"]
 pause_mode = 2
@@ -16,35 +18,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0.0196078, 0.172549, 1 )
 
-[node name="BackButton" type="Button" parent="."]
-margin_right = 12.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 150, 150 )
-flat = true
-
-[node name="Label" type="Label" parent="BackButton"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_min_size = Vector2( 150, 150 )
-custom_colors/font_color = Color( 1, 0.866667, 0, 1 )
-custom_fonts/font = ExtResource( 2 )
-text = "< Back"
-align = 1
-valign = 1
+[node name="BackButton" parent="." instance=ExtResource( 2 )]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -400.0
-margin_top = -200.0
-margin_right = 400.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 800, 400 )
+margin_left = -302.5
+margin_top = -41.0
+margin_right = 302.5
+margin_bottom = 41.0
 
 [node name="OptionsLabel" type="Label" parent="VBoxContainer"]
-margin_right = 800.0
+margin_right = 605.0
 margin_bottom = 34.0
 custom_fonts/font = ExtResource( 3 )
 text = "Options:"
@@ -53,11 +40,11 @@ valign = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 38.0
-margin_right = 800.0
+margin_right = 605.0
 margin_bottom = 82.0
 
 [node name="MusicVolume" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_right = 800.0
+margin_right = 605.0
 margin_bottom = 20.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/MusicVolume"]
@@ -67,16 +54,13 @@ margin_bottom = 17.0
 custom_fonts/font = ExtResource( 4 )
 text = "Music Volume:"
 
-[node name="VolumeLevel" type="HScrollBar" parent="VBoxContainer/VBoxContainer/MusicVolume"]
+[node name="VolumeSlider" parent="VBoxContainer/VBoxContainer/MusicVolume" instance=ExtResource( 5 )]
 margin_left = 94.0
 margin_right = 594.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 500, 20 )
-value = 100.0
 
 [node name="SFXVolume" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 24.0
-margin_right = 800.0
+margin_right = 605.0
 margin_bottom = 44.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/SFXVolume"]
@@ -86,12 +70,11 @@ margin_bottom = 17.0
 custom_fonts/font = ExtResource( 4 )
 text = "Sound Effects: "
 
-[node name="VolumeLevel" type="HScrollBar" parent="VBoxContainer/VBoxContainer/SFXVolume"]
+[node name="VolumeLevel" parent="VBoxContainer/VBoxContainer/SFXVolume" instance=ExtResource( 5 )]
 margin_left = 105.0
 margin_right = 605.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 500, 20 )
-value = 100.0
 
-[connection signal="value_changed" from="VBoxContainer/VBoxContainer/MusicVolume/VolumeLevel" to="." method="_on_VolumeLevel_value_changed"]
+[node name="TestSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
 [connection signal="value_changed" from="VBoxContainer/VBoxContainer/SFXVolume/VolumeLevel" to="." method="_on_VolumeLevel_value_changed"]

@@ -11,6 +11,7 @@ var frozen: bool = false
 onready var player = get_tree().get_nodes_in_group("player")[0]
 onready var sprite = $AnimatedSprite 
 onready var animation_player = $AnimatedSprite/AnimationPlayer
+onready var screen_exited_timer = $FreeTimer
 
 var death_effect = preload("res://mobs/EnemyDeathEffect.tscn")
 var xp = preload("res://items/ExpPoint.tscn")
@@ -24,8 +25,6 @@ func _physics_process(delta):
 	if frozen:
 		return
 	var p_pos = player.global_position
-	
-	#despawn if too far from player
 	
 	var direction = global_position.direction_to(p_pos)
 	velocity = direction.normalized() * speed
@@ -58,6 +57,7 @@ func hit_for(dmg): #ERROR: Bug when 2 weapons hit at the same time, causing hitb
 				dropped_xp.global_position = global_position
 				get_parent().call_deferred("add_child", dropped_xp)
 
+
 func freeze(b):
 	frozen =  b
 
@@ -69,7 +69,7 @@ func _on_AnimatedSprite_animation_finished():
 
 
 func _on_VisibilityNotifier2D_screen_exited():
-	$FreeTimer.start(15)
+	screen_exited_timer.start(10)
 
 
 func _on_FreeTimer_timeout():
@@ -77,4 +77,5 @@ func _on_FreeTimer_timeout():
 
 
 func _on_VisibilityNotifier2D_screen_entered():
-	$FreeTimer.stop()
+	screen_exited_timer.stop()
+
