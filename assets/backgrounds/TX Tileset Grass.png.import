@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/TX Tileset Grass.png-8abbffede93745c128df38ef10baa426.s3tc.stex"
-path.etc2="res://.import/TX Tileset Grass.png-8abbffede93745c128df38ef10baa426.etc2.stex"
+path.s3tc="res://.import/TX Tileset Grass.png-670c8cae4e72feeb730b24d1ea1e6c38.s3tc.stex"
+path.etc2="res://.import/TX Tileset Grass.png-670c8cae4e72feeb730b24d1ea1e6c38.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/TX Tileset Grass.png"
-dest_files=[ "res://.import/TX Tileset Grass.png-8abbffede93745c128df38ef10baa426.s3tc.stex", "res://.import/TX Tileset Grass.png-8abbffede93745c128df38ef10baa426.etc2.stex" ]
+source_file="res://assets/backgrounds/TX Tileset Grass.png"
+dest_files=[ "res://.import/TX Tileset Grass.png-670c8cae4e72feeb730b24d1ea1e6c38.s3tc.stex", "res://.import/TX Tileset Grass.png-670c8cae4e72feeb730b24d1ea1e6c38.etc2.stex" ]
 
 [params]
 
