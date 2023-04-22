@@ -23,7 +23,7 @@ func _ready():
 	$Music.play()
 	
 	#equip players base attack
-	$Player.level_up_weapon(0)
+	$Player.level_up_weapon(2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

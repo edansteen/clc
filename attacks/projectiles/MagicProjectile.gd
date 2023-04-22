@@ -38,7 +38,7 @@ func set_level(lvl) -> void:
 			piercing = 2
 		4:
 			damage *= 1.5
-			piercing = 1
+			piercing = 2
 		5:
 			damage *= 1.5
 			piercing = 3
@@ -59,4 +59,11 @@ func _on_MagicProjectile_body_entered(body):
 		body.hit_for(damage)
 		piercing -= 1
 		if piercing <= 0:
-			queue_free()
+			$AnimatedSprite.play("impact")
+			$CollisionShape2D.set_deferred("disabled", true)
+			speed = 0
+			$AnimatedSprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished")
+
+
+func _on_AnimatedSprite_animation_finished():
+	queue_free()

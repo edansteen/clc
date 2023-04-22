@@ -2,17 +2,17 @@
 # player relative to the center of the other
 extends Node2D
 
+const COMPONENT_WIDTH = 1024
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var components = [$Component1, $Component2]
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+onready var player = get_tree().get_nodes_in_group("player")[0]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	var px = player.global_position.x
+
+	for i in components:
+		if components[i].global_position.x + (COMPONENT_WIDTH/2) > px:
+			
