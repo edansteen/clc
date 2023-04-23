@@ -25,14 +25,14 @@ func level_up():
 			cooldown_time = 0.25
 		6:
 			#explode on hit
-			cooldown_time = 0.1
+			pass
 
 
 func get_name():
 	return "Magic Missile"
 	
 func get_icon():
-	return "res://assets/sprites/fish.png"
+	return "res://assets/weaponArt/weapon_icons/magic_projectile_icon.png"
 
 func get_level():
 	return level
