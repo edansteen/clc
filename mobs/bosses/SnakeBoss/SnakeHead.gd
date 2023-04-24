@@ -7,21 +7,24 @@ var damage = 60
 var speed = 60
 var length = 10
 var velocity = Vector2.ZERO
+var tail = []
+var body = preload("res://mobs/bosses/SnakeBoss/SnakeBody.tscn")
 
 onready var player = get_tree().get_nodes_in_group("player")[0]
 onready var animation_player = $AnimationPlayer
 onready var death_effect = preload("res://mobs/mob_projectiles/ExplosionDeathEffect.tscn")
-onready var sprite = $Sprite
+onready var sprite = $AnimatedSprite
 
 func _ready():
-	pass
-	
+	for i in range(length):
+		tail.append(body.instance())
+		
+
 func _physics_process(delta):
+	$AnimatedSprite.rotation = get_angle_to(player.global_position)
 	if hp <= 0:
 		return
 	var p_pos = player.global_position
-	
-	#despawn if too far from player
 	
 	var direction = global_position.direction_to(p_pos)
 	velocity = direction.normalized() * speed
@@ -36,6 +39,8 @@ func _physics_process(delta):
 	if collision:
 		if collision.collider.has_method("hit"): #hit if it's the player
 			collision.collider.hit(damage)
+			
+	for i in tail
 
 func hit_for(dmg):
 	if hp >= 0: 

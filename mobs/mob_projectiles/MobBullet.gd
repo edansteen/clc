@@ -6,9 +6,11 @@ var dir = Vector2.ZERO
 
 func _ready():
 	$AnimatedSprite.play("default")
+	self.connect("body_entered", self, "_on_MobBullet_body_entered")
 
 func set_dir(angle):
 	dir = Vector2(cos(angle), sin(angle))
+	$AnimatedSprite.rotation = angle
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

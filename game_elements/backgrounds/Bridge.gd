@@ -12,7 +12,6 @@ onready var player = get_tree().get_nodes_in_group("player")[0]
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var px = player.global_position.x
-
-	for i in components:
-		if components[i].global_position.x + (COMPONENT_WIDTH/2) > px:
-			
+	var stationary_component : bool = 0
+	if components[stationary_component].global_position.distance_to(px) < (COMPONENT_WIDTH/2):
+		pass
