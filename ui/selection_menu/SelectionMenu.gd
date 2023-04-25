@@ -33,8 +33,7 @@ func load_data():
 			"first_time_playing" : true,
 			"gold" : 0,
 			#"endless_highscore" : 0,
-			"rambocat_unlocked" : false,
-			"jotarocat_unlocked" : false,
+			"selectedLevel" : 0,
 			"level1_completed" : false,
 			"level2_completed" : false,
 			"level3_completed" : false
@@ -50,3 +49,4 @@ func _on_BackButton_pressed():
 func _on_Confirm_pressed():
 	$VBoxContainer/MiddleContainer/CenterContainer2/Confirm/Clicked
 	lvl_selection_menu.call_deferred("set_visible", true)
+	save_data()

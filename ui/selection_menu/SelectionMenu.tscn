@@ -136,7 +136,7 @@ position = Vector2( 136, 172 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 4 )
 animation = "average_cat"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/MiddleContainer"]

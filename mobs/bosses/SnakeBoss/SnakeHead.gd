@@ -40,7 +40,8 @@ func _physics_process(delta):
 		if collision.collider.has_method("hit"): #hit if it's the player
 			collision.collider.hit(damage)
 			
-	for i in tail
+	for i in range(1, tail.length()):
+		pass
 
 func hit_for(dmg):
 	if hp >= 0: 

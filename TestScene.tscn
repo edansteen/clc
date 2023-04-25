@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://game_elements/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/game_elements/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://mobs/bosses/SnakeBoss/SnakeHead.tscn" type="PackedScene" id=2]
 [ext_resource path="res://mobs/bosses/BullBoss/RoboBull.tscn" type="PackedScene" id=3]
 

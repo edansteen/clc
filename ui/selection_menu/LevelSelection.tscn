@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ui/selection_menu/LevelSelection.gd" type="Script" id=1]
 [ext_resource path="res://ui/common_elements/MenuBackButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/PageTitleFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ui/selection_menu/selection_menu_elements/LevelSelectionButton.tscn" type="PackedScene" id=8]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0, 0, 0.588235 )
 
 [node name="LevelSelectionMenu" type="Control"]
 anchor_right = 1.0
@@ -58,12 +55,15 @@ margin_left = 408.0
 margin_right = 608.0
 margin_bottom = 200.0
 
-[node name="LevelDescription" type="PanelContainer" parent="."]
-visible = false
+[node name="Button" type="Button" parent="."]
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 1 )
+margin_top = -66.0
+margin_bottom = -46.0
+text = "DElete data"
 
 [connection signal="pressed" from="LevelMenu/HBoxContainer/LevelOne" to="." method="_on_LevelOne_pressed"]
 [connection signal="pressed" from="LevelMenu/HBoxContainer/LevelTwo" to="." method="_on_LevelTwo_pressed"]
 [connection signal="pressed" from="LevelMenu/HBoxContainer/LevelThree" to="." method="_on_LevelThree_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

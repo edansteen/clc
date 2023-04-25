@@ -27,7 +27,7 @@ func make_visible(result):
 
 func _on_Play_Again_pressed():
 	get_tree().paused = false
-	get_tree().change_scene("res://Main.tscn")
+	get_tree().change_scene("res://levels/level_one/LevelOne.tscn")
 
 
 func _on_Quit_pressed():
