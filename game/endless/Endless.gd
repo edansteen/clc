@@ -1,9 +1,10 @@
 extends Node
 
-const SAVE_PATH = "user://user.json"
+var save_script = preload("res://ui/SaveScript.gd")
+var SaveObject = null
 var game_data = {}
-var highscore = 0
 
+var highscore = 0
 enum level {ONE, TWO, THREE}
 var selectedLevel = level.ONE
 
@@ -23,6 +24,17 @@ onready var spawner = $MobSpawner
 
 # Load level based on which is active
 func _ready():
+	SaveObject = save_script.new()
+	game_data = SaveObject.load_data()
+	highscore = game_data.highscore
+	set_highscore(highscore)
+	match (game_data.selectedLevel):
+		0:
+			pass
+		1:
+			pass
+		2:
+			pass
 	spawner.set_active(true)
 	time = 0.0
 	seconds = 0
@@ -43,6 +55,9 @@ func _process(delta):
 		minutes += 1
 		seconds = 0
 	clock.text = str(minutes).pad_zeros(2) + ":" + str(round(seconds)).pad_zeros(2)
+	if time > highscore:
+		highscore = time
+		set_highscore(highscore)
 
 func mob_killed():
 	mobsKilled += 1
@@ -54,13 +69,21 @@ func end_game():
 	game_over = true
 	spawner.set_active(false)
 	$Music.stop()
+	#save data
+	save_game()
 	$GameOverScreenTimer.start(1.0)
 
-func save_game_data():
-	var file = File.new()
-	file.open(SAVE_PATH, File.WRITE)
-	file.store_line(to_json(game_data))
-	file.close()
+func save_game():
+	game_data.highscore = highscore
+	if bossesKilled > 0:
+		game_data.achievement1 = true
+	if mobsKilled > 300:
+		game_data.achievement2 = true
+	SaveObject.save(game_data)
+
+func set_highscore(t):
+	$Clock/HBoxContainer/HighScore.text = str(round(t/60.0)).pad_zeros(2)+":"+str(round(fmod(t,60))).pad_zeros(2)
+
 
 func _on_Player_gameOver():
 	end_game()
@@ -76,3 +99,11 @@ func _on_SpawnerLevelUpTimer_timeout():
 
 func _on_GameTimer_timeout():
 	spawner.set_level(8) #spawn the snake boss
+
+
+func _on_GameOverScreen_quit():
+	save_game()
+	get_tree().paused = false
+	#wait to finish saving before leaving
+	
+	get_tree().change_scene("res://TitleScreen.tscn")

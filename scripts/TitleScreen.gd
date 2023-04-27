@@ -1,7 +1,6 @@
 #shaq is not a shart, also Gabs was here
 extends Control
 
-
 func _ready():
 	$TitleMusic.play()
 

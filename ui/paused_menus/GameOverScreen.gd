@@ -1,9 +1,10 @@
 extends CanvasLayer
 
+signal quit
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_visible(false)
-
 
 func make_visible(result):
 	if result == true: #VICTORY!
@@ -31,5 +32,4 @@ func _on_Play_Again_pressed():
 
 
 func _on_Quit_pressed():
-	get_tree().paused = false
-	get_tree().change_scene("res://TitleScreen.tscn")
+	emit_signal("quit")

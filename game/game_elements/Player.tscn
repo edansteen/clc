@@ -1,8 +1,7 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/cat_sprites.png" type="Texture" id=2]
-[ext_resource path="res://assets/fonts/RonysiswadiArchitect1-3zjeL.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/animations/hurt.tres" type="Animation" id=4]
 [ext_resource path="res://assets/shaders/hurt.tres" type="Shader" id=5]
 [ext_resource path="res://assets/sfx/xp-ding.mp3" type="AudioStream" id=6]
@@ -12,7 +11,6 @@
 [ext_resource path="res://assets/sprites/health_bar/health_bar-1.png.png" type="Texture" id=10]
 [ext_resource path="res://assets/sfx/item_pickup.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/sfx/item_found.wav" type="AudioStream" id=12]
-[ext_resource path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" type="DynamicFontData" id=13]
 
 [sub_resource type="ShaderMaterial" id=24]
 resource_local_to_scene = true
@@ -142,13 +140,6 @@ extents = Vector2( 22, 19.5 )
 [sub_resource type="CircleShape2D" id=22]
 radius = 37.1214
 
-[sub_resource type="DynamicFont" id=25]
-size = 12
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=26]
-font_data = ExtResource( 13 )
-
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 scale = Vector2( 0.984983, 0.890554 )
 script = ExtResource( 1 )
@@ -223,30 +214,6 @@ margin_bottom = 84.0
 value = 100.0
 texture_under = ExtResource( 9 )
 texture_progress = ExtResource( 10 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Control"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -144.0
-margin_top = 50.0
-margin_right = -21.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 80, 30 )
-
-[node name="HighscoreLabel" type="Label" parent="GUI/Control/HBoxContainer"]
-margin_top = 7.0
-margin_right = 78.0
-margin_bottom = 22.0
-custom_fonts/font = SubResource( 25 )
-text = "HIGHSCORE"
-
-[node name="HighScore" type="Label" parent="GUI/Control/HBoxContainer"]
-margin_left = 82.0
-margin_top = 8.0
-margin_right = 124.0
-margin_bottom = 21.0
-custom_fonts/font = SubResource( 26 )
-text = "00:00"
 
 [node name="LevelUp" type="Panel" parent="GUI/Control"]
 pause_mode = 2
