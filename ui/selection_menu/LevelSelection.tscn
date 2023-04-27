@@ -55,7 +55,7 @@ margin_left = 408.0
 margin_right = 608.0
 margin_bottom = 200.0
 
-[node name="Button" type="Button" parent="."]
+[node name="ResetData" type="Button" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -66,4 +66,4 @@ text = "DElete data"
 [connection signal="pressed" from="LevelMenu/HBoxContainer/LevelOne" to="." method="_on_LevelOne_pressed"]
 [connection signal="pressed" from="LevelMenu/HBoxContainer/LevelTwo" to="." method="_on_LevelTwo_pressed"]
 [connection signal="pressed" from="LevelMenu/HBoxContainer/LevelThree" to="." method="_on_LevelThree_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="ResetData" to="." method="_on_Button_pressed"]

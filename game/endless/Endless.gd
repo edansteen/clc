@@ -2,6 +2,7 @@ extends Node
 
 const SAVE_PATH = "user://user.json"
 var game_data = {}
+var highscore = 0
 
 enum level {ONE, TWO, THREE}
 var selectedLevel = level.ONE
@@ -11,7 +12,6 @@ var seconds = 0
 var minutes = 0
 var spawner_level = 1
 
-var score = 0
 var mobsKilled = 0
 var bossesKilled = 0
 
@@ -44,6 +44,9 @@ func _process(delta):
 		seconds = 0
 	clock.text = str(minutes).pad_zeros(2) + ":" + str(round(seconds)).pad_zeros(2)
 
+func mob_killed():
+	mobsKilled += 1
+	
 func boss_defeated():
 	bossesKilled += 1
 
@@ -62,17 +65,14 @@ func save_game_data():
 func _on_Player_gameOver():
 	end_game()
 
-
 func _on_GameOverScreenTimer_timeout():
 	$GameOverScreen.make_visible(true)
-
 
 func _on_SpawnerLevelUpTimer_timeout():
 	#level up every 30 seconds
 	spawner_level += 1
 	spawner.set_level(spawner_level)
 	$SpawnerLevelUpTimer.start(45)
-
 
 func _on_GameTimer_timeout():
 	spawner.set_level(8) #spawn the snake boss

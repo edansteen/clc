@@ -1,6 +1,6 @@
 extends Control
 
-const SAVE_PATH = "user://user.json"
+const SAVE_PATH = "user://userdata.save"
 
 var game_data = {}
 
@@ -27,8 +27,8 @@ func _ready():
 		
 		#play starting cutscene if first time playing
 		if game_data.first_time_playing:
-			#do things
-			pass
+			print("Played for the first time")
+			game_data.first_time_playing = false
 	
 	#unlock levels based on loaded data
 	$LevelMenu/HBoxContainer/LevelOne.unlock()
@@ -37,24 +37,24 @@ func _ready():
 	if game_data.achievement2:
 		$LevelMenu/HBoxContainer/LevelThree.unlock()
 
-
 func save_data():
 	var file = File.new()
 	file.open(SAVE_PATH, File.WRITE)
 	file.store_line(to_json(game_data))
 	file.close()
-
+	print(game_data)
+	
 func load_data():
 	var file = File.new()
-	if not file.fileExists(SAVE_PATH, File.READ):
+	if not file.file_exists(SAVE_PATH):
 			 save_data()
 			 return
 	file.open(SAVE_PATH, File.READ)
-	var data = parse_json(file.get_as_text())
-	if typeof(data) != TYPE_DICTIONARY: # Check that the data is valid
+	var game_data = parse_json(file.get_as_text())
+	
+	if typeof(game_data) != TYPE_DICTIONARY: # Check that the data is valid
 		print("Error. Corrupted data")
 		return 1
-	game_data = data
 
 func play():
 	save_data()
