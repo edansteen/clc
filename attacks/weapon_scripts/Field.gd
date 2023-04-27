@@ -55,9 +55,20 @@ func get_icon():
 	return "res://assets/weaponArt/force_field.png"
 
 func get_desc():
-	return "Damages enemies entering its field";
-	
-	
+	match (level):
+		0:
+			return "Damages enemies entering its field";
+		1:
+			return "Damage +10%, Area +10%"
+		2:
+			return "Damage +10%, Area +10%"
+		3:
+			return "Damage +10%, Area +10%"
+		4:
+			return "Damage +10%, Area +5%"
+		5:
+			return "Damage +100%, Area +5%"
+			
 func _on_Field_body_entered(body):
 	if !enemies_in_range.has(body):
 		if body.has_method("hit_for"):

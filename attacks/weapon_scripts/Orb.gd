@@ -60,10 +60,22 @@ func get_name():
 	return "Cosmic Orbs"
 	
 func get_icon():
-	return "res://assets/weaponArt/orb_sprite.png"
+	return "res://assets/weaponArt/weapon_icons/orb_icon.png"
 
 func get_level():
 	return level
 
 func get_desc():
-	return "Summons orbs that rotate around the player, dealing damage to enemies."
+	match (level):
+		0:
+			return "Summons orbs that rotate around the player, damaging enemies."
+		1:
+			return "+1 Orb"
+		2:
+			return "+1 Orb"
+		3:
+			return "+1 Orb"
+		4:
+			return "+1 Orb"
+		5:
+			return "+1 Orb"

@@ -45,14 +45,25 @@ func get_name():
 	return "Laser Strike"
 	
 func get_icon():
-	return "res://assets/weaponArt/orb_sprite.png"
+	return "res://assets/weaponArt/weapon_icons/laserstrike_icon.png"
 
 func get_level():
 	return level
 
 func get_desc():
-	return "Periodically strikes a random enemy with lightning, dealing high damage"
-
+	match level:
+		0:
+			return "Periodically strikes a random enemy with a laser"
+		1:
+			return "+1 Projectile"
+		2:
+			return "+1 Projectile"
+		3:
+			return "+1 Projectile"
+		4:
+			return "+1 Projectile"
+		5:
+			return "+1 Projectile"
 
 func _on_CooldownTimer_timeout():
 	if level != 0 and mobs_in_range.size() > 0:
