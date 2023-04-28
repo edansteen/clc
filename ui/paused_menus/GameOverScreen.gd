@@ -6,7 +6,8 @@ signal quit
 func _ready():
 	set_visible(false)
 
-func make_visible(result):
+func make_visible(result, score):
+	$PanelContainer/VBoxContainer/ScoreDisplay.text = "Time Survived: " + score
 	if result == true: #VICTORY!
 		$PanelContainer/VBoxContainer/Title.text = str("You did it!")
 		$ColorRect.color = Color(65,225,45,0.8)
@@ -18,13 +19,12 @@ func make_visible(result):
 			1:
 				string = "Tough luck champ..."
 			2:
-				string = "At least you have 9 lives..."
+				string = "The robots always win."
 			3:
 				string = "You died."
 		$PanelContainer/VBoxContainer/Title.text = string
 	get_tree().paused = true
 	set_visible(true)
-
 
 func _on_Play_Again_pressed():
 	get_tree().paused = false

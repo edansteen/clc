@@ -53,7 +53,7 @@ func get_level():
 func get_desc():
 	match level:
 		0:
-			return "Periodically strikes a random enemy with a laser"
+			return "Strikes a random enemy with a laser \nevery 4 seconds"
 		1:
 			return "+1 Projectile"
 		2:

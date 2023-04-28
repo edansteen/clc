@@ -8,6 +8,7 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_end"):
+		$VisualElements/ConfirmPanel.set_deferred("visible", false)
 		if get_tree().paused:
 			if game_paused:
 				unpause()
@@ -30,11 +31,15 @@ func unpause():
 	
 
 func _on_Quit_pressed():
-	unpause()
-	get_tree().change_scene("res://TitleScreen.tscn")
+	$VisualElements/ConfirmPanel.set_deferred("visible", true)
 
 func _on_Resume_pressed():
 	unpause()
 
-func _on_Button_pressed():
-	pass
+func _on_Confirm_pressed():
+	unpause()
+	get_tree().change_scene("res://TitleScreen.tscn")
+
+
+func _on_Back_pressed():
+	$VisualElements/ConfirmPanel.set_deferred("visible", false)

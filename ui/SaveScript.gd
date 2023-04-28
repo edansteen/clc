@@ -27,7 +27,7 @@ func load_data():
 	return game_data
 	
 func reset():
-	game_data = {
+	var d = {
 		"first_time_playing" : true,
 		"highscore" : 0.0,
 		"achievement1" : false,
@@ -36,4 +36,5 @@ func reset():
 		"musicVolume" : 0.5,
 		"sfxVolume" : 0.5
 	}
-	save(game_data)
+	save(d)
+	print("wiped")

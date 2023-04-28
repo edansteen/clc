@@ -84,12 +84,11 @@ func save_game():
 func set_highscore(t):
 	$Clock/HBoxContainer/HighScore.text = str(round(t/60.0)).pad_zeros(2)+":"+str(round(fmod(t,60))).pad_zeros(2)
 
-
 func _on_Player_gameOver():
 	end_game()
 
 func _on_GameOverScreenTimer_timeout():
-	$GameOverScreen.make_visible(true)
+	$GameOverScreen.make_visible(true, $Clock/HBoxContainer/HighScore.text)
 
 func _on_SpawnerLevelUpTimer_timeout():
 	#level up every 30 seconds

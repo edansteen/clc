@@ -1,12 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/paused_menus/GameOverScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/game_over_win.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/fonts/PageTitleFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ui/paused_menus/PausedOptionButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/fonts/RonysiswadiArchitect1-3zjeL.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 0, 0, 0.121569 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
+font_data = ExtResource( 5 )
 
 [node name="GameOverScreen" type="CanvasLayer"]
 pause_mode = 2
@@ -34,17 +39,28 @@ margin_bottom = 600.0
 alignment = 1
 
 [node name="Title" type="Label" parent="PanelContainer/VBoxContainer"]
-margin_top = 219.0
+margin_top = 187.0
 margin_right = 1024.0
-margin_bottom = 253.0
+margin_bottom = 221.0
 custom_fonts/font = ExtResource( 3 )
 text = "Tough Luck Champ"
 align = 1
 
-[node name="Buttons" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
-margin_top = 257.0
+[node name="ScoreDisplay" type="Label" parent="PanelContainer/VBoxContainer"]
+margin_top = 225.0
 margin_right = 1024.0
-margin_bottom = 381.0
+margin_bottom = 285.0
+rect_min_size = Vector2( 100, 60 )
+custom_fonts/font = SubResource( 2 )
+text = "Score: 00:00"
+align = 1
+valign = 1
+
+[node name="Buttons" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+margin_top = 289.0
+margin_right = 1024.0
+margin_bottom = 413.0
+rect_min_size = Vector2( 600, 0 )
 alignment = 1
 
 [node name="Play Again" parent="PanelContainer/VBoxContainer/Buttons" instance=ExtResource( 4 )]
