@@ -9,6 +9,7 @@ func _ready():
 func make_visible(result, score):
 	$PanelContainer/VBoxContainer/ScoreDisplay.text = "Time Survived: " + score
 	if result == true: #VICTORY!
+		$VictorySound.play()
 		$PanelContainer/VBoxContainer/Title.text = str("You did it!")
 		$ColorRect.color = Color(65,225,45,0.8)
 	else:	#loss...
@@ -17,9 +18,9 @@ func make_visible(result, score):
 			0:
 				pass #leave it as default
 			1:
-				string = "Tough luck champ..."
+				string = "Tough go champ..."
 			2:
-				string = "The robots always win."
+				string = "The robots have taken over."
 			3:
 				string = "You died."
 		$PanelContainer/VBoxContainer/Title.text = string
@@ -28,7 +29,7 @@ func make_visible(result, score):
 
 func _on_Play_Again_pressed():
 	get_tree().paused = false
-	get_tree().change_scene("res://levels/level_one/LevelOne.tscn")
+	get_tree().change_scene("res://game/Main.tscn")
 
 
 func _on_Quit_pressed():

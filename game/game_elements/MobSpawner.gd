@@ -16,8 +16,11 @@ var mobs = [
 	preload("res://mobs/Boombot.tscn"),
 	preload("res://mobs/ThreeBotsInTrenchCoat.tscn"),
 	preload("res://mobs/DogBot.tscn"),
-	preload("res://mobs/DestroyerBot.tscn")
+	preload("res://mobs/DestroyerBot.tscn"),
+	preload("res://mobs/Droid.tscn")
 ]
+
+var blaster = preload("res://mobs/mob_projectiles/DroidBlaster.tscn")
 
 # Probability of spawning mob measured as a float from 0 to 1. 
 #spawn_probability[0] refers to probability of spawning the mob at mobs[0] (which would be the droid)
@@ -38,7 +41,10 @@ func _ready():
 func _process(_delta):
 	if active and $Mobs.get_child_count() < mob_cap:
 		#spawn mobs
-		var m = mobs[rand_mob()].instance()
+		var rand = rand_mob()
+		var m = mobs[rand].instance()
+		if rand == 5:
+			m.call_deferred("add_child", blaster.instance())
 		m.global_position = get_random_position()
 		$Mobs.call_deferred("add_child", m)
 		active = false
@@ -53,29 +59,29 @@ func set_level(n):
 		1:
 			spawn_delay = 0.8
 			mob_cap = 50
-			spawn_probability = [1.0, 0.0, 0.0, 0.0, 0.0]
+			spawn_probability = [1.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 		2: 
 			spawn_delay = 0.6
 			mob_cap = 80
-			spawn_probability = [0.75, 0.25, 0.0, 0.0, 0.0]
+			spawn_probability = [0.75, 0.25, 0.0, 0.0, 0.0, 0.0]
 		3:
 			spawn_delay = 0.4
 			mob_cap = 120
-			spawn_probability = [0.6, 0.1, 0.3, 0.0, 0.0]
+			spawn_probability = [0.6, 0.1, 0.3, 0.0, 0.0, 0.0]
 		4:
 			spawn_delay = 0.2
 			mob_cap = 120
-			spawn_probability = [0.0, 0.8, 0.9, 0.3, 0.0]
+			spawn_probability = [0.0, 0.8, 0.9, 0.3, 0.0, 0.0]
 		5:
 			spawn_delay = 0.1
 			mob_cap = 150
-			spawn_probability = [1.0,1.0,1.0, 0.1 ,0.1]
+			spawn_probability = [1.0,1.0,1.0, 0.1 ,0.1, 0.0]
 		6:
 			spawn_delay = 0.05
 			mob_cap = 200
-			spawn_probability = [1.0 ,0.0 ,0.0 , 0.0, 0.5]
+			spawn_probability = [1.0 ,0.0 ,0.0 , 0.0, 0.5, 0.0]
 		7:
-			spawn_probability = [0.0, 0.0 ,0.0 ,0.0 ,1.0]
+			spawn_probability = [0.0, 0.0 ,0.0 ,0.0 ,1.0, 0.0]
 		8:
 			for mob in get_tree().get_nodes_in_group("mobs"):
 				mob.queue_free()
@@ -85,9 +91,15 @@ func set_level(n):
 			mob_cap = 0
 			spawn_probability = [0.0,0.0,0.0,0.0,0.0]
 			spawn_boss(0)
-		9:
-			active = false
-			spawn_boss(1)
+		9: #spawn mobs at random
+			set_active(true)
+			for i in spawn_probability:
+				i = rng.randf()
+			mob_cap += 20
+			if spawn_delay > 0.01:
+				spawn_delay /= 1.2
+		10: #spawn snake boss
+			pass	
 
 func spawn_boss(n):
 	var b = bosses[n].instance()
@@ -96,7 +108,6 @@ func spawn_boss(n):
 	active = false
 
 #Select which mob to spawn based on probability
-#idea for improvement: make mobs spawn more frequently in the direction the player is heading
 func rand_mob():
 	var a = []
 	var largest := 0.0
@@ -109,6 +120,7 @@ func rand_mob():
 			n = i 
 	return n
 
+#idea for improvement: make mobs spawn more frequently in the direction the player is heading
 func get_random_position():
 	var vpr = get_viewport_rect().size * rng.randf_range(1.1,1.4)
 	var spawn_pos_1 = Vector2.ZERO
@@ -135,6 +147,9 @@ func get_random_position():
 	#return random position
 	return Vector2(rng.randi_range(spawn_pos_1.x,spawn_pos_2.x),rng.randi_range(spawn_pos_1.y,spawn_pos_2.y))
 
+func boss_defeated():
+	mob_cap = 200
+	set_level(9)
 
 func _on_CooldownTimer_timeout():
 	active = true

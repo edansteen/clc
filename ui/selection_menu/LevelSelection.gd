@@ -26,7 +26,7 @@ func _ready():
 
 func play():
 	SaveObject.save(game_data)
-	var error = get_tree().change_scene("res://game/endless/Endless.tscn")
+	var error = get_tree().change_scene("res://game/Main.tscn")
 	if error != OK:
 		print("ERROR: scene could not load")
 
