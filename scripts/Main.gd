@@ -1,0 +1,114 @@
+extends Node
+
+var save_script = preload("res://scripts/SaveScript.gd")
+var SaveObject = null
+var game_data = {}
+
+var highscore = 0
+enum level {ONE, TWO, THREE}
+var selectedLevel = level.ONE
+
+var time = 0.0 #in s
+var seconds = 0
+var minutes = 0
+var spawner_level = 1
+var time_limit = 1200
+
+var mobsKilled = 0
+var bossesKilled = 0
+
+var time_till_boss = 300
+var game_over = false
+var victory = false #achieved by surviving 20 minutes
+
+onready var clock = $Clock/ClockDisplay/TimeDisplay
+onready var spawner = $MobSpawner
+
+# Load level based on which is active
+func _ready():
+	SaveObject = save_script.new()
+	game_data = SaveObject.load_data()
+	highscore = game_data.highscore
+	set_highscore(highscore)
+	match (game_data.selectedLevel):
+		0:
+			print("background 1")
+		1:
+			print("background 2")
+		2:
+			print("background 3")
+	spawner.set_active(true)
+	time = 0.0
+	seconds = 0
+	minutes = 0
+	spawner_level = 1
+	spawner.set_level(spawner_level)
+	$Music.play()
+	#equip players base attack
+	$Player.level_up_weapon(2)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if game_over:
+		return
+	time += delta
+	seconds += delta
+	if seconds >= 60:
+		minutes += 1
+		seconds = 0
+	clock.text = str(minutes).pad_zeros(2) + ":" + str(round(seconds)).pad_zeros(2)
+	if time > highscore:
+		highscore = time
+		set_highscore(highscore)
+	if time > time_limit:
+		victory = true
+		end_game()
+
+func mob_killed():
+	mobsKilled += 1
+	
+func boss_defeated():
+	bossesKilled += 1
+	$MobSpawner.boss_defeated()
+
+func end_game():
+	game_over = true
+	spawner.set_active(false)
+	$Music.stop()
+	#save data
+	save_game()
+	$GameOverScreenTimer.start(1.0)
+
+func save_game():
+	game_data.highscore = highscore
+	if bossesKilled > 0:
+		game_data.achievement1 = true
+	if victory:
+		game_data.achievement2 = true
+	SaveObject.save(game_data)
+
+func set_highscore(t):
+	$Clock/HBoxContainer/HighScore.text = str(round(t/60.0)).pad_zeros(2)+":"+str(round(fmod(t,60))).pad_zeros(2)
+
+func _on_Player_gameOver():
+	end_game()
+
+func _on_GameOverScreenTimer_timeout():
+	$GameOverScreen.make_visible(victory, $Clock/HBoxContainer/HighScore.text)
+
+func _on_SpawnerLevelUpTimer_timeout():
+	#level up every 30 seconds
+	spawner_level += 1
+	spawner.set_level(spawner_level)
+	$SpawnerLevelUpTimer.start(45)
+
+func _on_GameTimer_timeout():
+	spawner.set_level(8) #spawn the snake boss
+
+
+func _on_GameOverScreen_quit():
+	save_game()
+	get_tree().paused = false
+	#wait to finish saving before leaving
+	
+	get_tree().change_scene("res://TitleScreen.tscn")

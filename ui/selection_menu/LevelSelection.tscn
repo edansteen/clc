@@ -66,4 +66,4 @@ text = "DElete data"
 [connection signal="pressed" from="LevelMenu/HBoxContainer/LevelOne" to="." method="_on_LevelOne_pressed"]
 [connection signal="pressed" from="LevelMenu/HBoxContainer/LevelTwo" to="." method="_on_LevelTwo_pressed"]
 [connection signal="pressed" from="LevelMenu/HBoxContainer/LevelThree" to="." method="_on_LevelThree_pressed"]
-[connection signal="pressed" from="ResetData" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="ResetData" to="." method="_on_ResetData_pressed"]

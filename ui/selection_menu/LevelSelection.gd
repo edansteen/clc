@@ -5,7 +5,7 @@ var game_data = {}
 enum levelOptions {NA, ONE, TWO, THREE}
 var selected_level = levelOptions.NA
 
-var save_path = preload("res://ui/SaveScript.gd")
+var save_path = preload("res://scripts/SaveScript.gd")
 var SaveObject = null
 
 #load data
@@ -26,6 +26,7 @@ func _ready():
 
 func play():
 	SaveObject.save(game_data)
+	#wait for data to save
 	var error = get_tree().change_scene("res://game/Main.tscn")
 	if error != OK:
 		print("ERROR: scene could not load")
@@ -51,6 +52,5 @@ func _on_LevelThree_pressed():
 		game_data.selectedLevel = levelOptions.THREE
 		play()
 
-
-func _on_Button_pressed():
+func _on_ResetData_pressed():
 	SaveObject.reset()

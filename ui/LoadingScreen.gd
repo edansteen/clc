@@ -6,7 +6,6 @@ var path = null
 onready var icon = $CanvasLayer/HBoxContainer/LoadingIcon
 var ready : bool = false
 
-# Called when the node enters the scene tree for the first time.
 func _input(event):
 	if ready:
 		if event is InputEventMouseButton or event is InputEventKey:
