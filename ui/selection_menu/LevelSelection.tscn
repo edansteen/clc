@@ -54,6 +54,7 @@ text = "2: The Bridge"
 margin_left = 408.0
 margin_right = 608.0
 margin_bottom = 200.0
+text = "3: The Lair"
 
 [node name="ResetData" type="Button" parent="."]
 anchor_top = 1.0
