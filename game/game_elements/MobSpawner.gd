@@ -12,15 +12,15 @@ var rng := RandomNumberGenerator.new()
 
 #preload of all mobs
 var mobs = [
-	preload("res://mobs/Droid.tscn"),
-	preload("res://mobs/Boombot.tscn"),
-	preload("res://mobs/ThreeBotsInTrenchCoat.tscn"),
-	preload("res://mobs/DogBot.tscn"),
-	preload("res://mobs/DestroyerBot.tscn"),
-	preload("res://mobs/Droid.tscn")
+	preload("res://game/game_elements/mobs/Droid.tscn"),
+	preload("res://game/game_elements/mobs/Boombot.tscn"),
+	preload("res://game/game_elements/mobs/ThreeBotsInTrenchCoat.tscn"),
+	preload("res://game/game_elements/mobs/DogBot.tscn"),
+	preload("res://game/game_elements/mobs/DestroyerBot.tscn"),
+	preload("res://game/game_elements/mobs/Droid.tscn")
 ]
 
-var blaster = preload("res://mobs/mob_projectiles/DroidBlaster.tscn")
+var blaster = preload("res://game/game_elements/mobs/mob_projectiles/DroidBlaster.tscn")
 
 # Probability of spawning mob measured as a float from 0 to 1. 
 #spawn_probability[0] refers to probability of spawning the mob at mobs[0] (which would be the droid)
@@ -28,8 +28,8 @@ var spawn_probability = [1.0, 0.0, 0.0, 0.0, 0.0]
 
 #preload all bosses
 var bosses = [
-	preload("res://mobs/bosses/BullBoss/RoboBull.tscn"),
-	preload("res://mobs/bosses/SnakeBoss/SnakeHead.tscn")
+	preload("res://game/game_elements/mobs/bosses/BullBoss/RoboBull.tscn"),
+	preload("res://game/game_elements/mobs/bosses/SnakeBoss/SnakeHead.tscn")
 ]
 
 # Called when the node enters the scene tree for the first time.

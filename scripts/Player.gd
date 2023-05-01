@@ -20,15 +20,11 @@ var rng = RandomNumberGenerator.new()
 
 #Weapons
 var weapons_array = [
-	preload("res://attacks/Field.tscn"), # field
-	preload("res://attacks/Orb.tscn"), # orbs
-	preload("res://attacks/MagicMissile.tscn"), # magic missile
-	preload("res://attacks/LaserStrike.tscn"), #laser strike
-	#preload("res://attacks/ChainLightning.tscn"), #chain lightning
-	#preload("res://attacks/MagicSword.tscn"), #magic sword
-	preload("res://attacks/MagicGun.tscn"), #the magic gun
-	#preload("res://attacks/TimeStop.tscn"), #Time stop
-	#preload("res://attacks/BlackHole.tscn") #Black hole
+	preload("res://game/game_elements/attacks/Field.tscn"), # field
+	preload("res://game/game_elements/attacks/Orb.tscn"), # orbs
+	preload("res://game/game_elements/attacks/MagicMissile.tscn"), # magic missile
+	preload("res://game/game_elements/attacks/LaserStrike.tscn"), #laser strike
+	preload("res://game/game_elements/attacks/MagicGun.tscn"), #the magic gun
 ]
 
 # Nodes

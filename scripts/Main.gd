@@ -102,13 +102,7 @@ func _on_SpawnerLevelUpTimer_timeout():
 	spawner.set_level(spawner_level)
 	$SpawnerLevelUpTimer.start(45)
 
-func _on_GameTimer_timeout():
-	spawner.set_level(8) #spawn the snake boss
-
-
 func _on_GameOverScreen_quit():
 	save_game()
 	get_tree().paused = false
-	#wait to finish saving before leaving
-	
 	get_tree().change_scene("res://TitleScreen.tscn")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://game/game_elements/mobs/bosses/SnakeBoss/RoboSnake.png" type="Texture" id=1]
+[ext_resource path="res://game/game_elements/mobs/bosses/SnakeBoss/SnakeHead.gd" type="Script" id=2]
+[ext_resource path="res://assets/animations/hurt.tres" type="Animation" id=3]
+[ext_resource path="res://assets/sfx/hit.mp3" type="AudioStream" id=4]
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 144, 144 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 23.0868
+
+[node name="SnakeHead" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hurt = ExtResource( 3 )
+
+[node name="HitSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
