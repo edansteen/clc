@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://assets/sprites/explosions/explosion-1.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/explosion-1.png" type="Texture" id=1]
 [ext_resource path="res://game/game_elements/mobs/mob_projectiles/Explosion.gd" type="Script" id=2]
 [ext_resource path="res://assets/sfx/explosion.wav" type="AudioStream" id=3]
 
