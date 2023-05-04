@@ -4,6 +4,14 @@
 
 [node name="Background" type="Node2D"]
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+follow_viewport_enable = true
+scroll_limit_end = Vector2( 1024, 600 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+motion_mirroring = Vector2( 192, 192 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
 texture = ExtResource( 1 )
-region_enabled = true

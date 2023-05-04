@@ -7,11 +7,13 @@
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -26.0 ]
+}
 
 [node name="Slides" type="CanvasLayer" parent="."]
 
 [node name="SlideOne" type="Control" parent="Slides"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -46,10 +48,15 @@ margin_bottom = 520.0
 rect_min_size = Vector2( 0, 520 )
 color = Color( 0, 0, 0, 1 )
 
-[node name="Label" type="Label" parent="Slides/SlideTwo/VBoxContainer"]
-margin_top = 524.0
-margin_right = 1024.0
-margin_bottom = 543.0
+[node name="Label" type="Label" parent="Slides/SlideTwo/VBoxContainer/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -9.5
+margin_right = 512.0
+margin_bottom = 9.5
 custom_fonts/font = ExtResource( 2 )
 text = "Long ago, cats had magical powers they used to keep the world safe..."
 align = 1

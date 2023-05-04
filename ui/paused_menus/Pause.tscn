@@ -66,7 +66,6 @@ margin_bottom = 312.0
 text = "Quit To Title"
 
 [node name="ConfirmPanel" type="Panel" parent="VisualElements"]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -89,21 +88,21 @@ margin_right = 235.0
 margin_bottom = 42.0
 
 [node name="SureLabel" type="Label" parent="VisualElements/ConfirmPanel/VBoxContainer"]
-margin_right = 470.0
+margin_right = 475.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 custom_fonts/font = ExtResource( 4 )
-text = "Are you sure? All progress this run will be lost."
+text = "Are you sure? Some progress might not be saved."
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VisualElements/ConfirmPanel/VBoxContainer"]
 margin_top = 44.0
-margin_right = 470.0
+margin_right = 475.0
 margin_bottom = 84.0
 alignment = 1
 
 [node name="Confirm" type="Button" parent="VisualElements/ConfirmPanel/VBoxContainer/HBoxContainer"]
-margin_left = 146.0
-margin_right = 221.0
+margin_left = 148.0
+margin_right = 223.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 75, 40 )
 custom_fonts/font = ExtResource( 7 )
@@ -112,14 +111,14 @@ custom_styles/normal = ExtResource( 6 )
 text = "Confirm"
 
 [node name="MarginContainer" type="MarginContainer" parent="VisualElements/ConfirmPanel/VBoxContainer/HBoxContainer"]
-margin_left = 225.0
-margin_right = 245.0
+margin_left = 227.0
+margin_right = 247.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 20, 0 )
 
 [node name="Back" type="Button" parent="VisualElements/ConfirmPanel/VBoxContainer/HBoxContainer"]
-margin_left = 249.0
-margin_right = 324.0
+margin_left = 251.0
+margin_right = 326.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 75, 40 )
 custom_fonts/font = ExtResource( 7 )
