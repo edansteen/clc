@@ -9,14 +9,14 @@ enum DIRECTION {LEFT, RIGHT, UP, DOWN}
 var options = ["res://assets/sprites/grass_tile.png"]
 
 onready var tiles = $Tiles.get_children()
-onready var walls = $Walls
 
 func set_tile_pattern(n):
-	for t in tiles:
+	for t in $Tiles.get_children():
 		t.set_texture(options[n])
 
 
 func move(d):
+	var walls = $Walls
 	match (d):
 		DIRECTION.UP:
 			walls.position.y -= HEIGHT/2
@@ -42,24 +42,20 @@ func move(d):
 
 func _on_Left_body_entered(body):
 	if body.has_method("hit"):
-		for t in tiles:
-			move(DIRECTION.LEFT)
+		move(DIRECTION.LEFT)
 
 
 func _on_Right_body_entered(body):
 	if body.has_method("hit"):
-		for t in tiles:
-			move(DIRECTION.RIGHT)
+		move(DIRECTION.RIGHT)
 
 
 func _on_Up_body_entered(body):
 	if body.has_method("hit"):
-		for t in tiles:
-			move(DIRECTION.UP)
+		move(DIRECTION.UP)
 
 
 func _on_Down_body_entered(body):
 	if body.has_method("hit"):
-		for t in tiles:
-			move(DIRECTION.DOWN)
+		move(DIRECTION.DOWN)
 
