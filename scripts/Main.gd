@@ -30,13 +30,7 @@ func _ready():
 	game_data = SaveObject.load_data()
 	highscore = game_data.highscore
 	set_highscore(highscore)
-	match (game_data.selectedLevel):
-		0:
-			print("background 1")
-		1:
-			print("background 2")
-		2:
-			print("background 3")
+	$Background.set_bg(game_data.selectedLevel)
 	spawner.set_active(true)
 	time = 0.0
 	seconds = 0

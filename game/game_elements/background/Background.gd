@@ -7,11 +7,16 @@ const HEIGHT = M*1080
 
 enum DIRECTION {LEFT, RIGHT, UP, DOWN}
 
-var options = ["res://assets/sprites/grass_tile.png"]
+var options = [
+	preload("res://assets/sprites/backgrounds/grass.png"), 
+	preload("res://assets/sprites/backgrounds/pixels.png"), 
+]
 
 onready var tiles = $Tiles.get_children()
 
-func set_tile_pattern(n):
+func set_bg(n):
+	if n > options.size():
+		return
 	for t in $Tiles.get_children():
 		t.set_texture(options[n])
 

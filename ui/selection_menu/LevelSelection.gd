@@ -2,7 +2,7 @@ extends Control
 
 var game_data = {}
 
-enum levelOptions {NA, ONE, TWO, THREE}
+enum levelOptions {ONE, TWO, THREE, NA}
 var selected_level = levelOptions.NA
 
 var save_path = preload("res://scripts/SaveScript.gd")
