@@ -1,8 +1,9 @@
 # Script for infinite background. Tiles can also have their textures changed
 extends Node2D
 
-const WIDTH = 2*1980
-const HEIGHT = 2*1080
+const M = 3
+const WIDTH = M*1980
+const HEIGHT = M*1080
 
 enum DIRECTION {LEFT, RIGHT, UP, DOWN}
 
@@ -19,25 +20,25 @@ func move(d):
 	var walls = $Walls
 	match (d):
 		DIRECTION.UP:
-			walls.position.y -= HEIGHT/2
 			for t in tiles:
 				if t.position.y > walls.position.y:
 					t.position.y -= HEIGHT
+			walls.position.y -= HEIGHT/M
 		DIRECTION.DOWN:
-			walls.position.y += HEIGHT/2
 			for t in tiles:
 				if t.position.y < walls.position.y:
 					t.position.y += HEIGHT
+			walls.position.y += HEIGHT/M
 		DIRECTION.LEFT:
-			walls.position.x -= WIDTH/2
-			for t in tiles:
-				if t.position.x < walls.position.x:
-					t.position.x -= WIDTH
-		DIRECTION.RIGHT:
-			walls.position.x += WIDTH/2
 			for t in tiles:
 				if t.position.x > walls.position.x:
+					t.position.x -= WIDTH
+			walls.position.x -= WIDTH/M
+		DIRECTION.RIGHT:
+			for t in tiles:
+				if t.position.x < walls.position.x:
 					t.position.x += WIDTH
+			walls.position.x += WIDTH/M
 
 
 func _on_Left_body_entered(body):
