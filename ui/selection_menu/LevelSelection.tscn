@@ -32,7 +32,7 @@ margin_right = 608.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 0, 60 )
 custom_fonts/font = ExtResource( 3 )
-text = "Select Level"
+text = "Select Theme"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LevelMenu"]
@@ -43,18 +43,19 @@ margin_bottom = 264.0
 [node name="LevelOne" parent="LevelMenu/HBoxContainer" instance=ExtResource( 8 )]
 margin_right = 200.0
 margin_bottom = 200.0
+text = "Grassy Fields"
 
 [node name="LevelTwo" parent="LevelMenu/HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 204.0
 margin_right = 404.0
 margin_bottom = 200.0
-text = "2: The Bridge"
+text = "Robot Factory"
 
 [node name="LevelThree" parent="LevelMenu/HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 408.0
 margin_right = 608.0
 margin_bottom = 200.0
-text = "3: The Lair"
+text = "Ice Cream Land"
 
 [node name="ResetData" type="Button" parent="."]
 anchor_top = 1.0

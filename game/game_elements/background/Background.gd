@@ -9,7 +9,7 @@ enum DIRECTION {LEFT, RIGHT, UP, DOWN}
 
 var options = [
 	preload("res://assets/sprites/backgrounds/grass.png"), 
-	preload("res://assets/sprites/backgrounds/pixels.png"), 
+	preload("res://assets/sprites/backgrounds/xes.png"),
 ]
 
 onready var tiles = $Tiles.get_children()

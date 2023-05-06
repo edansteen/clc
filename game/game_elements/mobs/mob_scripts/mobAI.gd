@@ -11,7 +11,6 @@ var frozen: bool = false
 onready var player = get_tree().get_nodes_in_group("player")[0]
 onready var sprite = $AnimatedSprite 
 onready var animation_player = $AnimatedSprite/AnimationPlayer
-onready var screen_exited_timer = $FreeTimer
 
 var death_effect = preload("res://game/game_elements/mobs/EnemyDeathEffect.tscn")
 var xp = preload("res://items/ExpPoint.tscn")
@@ -66,16 +65,3 @@ func _on_AnimatedSprite_animation_finished():
 		queue_free()
 	else:
 		sprite.play("move")
-
-
-func _on_VisibilityNotifier2D_screen_exited():
-	screen_exited_timer.start(10)
-
-
-func _on_FreeTimer_timeout():
-	queue_free()
-
-
-func _on_VisibilityNotifier2D_screen_entered():
-	screen_exited_timer.stop()
-

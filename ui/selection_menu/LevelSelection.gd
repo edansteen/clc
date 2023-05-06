@@ -19,10 +19,15 @@ func _ready():
 	
 	#unlock levels based on loaded data
 	$LevelMenu/HBoxContainer/LevelOne.unlock()
+	
 	if game_data.achievement1:
 		$LevelMenu/HBoxContainer/LevelTwo.unlock()
+	else:
+		$LevelMenu/HBoxContainer/LevelTwo/Requirement.text = "Defeat The Bull to unlock"
 	if game_data.achievement2:
 		$LevelMenu/HBoxContainer/LevelThree.unlock()
+	else:
+		$LevelMenu/HBoxContainer/LevelThree/Requirement.text = "Survive 10 minutes to unlock"
 
 func play():
 	SaveObject.save(game_data)

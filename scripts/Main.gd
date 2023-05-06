@@ -31,6 +31,13 @@ func _ready():
 	highscore = game_data.highscore
 	set_highscore(highscore)
 	$Background.set_bg(game_data.selectedLevel)
+	match game_data.selectedLevel:
+		0:
+			$Music/GrassyFields.play()
+		1:
+			$Music/Factory.play()
+		2:
+			pass
 	spawner.set_active(true)
 	time = 0.0
 	seconds = 0
@@ -77,7 +84,7 @@ func save_game():
 	game_data.highscore = highscore
 	if bossesKilled > 0:
 		game_data.achievement1 = true
-	if victory:
+	if minutes >= 10:
 		game_data.achievement2 = true
 	SaveObject.save(game_data)
 

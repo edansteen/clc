@@ -35,6 +35,16 @@ adjustment_color_correction = SubResource( 3 )
 script = ExtResource( 6 )
 
 [node name="Background" parent="." instance=ExtResource( 1 )]
+z_index = -100
+
+[node name="Music" type="Node" parent="."]
+
+[node name="GrassyFields" type="AudioStreamPlayer" parent="Music"]
+volume_db = -10.0
+
+[node name="Factory" type="AudioStreamPlayer" parent="Music"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Music"]
 
 [node name="Clock" type="CanvasLayer" parent="."]
 layer = 0
@@ -80,9 +90,6 @@ text = "00:00"
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="MobSpawner" parent="." groups=["main"] instance=ExtResource( 3 )]
-
-[node name="Music" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
