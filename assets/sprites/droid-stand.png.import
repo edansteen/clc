@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Swole Kitten Undies.png.png-d366594682a5446dba73d6bb5d35efde.stex"
+path="res://.import/droid-stand.png-cd7289926376d8ad1dcc37a1fbc717d2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Swole Kitten Undies.png.png"
-dest_files=[ "res://.import/Swole Kitten Undies.png.png-d366594682a5446dba73d6bb5d35efde.stex" ]
+source_file="res://assets/sprites/droid-stand.png"
+dest_files=[ "res://.import/droid-stand.png-cd7289926376d8ad1dcc37a1fbc717d2.stex" ]
 
 [params]
 

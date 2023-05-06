@@ -17,7 +17,6 @@ func _ready():
 		print("Played for the first time")
 		game_data.first_time_playing = false
 	
-	#unlock levels based on loaded data
 	$LevelMenu/HBoxContainer/LevelOne.unlock()
 	
 	if game_data.achievement1:
@@ -37,22 +36,21 @@ func play():
 		print("ERROR: scene could not load")
 
 func _on_LevelOne_pressed():
-	if selected_level != levelOptions.ONE:
-		selected_level = levelOptions.ONE
-	else:
-		game_data.selectedLevel = levelOptions.ONE
-		play()
+	selected_level = levelOptions.ONE
+	$LevelMenu/StartButton.set_deferred("disabled", false)
 
 func _on_LevelTwo_pressed():
-	if selected_level != levelOptions.TWO:
-		selected_level = levelOptions.TWO
-	else:
-		game_data.selectedLevel = levelOptions.TWO
-		play()
+	selected_level = levelOptions.TWO
+	$LevelMenu/StartButton.set_deferred("disabled", false)
 	
 func _on_LevelThree_pressed():
-	if selected_level != levelOptions.THREE:
-		selected_level = levelOptions.THREE
-	else:
-		game_data.selectedLevel = levelOptions.THREE
-		play()
+	selected_level = levelOptions.THREE
+	$LevelMenu/StartButton.set_deferred("disabled", false)
+
+func _on_StartButton_pressed():
+	game_data.selectedLevel = selected_level
+	play()
+
+
+func _on_BackButton_pressed():
+	$LevelMenu/StartButton.set_deferred("disabled", true)

@@ -1,20 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ui/paused_menus/Pause.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/boingy_ding.wav" type="AudioStream" id=2]
 [ext_resource path="res://ui/paused_menus/PausedOptionButton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/fonts/BackButtonFont.tres" type="DynamicFont" id=4]
-[ext_resource path="res://assets/styles/PauseConfirmationHoverStyle.tres" type="StyleBox" id=5]
-[ext_resource path="res://assets/styles/PauseConfirmationStyle.tres" type="StyleBox" id=6]
-[ext_resource path="res://assets/fonts/PauseConfirmFont.tres" type="DynamicFont" id=7]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0.0196078, 0.172549, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 1, 0.831373, 0, 1 )
+[ext_resource path="res://ui/common_elements/ConfirmPanel.tscn" type="PackedScene" id=4]
 
 [node name="Pause" type="CanvasLayer"]
 pause_mode = 2
@@ -65,71 +54,12 @@ margin_right = 500.0
 margin_bottom = 312.0
 text = "Quit To Title"
 
-[node name="ConfirmPanel" type="Panel" parent="VisualElements"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -250.0
-margin_top = -150.0
-margin_right = 250.0
-margin_bottom = 150.0
-rect_min_size = Vector2( 500, 300 )
-custom_styles/panel = SubResource( 1 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VisualElements/ConfirmPanel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -235.0
-margin_top = -42.0
-margin_right = 235.0
-margin_bottom = 42.0
-
-[node name="SureLabel" type="Label" parent="VisualElements/ConfirmPanel/VBoxContainer"]
-margin_right = 475.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 0, 40 )
-custom_fonts/font = ExtResource( 4 )
-text = "Are you sure? Some progress might not be saved."
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VisualElements/ConfirmPanel/VBoxContainer"]
-margin_top = 44.0
-margin_right = 475.0
-margin_bottom = 84.0
-alignment = 1
-
-[node name="Confirm" type="Button" parent="VisualElements/ConfirmPanel/VBoxContainer/HBoxContainer"]
-margin_left = 148.0
-margin_right = 223.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 75, 40 )
-custom_fonts/font = ExtResource( 7 )
-custom_styles/hover = ExtResource( 5 )
-custom_styles/normal = ExtResource( 6 )
-text = "Confirm"
-
-[node name="MarginContainer" type="MarginContainer" parent="VisualElements/ConfirmPanel/VBoxContainer/HBoxContainer"]
-margin_left = 227.0
-margin_right = 247.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Back" type="Button" parent="VisualElements/ConfirmPanel/VBoxContainer/HBoxContainer"]
-margin_left = 251.0
-margin_right = 326.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 75, 40 )
-custom_fonts/font = ExtResource( 7 )
-custom_styles/hover = ExtResource( 5 )
-custom_styles/normal = ExtResource( 6 )
-text = "Back"
+[node name="ConfirmPanel" parent="VisualElements" instance=ExtResource( 4 )]
+visible = false
 
 [node name="MenuOpened" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 
 [connection signal="pressed" from="VisualElements/MarginContainer/AspectRatioContainer/Buttons/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="VisualElements/MarginContainer/AspectRatioContainer/Buttons/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="VisualElements/ConfirmPanel/VBoxContainer/HBoxContainer/Confirm" to="." method="_on_Confirm_pressed"]
-[connection signal="pressed" from="VisualElements/ConfirmPanel/VBoxContainer/HBoxContainer/Back" to="." method="_on_Back_pressed"]
+[connection signal="confirm" from="VisualElements/ConfirmPanel" to="." method="_on_ConfirmPanel_confirm"]

@@ -83,13 +83,7 @@ func set_level(n):
 		7:
 			spawn_probability = [0.0, 0.0 ,0.0 ,0.0 ,1.0, 0.0]
 		8:
-			for mob in get_tree().get_nodes_in_group("mobs"):
-				mob.queue_free()
-			for projectile in get_tree().get_nodes_in_group("projectiles"):
-				projectile.queue_free()
-			active = false
-			mob_cap = 0
-			spawn_probability = [0.0,0.0,0.0,0.0,0.0]
+			spawn_probability = [1.0,0.0,0.0,0.0,0.0]
 			spawn_boss(0)
 		9: #spawn mobs at random
 			set_active(true)
@@ -99,13 +93,12 @@ func set_level(n):
 			if spawn_delay > 0.01:
 				spawn_delay /= 1.2
 		10: #spawn snake boss
-			pass	
+			pass
 
 func spawn_boss(n):
 	var b = bosses[n].instance()
 	b.global_position = Vector2(player.global_position.x + 500, player.global_position.y)
 	$Bosses.call_deferred("add_child", b)
-	active = false
 
 #Select which mob to spawn based on probability
 func rand_mob():

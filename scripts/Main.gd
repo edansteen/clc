@@ -44,7 +44,6 @@ func _ready():
 	minutes = 0
 	spawner_level = 1
 	spawner.set_level(spawner_level)
-	$Music.play()
 	#equip players base attack
 	$Player.level_up_weapon(2)
 

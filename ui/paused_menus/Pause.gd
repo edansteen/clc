@@ -5,6 +5,7 @@ var game_paused = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_visible(false)
+	$VisualElements/ConfirmPanel.set_text("Are you sure? Some progress might not be saved.")
 
 func _input(event):
 	if event.is_action_pressed("ui_end"):
@@ -36,10 +37,7 @@ func _on_Quit_pressed():
 func _on_Resume_pressed():
 	unpause()
 
-func _on_Confirm_pressed():
+
+func _on_ConfirmPanel_confirm():
 	unpause()
 	get_tree().change_scene("res://TitleScreen.tscn")
-
-
-func _on_Back_pressed():
-	$VisualElements/ConfirmPanel.set_deferred("visible", false)

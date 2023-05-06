@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ui/option_menu/OptionsMenu.gd" type="Script" id=1]
 [ext_resource path="res://ui/common_elements/MenuBackButton.tscn" type="PackedScene" id=2]
@@ -6,6 +6,16 @@
 [ext_resource path="res://assets/fonts/OptionsFont.tres" type="DynamicFont" id=4]
 [ext_resource path="res://ui/option_menu/options_elements/VolumeSlider.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/sfx/menu_button_sound.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/fonts/RonysiswadiArchitect1-3zjeL.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://ui/common_elements/ConfirmPanel.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 18
+outline_size = 1
+outline_color = Color( 1, 0, 0, 1 )
+extra_spacing_top = 16
+extra_spacing_bottom = 8
+font_data = ExtResource( 7 )
 
 [node name="OptionsMenu" type="Control"]
 pause_mode = 2
@@ -74,7 +84,38 @@ text = "Sound Effects: "
 margin_left = 105.0
 margin_right = 605.0
 
+[node name="DangerZone" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 86.0
+margin_right = 605.0
+margin_bottom = 156.0
+
+[node name="Danger" type="Label" parent="VBoxContainer/DangerZone"]
+margin_right = 605.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 1 )
+text = "Danger Zone"
+align = 1
+valign = 1
+
+[node name="ResetData" type="Button" parent="VBoxContainer/DangerZone"]
+margin_top = 50.0
+margin_right = 605.0
+margin_bottom = 70.0
+text = "Reset Data"
+
 [node name="TestSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 
+[node name="ConfirmationBlock" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.360784 )
+
+[node name="ConfirmPanel" parent="." instance=ExtResource( 8 )]
+visible = false
+
 [connection signal="value_changed" from="VBoxContainer/VBoxContainer/SFXVolume/VolumeLevel" to="." method="_on_VolumeLevel_value_changed"]
+[connection signal="pressed" from="VBoxContainer/DangerZone/ResetData" to="." method="_on_ResetData_pressed"]
+[connection signal="back" from="ConfirmPanel" to="." method="_on_ConfirmPanel_back"]
+[connection signal="confirm" from="ConfirmPanel" to="." method="_on_ConfirmPanel_confirm"]

@@ -1,9 +1,30 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://ui/selection_menu/LevelSelection.gd" type="Script" id=1]
 [ext_resource path="res://ui/common_elements/MenuBackButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/PageTitleFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/fonts/RonysiswadiArchitect1-3zjeL.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://ui/selection_menu/selection_menu_elements/LevelSelectionButton.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+extra_spacing_top = 75
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0 )
 
 [node name="LevelSelectionMenu" type="Control"]
 anchor_right = 1.0
@@ -23,9 +44,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -304.0
-margin_top = -131.0
+margin_top = -186.0
 margin_right = 304.0
-margin_bottom = 131.0
+margin_bottom = 186.0
 
 [node name="SelectLabel" type="Label" parent="LevelMenu"]
 margin_right = 608.0
@@ -57,6 +78,22 @@ margin_right = 608.0
 margin_bottom = 200.0
 text = "Ice Cream Land"
 
+[node name="StartButton" type="Button" parent="LevelMenu"]
+margin_top = 268.0
+margin_right = 608.0
+margin_bottom = 372.0
+custom_colors/font_color = Color( 1, 0.866667, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+disabled = true
+text = "START >"
+
 [connection signal="pressed" from="LevelMenu/HBoxContainer/LevelOne" to="." method="_on_LevelOne_pressed"]
 [connection signal="pressed" from="LevelMenu/HBoxContainer/LevelTwo" to="." method="_on_LevelTwo_pressed"]
 [connection signal="pressed" from="LevelMenu/HBoxContainer/LevelThree" to="." method="_on_LevelThree_pressed"]
+[connection signal="pressed" from="LevelMenu/StartButton" to="." method="_on_StartButton_pressed"]
