@@ -56,6 +56,3 @@ func _on_LevelThree_pressed():
 	else:
 		game_data.selectedLevel = levelOptions.THREE
 		play()
-
-func _on_ResetData_pressed():
-	SaveObject.reset()
