@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://game/game_elements/background/Background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/game_elements/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://assets/fonts/RonysiswadiArchitect1-3zjeL.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/fonts/clock_font.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/music/Sweet Treats.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/music/650965__donaldtimo__beat-tune-abysses.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/music/384468__frankum__vintage-elecro-pop-loop.mp3" type="AudioStream" id=12]
 
 [sub_resource type="DynamicFont" id=4]
 size = 12
@@ -40,11 +43,14 @@ z_index = -100
 [node name="Music" type="Node" parent="."]
 
 [node name="Music1" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 10 )
 volume_db = -10.0
 
 [node name="Music2" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 11 )
 
 [node name="Music3" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 12 )
 
 [node name="Clock" type="CanvasLayer" parent="."]
 layer = 0

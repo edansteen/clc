@@ -31,7 +31,8 @@ func _ready():
 	set_highscore(highscore)
 	$Background.set_bg(game_data.selectedLevel)
 	selectedLevel = game_data.selectedLevel
-	match selectedLevel:
+	print(selectedLevel)
+	match (selectedLevel):
 		0:
 			$Music/Music1.play()
 		1:
