@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/650965__donaldtimo__beat-tune-abysses.wav-2b020bc3b6caa53f8299fb4e3334cd37.sample"
+
+[deps]
+
+source_file="res://assets/music/650965__donaldtimo__beat-tune-abysses.wav"
+dest_files=[ "res://.import/650965__donaldtimo__beat-tune-abysses.wav-2b020bc3b6caa53f8299fb4e3334cd37.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

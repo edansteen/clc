@@ -14,11 +14,19 @@ var options = [
 
 onready var tiles = $Tiles.get_children()
 
+var foreground 
+
 func set_bg(n):
 	if n > options.size():
 		return
 	for t in $Tiles.get_children():
 		t.set_texture(options[n])
+	#Add the foreground
+	match (n):
+		0:
+			pass
+		1:
+			pass
 
 
 func move(d):
@@ -28,22 +36,22 @@ func move(d):
 			for t in tiles:
 				if t.position.y > walls.position.y:
 					t.position.y -= HEIGHT
-			walls.position.y -= HEIGHT/M
+			walls.position.y -= round(HEIGHT/M)
 		DIRECTION.DOWN:
 			for t in tiles:
 				if t.position.y < walls.position.y:
 					t.position.y += HEIGHT
-			walls.position.y += HEIGHT/M
+			walls.position.y += round(HEIGHT/M)
 		DIRECTION.LEFT:
 			for t in tiles:
 				if t.position.x > walls.position.x:
 					t.position.x -= WIDTH
-			walls.position.x -= WIDTH/M
+			walls.position.x -= round(WIDTH/M)
 		DIRECTION.RIGHT:
 			for t in tiles:
 				if t.position.x < walls.position.x:
 					t.position.x += WIDTH
-			walls.position.x += WIDTH/M
+			walls.position.x += round(WIDTH/M)
 
 
 func _on_Left_body_entered(body):

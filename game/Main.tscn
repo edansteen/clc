@@ -39,12 +39,12 @@ z_index = -100
 
 [node name="Music" type="Node" parent="."]
 
-[node name="GrassyFields" type="AudioStreamPlayer" parent="Music"]
+[node name="Music1" type="AudioStreamPlayer" parent="Music"]
 volume_db = -10.0
 
-[node name="Factory" type="AudioStreamPlayer" parent="Music"]
+[node name="Music2" type="AudioStreamPlayer" parent="Music"]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Music"]
+[node name="Music3" type="AudioStreamPlayer" parent="Music"]
 
 [node name="Clock" type="CanvasLayer" parent="."]
 layer = 0
@@ -108,6 +108,10 @@ autostart = true
 [node name="SaveTimer" type="Timer" parent="."]
 wait_time = 60.0
 autostart = true
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
 [connection signal="gameOver" from="Player" to="." method="_on_Player_gameOver"]
 [connection signal="quit" from="GameOverScreen" to="." method="_on_GameOverScreen_quit"]

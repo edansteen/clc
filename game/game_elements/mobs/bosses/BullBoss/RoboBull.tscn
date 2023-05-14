@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://game/game_elements/mobs/bosses/BullBoss/RoboBull.gd" type="Script" id=1]
 [ext_resource path="res://game/game_elements/mobs/bosses/BullBoss/robobull.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/sfx/metal_ting.wav" type="AudioStream" id=8]
 [ext_resource path="res://game/game_elements/mobs/bosses/BullBoss/huff.wav" type="AudioStream" id=9]
 [ext_resource path="res://game/game_elements/mobs/bosses/BullBoss/bull_death_effect.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sprites/Death Explosion.png" type="Texture" id=11]
 
 [sub_resource type="ShaderMaterial" id=15]
 resource_local_to_scene = true
@@ -57,6 +58,59 @@ animations = [ {
 "speed": 0.0
 } ]
 
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 50, 55 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 50, 0, 50, 55 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 100, 0, 50, 55 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 150, 0, 50, 55 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 200, 0, 50, 55 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 250, 0, 50, 55 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 300, 0, 50, 55 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 350, 0, 50, 55 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [  ],
+"loop": false,
+"name": "default",
+"speed": 0.0
+}, {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
+"loop": false,
+"name": "explode",
+"speed": 12.0
+} ]
+
 [node name="RoboBull" type="KinematicBody2D" groups=["mobs"]]
 script = ExtResource( 1 )
 
@@ -65,6 +119,7 @@ material = SubResource( 15 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "move"
+frame = 2
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
@@ -108,7 +163,14 @@ stream = ExtResource( 10 )
 position = Vector2( 2.5, 0.5 )
 scale = Vector2( 5.85, 4.65 )
 
+[node name="DeathAnimation" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 1, -12 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 21 )
+
 [connection signal="animation_finished" from="Sprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="ChargeCooldown" to="." method="_on_ChargeCooldown_timeout"]
 [connection signal="finished" from="Sounds/PrepCharge" to="." method="_on_PrepCharge_finished"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="animation_finished" from="DeathAnimation" to="." method="_on_DeathAnimation_animation_finished"]

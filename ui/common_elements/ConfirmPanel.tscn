@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/fonts/BackButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/styles/PauseConfirmationHoverStyle.tres" type="StyleBox" id=2]
 [ext_resource path="res://assets/fonts/PauseConfirmFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/styles/PauseConfirmationStyle.tres" type="StyleBox" id=4]
 [ext_resource path="res://ui/common_elements/ConfirmPanel.gd" type="Script" id=5]
+[ext_resource path="res://assets/styles/PauseConfirmPressed.tres" type="StyleBox" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.0196078, 0.172549, 1 )
@@ -58,6 +59,7 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 75, 40 )
 custom_fonts/font = ExtResource( 3 )
 custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 4 )
 text = "Confirm"
 
@@ -74,6 +76,7 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 75, 40 )
 custom_fonts/font = ExtResource( 3 )
 custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 4 )
 text = "Back"
 

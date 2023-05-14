@@ -1,12 +1,11 @@
 extends Area2D
 
 var damage = 40.0
-var speed = 200.0
+var speed = 250.0
 var dir = Vector2.ZERO
 
 func _ready():
 	$AnimatedSprite.play("default")
-	self.connect("body_entered", self, "_on_MobBullet_body_entered")
 
 func set_dir(angle):
 	dir = Vector2(cos(angle), sin(angle))

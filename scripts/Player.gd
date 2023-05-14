@@ -62,7 +62,6 @@ func get_input():
 	velocity = Vector2()
 	velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
-
 #when hit
 func hit(dmg):
 	if game_over:

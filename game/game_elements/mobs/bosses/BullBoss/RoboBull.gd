@@ -6,7 +6,7 @@
 
 extends KinematicBody2D
 
-const move_speed = 60.0
+const move_speed = 100.0
 var charge_speed = 400.0
 var speed = move_speed
 var hp_max = 2000
@@ -85,6 +85,8 @@ func hit_for(dmg):
 				$Sounds/DeathSound.play()
 				$Hitbox.set_deferred("disabled", true)
 				# add death effect
+				$DeathAnimation.set_deferred("visible",true)
+				$DeathAnimation.play("explode")
 				call_deferred("add_child", death_effect.instance())
 				get_tree().get_nodes_in_group("player")[0].get_parent().boss_defeated()
 		elif state == phase.IDLE:
@@ -102,10 +104,7 @@ func prep_charge():
 
 
 func _on_AnimatedSprite_animation_finished():
-	if hp <= 0:
-		queue_free()
-	else:
-		sprite.play("move")
+	sprite.play("move")
 
 
 func _on_ChargeCooldown_timeout():
@@ -122,3 +121,7 @@ func _on_PrepCharge_finished():
 #charge if off screen
 func _on_VisibilityNotifier2D_screen_exited():
 	prep_charge()
+
+
+func _on_DeathAnimation_animation_finished():
+	queue_free()

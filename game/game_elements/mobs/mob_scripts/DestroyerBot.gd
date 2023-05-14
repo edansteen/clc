@@ -17,7 +17,7 @@ onready var animation_player = $AnimatedSprite/AnimationPlayer
 onready var muzzles = [$Muzzle1, $Muzzle2]
 
 var death_effect = preload("res://game/game_elements/mobs/mob_projectiles/ExplosionDeathEffect.tscn")
-var xp = preload("res://items/ExpPoint.tscn")
+var xp = preload("res://game/game_elements/items/ExpPoint.tscn")
 
 var bullet = preload("res://game/game_elements/mobs/mob_projectiles/MobBullet.tscn")
 

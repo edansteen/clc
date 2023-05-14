@@ -12,7 +12,6 @@ var time = 0.0 #in s
 var seconds = 0
 var minutes = 0
 var spawner_level = 1
-var time_limit = 1200
 
 var mobsKilled = 0
 var bossesKilled = 0
@@ -31,13 +30,14 @@ func _ready():
 	highscore = game_data.highscore
 	set_highscore(highscore)
 	$Background.set_bg(game_data.selectedLevel)
-	match game_data.selectedLevel:
+	selectedLevel = game_data.selectedLevel
+	match selectedLevel:
 		0:
-			$Music/GrassyFields.play()
+			$Music/Music1.play()
 		1:
-			$Music/Factory.play()
+			$Music/Music2.play()
 		2:
-			pass
+			$Music/Music3.play()
 	spawner.set_active(true)
 	time = 0.0
 	seconds = 0
@@ -45,7 +45,8 @@ func _ready():
 	spawner_level = 1
 	spawner.set_level(spawner_level)
 	#equip players base attack
-	$Player.level_up_weapon(2)
+	$Player.level_up_weapon(2) 
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -60,9 +61,6 @@ func _process(delta):
 	if time > highscore:
 		highscore = time
 		set_highscore(highscore)
-	if time > time_limit:
-		victory = true
-		end_game()
 
 func mob_killed():
 	mobsKilled += 1
@@ -74,7 +72,8 @@ func boss_defeated():
 func end_game():
 	game_over = true
 	spawner.set_active(false)
-	$Music.stop()
+	for sound_player in $Music.get_children():
+		sound_player.stop()
 	#save data
 	save_game()
 	$GameOverScreenTimer.start(1.0)

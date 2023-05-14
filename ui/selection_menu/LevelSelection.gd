@@ -18,7 +18,7 @@ func _ready():
 		game_data.first_time_playing = false
 	
 	$LevelMenu/HBoxContainer/LevelOne.unlock()
-	
+
 	if game_data.achievement1:
 		$LevelMenu/HBoxContainer/LevelTwo.unlock()
 	else:

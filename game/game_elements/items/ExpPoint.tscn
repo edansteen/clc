@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/shaders/Rainbow.gdshader" type="Shader" id=1]
+[ext_resource path="res://game/game_elements/items/ExpPoint.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/fish.png" type="Texture" id=3]
+[ext_resource path="res://assets/animations/Trail2D.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 1 )
+shader_param/strength = 0.3
+shader_param/speed = 0.5
+shader_param/angle = 0.0
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 7.99996
+height = 18.0001
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.047619, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[node name="FishCoin" type="Area2D"]
+monitoring = false
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 4 )
+scale = Vector2( 0.35, 0.35 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Trail2D" parent="." instance=ExtResource( 4 )]
+show_behind_parent = true
+width_curve = SubResource( 2 )

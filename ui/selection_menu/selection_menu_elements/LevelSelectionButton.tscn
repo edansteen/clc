@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/fonts/LevelDescription.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/selection_menu/selection_menu_elements/LevelSelectionButton.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://ui/selection_menu/selection_menu_elements/LockedLevelCover.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/sfx/menu_button_sound.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/fonts/RonysiswadiArchitect1-3zjeL.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.286275, 0.286275, 0.286275, 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 0 )
@@ -25,6 +28,7 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 200, 200 )
 custom_fonts/font = ExtResource( 1 )
 custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 2 )
 custom_styles/normal = ExtResource( 3 )
 text = "Grass"
@@ -46,6 +50,4 @@ align = 1
 valign = 1
 autowrap = true
 
-[connection signal="mouse_entered" from="." to="." method="_on_LevelSelectionButton_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_LevelSelectionButton_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_LevelSelectionButton_pressed"]

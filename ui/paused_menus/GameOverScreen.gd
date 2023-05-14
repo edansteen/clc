@@ -7,10 +7,10 @@ func _ready():
 	set_visible(false)
 
 func make_visible(result, score):
-	$PanelContainer/VBoxContainer/ScoreDisplay.text = "Time Survived: " + score
+	$PanelContainer/CenterContainer/VBoxContainer/ScoreDisplay.text = "Time Survived: " + score
 	if result == true: #VICTORY!
 		$VictorySound.play()
-		$PanelContainer/VBoxContainer/Title.text = str("You did it!")
+		$PanelContainer/CenterContainer/VBoxContainer/Title.text = str("You did it!")
 		$ColorRect.color = Color(65,225,45,0.8)
 	else:	#loss...
 		var string = "Me-Ouch..." #default in case something goes wrong
@@ -23,7 +23,7 @@ func make_visible(result, score):
 				string = "The robots have taken over."
 			3:
 				string = "You died."
-		$PanelContainer/VBoxContainer/Title.text = string
+		$PanelContainer/CenterContainer/VBoxContainer/Title.text = string
 	get_tree().paused = true
 	set_visible(true)
 

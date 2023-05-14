@@ -5,7 +5,7 @@ export var active: bool = false
 #difficulty level
 var mob_cap: int = 50 #maximum number of mobs that can be spawned
 var spawn_delay: float = 1.0 #in s
-
+var max_distance = 3000.0
 onready var player = get_tree().get_nodes_in_group("player")[0]
 
 var rng := RandomNumberGenerator.new()
@@ -24,7 +24,7 @@ var blaster = preload("res://game/game_elements/mobs/mob_projectiles/DroidBlaste
 
 # Probability of spawning mob measured as a float from 0 to 1. 
 #spawn_probability[0] refers to probability of spawning the mob at mobs[0] (which would be the droid)
-var spawn_probability = [1.0, 0.0, 0.0, 0.0, 0.0]
+var spawn_probability = [1.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 #preload all bosses
 var bosses = [
@@ -49,7 +49,11 @@ func _process(_delta):
 		$Mobs.call_deferred("add_child", m)
 		active = false
 		$CooldownTimer.start(spawn_delay)
-
+	
+	var p_pos = player.global_position
+	for mob in $Mobs.get_children():
+		if mob.global_position.distance_to(p_pos) > max_distance:
+			mob.queue_free()
 
 func set_active(b):
 	active = b
@@ -88,12 +92,10 @@ func set_level(n):
 		9: #spawn mobs at random
 			set_active(true)
 			for i in spawn_probability:
-				i = rng.randf()
+				i = rng.randf_range(0.0,1.0)
 			mob_cap += 20
 			if spawn_delay > 0.01:
 				spawn_delay /= 1.2
-		10: #spawn snake boss
-			pass
 
 func spawn_boss(n):
 	var b = bosses[n].instance()

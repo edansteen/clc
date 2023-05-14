@@ -13,7 +13,7 @@ onready var sprite = $AnimatedSprite
 onready var animation_player = $AnimatedSprite/AnimationPlayer
 
 var death_effect = preload("res://game/game_elements/mobs/EnemyDeathEffect.tscn")
-var xp = preload("res://items/ExpPoint.tscn")
+var xp = preload("res://game/game_elements/items/ExpPoint.tscn")
 
 func _ready():
 	sprite.play("move")
