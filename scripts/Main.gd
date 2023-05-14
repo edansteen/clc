@@ -67,7 +67,7 @@ func mob_killed():
 	
 func boss_defeated():
 	bossesKilled += 1
-	$MobSpawner.boss_defeated()
+	spawner.boss_defeated()
 
 func end_game():
 	game_over = true
@@ -97,7 +97,8 @@ func _on_GameOverScreenTimer_timeout():
 
 func _on_SpawnerLevelUpTimer_timeout():
 	#level up every 30 seconds
-	spawner_level += 1
+	if spawner_level < 9:
+		spawner_level += 1
 	spawner.set_level(spawner_level)
 	$SpawnerLevelUpTimer.start(45)
 
