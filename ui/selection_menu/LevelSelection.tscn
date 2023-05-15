@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://ui/selection_menu/LevelSelection.gd" type="Script" id=1]
 [ext_resource path="res://ui/common_elements/MenuBackButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/PageTitleFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/fonts/RonysiswadiArchitect1-3zjeL.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/sprites/backgrounds/menu_bg.png" type="Texture" id=5]
 [ext_resource path="res://ui/selection_menu/selection_menu_elements/LevelSelectionButton.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
@@ -31,10 +32,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0.0196078, 0.172549, 1 )
+texture = ExtResource( 5 )
+expand = true
 
 [node name="LevelMenu" type="VBoxContainer" parent="."]
 anchor_left = 0.5
