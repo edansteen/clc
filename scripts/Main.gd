@@ -96,7 +96,7 @@ func _on_Player_gameOver():
 	end_game()
 
 func _on_GameOverScreenTimer_timeout():
-	$GameOverScreen.make_visible(victory, $Clock/HBoxContainer/HighScore.text)
+	$GameOverScreen.make_visible(victory, $Clock/ClockDisplay/TimeDisplay.text)
 
 func _on_SpawnerLevelUpTimer_timeout():
 	#level up every 30 seconds
