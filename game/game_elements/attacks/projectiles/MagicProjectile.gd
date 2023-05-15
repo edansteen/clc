@@ -6,9 +6,11 @@ var speed = 300.0
 var area = 1.0
 var knockback = 30.0
 var piercing = 1 #number of enemies projectile pierces before disappearing
+var level = 0
 
 var target = Vector2.ZERO
 var angle = Vector2.RIGHT
+var targets_list = [] #list of targets for lvl 6
 
 func _ready():
 	var mobs = get_tree().get_nodes_in_group("mobs")
@@ -23,6 +25,7 @@ func _ready():
 	angle = (target.global_position - global_position).normalized()
 
 func set_level(lvl) -> void:
+	level = lvl
 	match lvl:
 		1:
 			damage = 10.0
@@ -59,10 +62,22 @@ func _on_MagicProjectile_body_entered(body):
 		body.hit_for(damage)
 		piercing -= 1
 		if piercing <= 0:
+			$AnimatedSprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished")
 			$AnimatedSprite.play("impact")
 			$CollisionShape2D.set_deferred("disabled", true)
 			speed = 0
-			$AnimatedSprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished")
+		if level >= 6:
+			targets_list.append(target)
+			var mobs = get_tree().get_nodes_in_group("mobs")
+			if mobs.size() == 0:
+				return null
+			var nearest_mob = mobs[mobs.size()-1]
+			for mob in mobs:
+				if (not mob in targets_list) and (mob.global_position.distance_to(global_position) < nearest_mob.global_position.distance_to(global_position)):
+					nearest_mob = mob
+			target = nearest_mob
+			look_at(target.global_position)
+			angle = (target.global_position - global_position).normalized()
 
 
 func _on_AnimatedSprite_animation_finished():

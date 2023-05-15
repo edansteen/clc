@@ -55,13 +55,15 @@ func _process(delta):
 		return
 	time += delta
 	seconds += delta
-	if seconds >= 60:
+	if round(seconds) >= 60:
 		minutes += 1
 		seconds = 0
 	clock.text = str(minutes).pad_zeros(2) + ":" + str(round(seconds)).pad_zeros(2)
 	if time > highscore:
 		highscore = time
 		set_highscore(highscore)
+	if minutes >= 10 && minutes % 5 == 0:
+		spawner.set_level(9)
 
 func mob_killed():
 	mobsKilled += 1

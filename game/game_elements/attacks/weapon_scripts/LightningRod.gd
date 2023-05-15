@@ -42,7 +42,7 @@ func set_damage(d):
 	damage = d
 
 func get_name():
-	return "Laser Strike"
+	return "Lightning Rod"
 	
 func get_icon():
 	return "res://assets/weaponArt/weapon_icons/laserstrike_icon.png"
@@ -53,7 +53,7 @@ func get_level():
 func get_desc():
 	match level:
 		0:
-			return "Strikes a random enemy with a laser \nevery 4 seconds"
+			return "Strikes a random enemy with a lightning \nevery 4 seconds"
 		1:
 			return "+1 Projectile"
 		2:

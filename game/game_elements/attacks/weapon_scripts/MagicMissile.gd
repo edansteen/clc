@@ -50,7 +50,7 @@ func get_desc():
 		4:
 			return "Cooldown reduced by 50%"
 		5:
-			return "Projectiles explode on collision"
+			return "Projectiles will bounce to other enemies"
 
 func _on_CooldownTimer_timeout():
 	if level != 0:

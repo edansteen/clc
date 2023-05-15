@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/UpgradeOption.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/text_font.tres" type="DynamicFont" id=2]
@@ -11,6 +11,14 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 1, 1, 1, 1 )
 
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0.0156863, 0.184314, 1 )
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color( 1, 0.866667, 0, 1 )
+
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0.0156863, 0.184314, 1 )
 
@@ -21,6 +29,7 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 300, 100 )
 rect_pivot_offset = Vector2( -457, -130 )
 custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 3 )
 custom_styles/normal = SubResource( 2 )
 script = ExtResource( 1 )
 
