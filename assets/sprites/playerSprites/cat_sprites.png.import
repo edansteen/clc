@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cat_sprites.png-2b3c13c94336ece16c639dc1ad843a48.stex"
+path="res://.import/cat_sprites.png-0456732b83ac03d112494c2a72fd05d8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/cat_sprites.png"
-dest_files=[ "res://.import/cat_sprites.png-2b3c13c94336ece16c639dc1ad843a48.stex" ]
+source_file="res://assets/sprites/playerSprites/cat_sprites.png"
+dest_files=[ "res://.import/cat_sprites.png-0456732b83ac03d112494c2a72fd05d8.stex" ]
 
 [params]
 

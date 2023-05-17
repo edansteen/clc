@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/fonts/RonysiswadiArchitect1-3zjeL.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/sprites/cat_sprites.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/playerSprites/cat_sprites.png" type="Texture" id=2]
 [ext_resource path="res://ui/LoadingScreen.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=2]

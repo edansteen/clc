@@ -1,7 +1,7 @@
 [gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/cat_sprites.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/playerSprites/cat_sprites.png" type="Texture" id=2]
 [ext_resource path="res://assets/animations/hurt.tres" type="Animation" id=4]
 [ext_resource path="res://assets/shaders/hurt.tres" type="Shader" id=5]
 [ext_resource path="res://assets/sfx/xp-ding.mp3" type="AudioStream" id=6]

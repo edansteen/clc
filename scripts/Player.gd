@@ -7,6 +7,7 @@ export var max_hp = 100
 export var hp = 100
 export var xp_level = 1
 export var xp = 0
+
 var xp_to_next_lvl = 30
 var xp_increase_multiplier = 1.2 #amount xp needed increases by after level up
 
@@ -17,6 +18,10 @@ var game_over := false
 var immunity_time := 0.1
 
 var rng = RandomNumberGenerator.new()
+
+var save_path = preload("res://scripts/SaveScript.gd")
+var SaveObject = null
+var loaded_data = {}
 
 #Weapons
 var weapons_array = [
@@ -51,6 +56,10 @@ func _ready():
 	xp_bar.value = xp
 	healthbar.max_value = hp
 	healthbar.value = hp
+	
+	#load character data
+	SaveObject = save_path.new()
+	loaded_data = SaveObject.load_data()
 	
 	#equip all weapons at level 0 (where they do nothing)
 	for i in range(weapons_array.size()):
