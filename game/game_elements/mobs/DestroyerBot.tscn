@@ -61,11 +61,15 @@ animations = [ {
 "speed": 8.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 37, 39.5 )
+[sub_resource type="CapsuleShape2D" id=32]
+radius = 44.0
+height = 18.0
 
 [node name="Destroyer" type="KinematicBody2D" groups=["mobs"]]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = SubResource( 15 )
@@ -79,17 +83,18 @@ anims/Hurt = ExtResource( 6 )
 anims/hurt = ExtResource( 7 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2( -1, 10.5 )
-shape = SubResource( 27 )
+position = Vector2( -1, 8.5 )
+rotation = 1.5708
+shape = SubResource( 32 )
 
 [node name="HitSoundEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 
 [node name="Muzzle1" type="Position2D" parent="."]
-position = Vector2( 50, 6 )
+position = Vector2( 53, 6 )
 
 [node name="Muzzle2" type="Position2D" parent="."]
-position = Vector2( -8, 6 )
+position = Vector2( 8, 6 )
 
 [node name="ShootCooldown" type="Timer" parent="."]
 
