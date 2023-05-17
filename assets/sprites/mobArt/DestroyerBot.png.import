@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DestroyerRobot.png-4d01359b0a6538ab0aa9ca1fc7db488f.stex"
+path="res://.import/DestroyerBot.png-932bedf011808d5c8217d1315a935d79.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/mobArt/DestroyerRobot.png"
-dest_files=[ "res://.import/DestroyerRobot.png-4d01359b0a6538ab0aa9ca1fc7db488f.stex" ]
+source_file="res://assets/sprites/mobArt/DestroyerBot.png"
+dest_files=[ "res://.import/DestroyerBot.png-932bedf011808d5c8217d1315a935d79.stex" ]
 
 [params]
 
