@@ -1,16 +1,27 @@
+# Option 0 = Wizard
+# Option 1 = RamboCat
+# Option 2 = Turtle
+# Option 3 = ???? 
 extends Control
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+var save_path = preload("res://scripts/SaveScript.gd")
+var SaveObject = null
+var loaded_data = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	SaveObject = save_path.new()
+	loaded_data = SaveObject.load_data()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func selectOption(n):
+	match (n):
+		0: #Cat
+			pass
+		1: #Wizard
+			pass
+		2: # RamboCat
+			pass
+		3: #Turtle
+			pass
+		4: #???
+			pass

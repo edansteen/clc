@@ -60,6 +60,17 @@ func _ready():
 	#load character data
 	SaveObject = save_path.new()
 	loaded_data = SaveObject.load_data()
+	match (loaded_data.selectedCharacter):
+		0: #Cat
+			pass
+		1: #Wizard
+			pass
+		2: #RamboCat
+			pass
+		3: #Turtle
+			pass
+		4: #???
+			pass
 	
 	#equip all weapons at level 0 (where they do nothing)
 	for i in range(weapons_array.size()):
