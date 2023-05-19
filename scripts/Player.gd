@@ -43,6 +43,8 @@ onready var healthbar = $GUI/Control/HealthBar
 onready var level_label = $GUI/Control/ProgressBar/LevelLabel
 onready var upgrade_options = $GUI/Control/LevelUp/UpgradeOptions
 
+var idleAnimation = "retrieverIdle"
+var runAnimation = "retrieverRun"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -64,13 +66,22 @@ func _ready():
 		0: #Cat
 			pass
 		1: #Wizard
-			pass
+			runAnimation = "wizardRun"
+			idleAnimation = "wizardIdle"
+			speed = 200
+			max_hp = 100
 		2: #RamboCat
 			pass
 		3: #Turtle
 			pass
 		4: #???
-			pass
+			runAnimation = "???"
+			idleAnimation = "???"
+			speed = 300
+			max_hp = 1
+			#$AnimatedSprite/AnimationPlayer.queue_free()
+			#$AnimatedSprite.material.shader = null
+	hp = max_hp
 	
 	#equip all weapons at level 0 (where they do nothing)
 	for i in range(weapons_array.size()):
@@ -94,7 +105,7 @@ func hit(dmg):
 		for n in weapons.get_children():
 			n.queue_free()
 		game_over = true
-		sprite.play("hit")
+		sprite.stop()
 	else: #if hit, make sure player gets brief invincibility
 		invincible = true
 		$ImmunityTimer.start(immunity_time)
@@ -113,9 +124,9 @@ func _physics_process(delta):
 			sprite.flip_h = false
 		elif velocity.x < 0: 
 			sprite.flip_h = true
-		sprite.play("run")
+		sprite.play(runAnimation)
 	else:
-		sprite.play("idle")
+		sprite.play(idleAnimation)
 	
 	var collision = move_and_collide(velocity.normalized()*speed*delta)
 	#grab items that can be picked up

@@ -16,7 +16,7 @@ onready var sprite = $Sprite
 func _ready():
 	$ShootTimer.start(cooldown)
 
-func _process(delta):
+func _process(_delta):
 	var dir = get_angle_to(player.global_position)
 	if dir > PI/2 or dir < -PI/2:
 		sprite.flip_v = true

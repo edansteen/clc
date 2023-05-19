@@ -40,4 +40,8 @@ func _on_Resume_pressed():
 
 func _on_ConfirmPanel_confirm():
 	unpause()
-	get_tree().change_scene("res://TitleScreen.tscn")
+	var error = get_tree().change_scene("res://TitleScreen.tscn")
+	
+	if error:
+		print("uh oh")
+	
