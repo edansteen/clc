@@ -1,7 +1,5 @@
 extends Node
 
-var game_data = {}
-
 var highscore = 0
 enum level {ONE, TWO, THREE}
 var selectedLevel = Globals.selectedLevel
@@ -23,12 +21,10 @@ onready var spawner = $MobSpawner
 
 # Load level based on which is active
 func _ready():
-	game_data = SaveScript.load_data()
-	highscore = game_data.highscore
+	highscore = SaveScript.game_data.highscore
 	set_highscore(highscore)
-	$Background.set_bg(game_data.selectedLevel)
-	selectedLevel = game_data.selectedLevel
-	print(selectedLevel)
+	selectedLevel = SaveScript.game_data.selectedLevel
+	$Background.set_bg(selectedLevel)
 	match (selectedLevel):
 		0:
 			$Music/Music1.play()
@@ -77,12 +73,12 @@ func end_game():
 	$GameOverScreenTimer.start(1.0)
 
 func save_game():
-	game_data.highscore = highscore
+	SaveScript.game_data.highscore = highscore
 	if bossesKilled > 0:
-		game_data.achievement1 = true
+		SaveScript.game_data.achievement1 = true
 	if minutes >= 10:
-		game_data.achievement2 = true
-	SaveScript.save(game_data)
+		SaveScript.game_data.achievement2 = true
+	SaveScript.save()
 
 func set_highscore(t):
 	$Clock/HBoxContainer/HighScore.text = str(round(t/60.0)).pad_zeros(2)+":"+str(round(fmod(t,60))).pad_zeros(2)

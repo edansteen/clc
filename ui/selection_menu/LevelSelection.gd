@@ -7,21 +7,19 @@ var selected_level = levelOptions.NA
 
 #load data
 func _ready():
-	game_data = SaveScript.load_data()
-	
 	$LevelMenu/HBoxContainer/LevelOne.unlock()
 
-	if game_data.achievement1:
+	if SaveScript.game_data.achievement1:
 		$LevelMenu/HBoxContainer/LevelTwo.unlock()
 	else:
 		$LevelMenu/HBoxContainer/LevelTwo/Requirement.text = "Defeat The Bull to unlock"
-	if game_data.achievement2:
+	if SaveScript.game_data.achievement2:
 		$LevelMenu/HBoxContainer/LevelThree.unlock()
 	else:
 		$LevelMenu/HBoxContainer/LevelThree/Requirement.text = "Survive 10 minutes to unlock"
 
 func play():
-	SaveScript.save(game_data)
+	SaveScript.save()
 	#wait for data to save
 	var error = get_tree().change_scene("res://game/Main.tscn")
 	if error != OK:

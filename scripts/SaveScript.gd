@@ -1,15 +1,19 @@
+#Script for saving and loading data.
+#game_data is the dict used by all other parts of the game
 extends Node
 
 const SAVE_PATH = "user://userdata.save"
 var game_data = {}
 
-func save(dict):
+func _ready():
+	game_data = load_data()
+
+func save():
 	var file = File.new()
 	file.open(SAVE_PATH, File.WRITE)
-	game_data = dict
+	#game_data = dict
 	file.store_line(to_json(game_data))
 	file.close()
-
 
 func load_data():
 	var file = File.new()
@@ -17,16 +21,16 @@ func load_data():
 			 reset()
 			 return
 	file.open(SAVE_PATH, File.READ)
-	game_data = parse_json(file.get_as_text())
+	var data = parse_json(file.get_as_text())
 	
-	if typeof(game_data) != TYPE_DICTIONARY or game_data == null: # Check that the data is valid
+	if typeof(data) != TYPE_DICTIONARY or data == null: # Check that the data is valid
 		print("Error. Corrupted data")
 		return 1
 		
-	return game_data
+	return data
 	
 func reset():
-	var d = {
+	game_data = {
 		"first_time_playing" : true,
 		"highscore" : 0.0,
 		"achievement1" : false,
@@ -38,5 +42,5 @@ func reset():
 		"musicVolume" : 50,
 		"sfxVolume" : 50
 	}
-	save(d)
+	save()
 	print("reset")

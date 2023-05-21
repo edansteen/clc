@@ -1,10 +1,7 @@
 extends Control
 
-var data = {}
-
 #load data
 func _ready():
-	data = SaveScript.load_data()
 	$ConfirmPanel.set_text("Are you sure? This will wipe all your progress.")
 
 func set_volume(volume):
