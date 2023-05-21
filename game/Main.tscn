@@ -43,14 +43,20 @@ z_index = -100
 [node name="Music" type="Node" parent="."]
 
 [node name="Music1" type="AudioStreamPlayer" parent="Music"]
+pause_mode = 2
 stream = ExtResource( 10 )
 volume_db = -10.0
+bus = "Music"
 
 [node name="Music2" type="AudioStreamPlayer" parent="Music"]
+pause_mode = 2
 stream = ExtResource( 11 )
+bus = "Music"
 
 [node name="Music3" type="AudioStreamPlayer" parent="Music"]
+pause_mode = 2
 stream = ExtResource( 12 )
+bus = "Music"
 
 [node name="Clock" type="CanvasLayer" parent="."]
 layer = 0

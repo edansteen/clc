@@ -66,6 +66,8 @@ func level_up():
 			spread = 0.7
 			cooldown_time = 0.2
 		6: #gatling gun
+			SaveScript.game_data.oneUnlocked = true
+			SaveScript.save()
 			bullet_number = 3
 			spread = 0.15
 			cooldown_time = 0.05

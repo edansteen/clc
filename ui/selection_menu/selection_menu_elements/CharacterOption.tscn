@@ -65,5 +65,6 @@ expand = true
 
 [node name="Clicked" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "SFX"
 
 [connection signal="pressed" from="." to="." method="_on_CharacterButton_pressed"]

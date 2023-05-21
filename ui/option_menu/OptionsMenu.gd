@@ -1,16 +1,20 @@
 extends Control
 
+onready var musicBus = AudioServer.get_bus_index("Music")
+onready var sfxBus = AudioServer.get_bus_index("SFX")
+
 #load data
 func _ready():
 	$ConfirmPanel.set_text("Are you sure? This will wipe all your progress.")
+	set_music_volume(SaveScript.game_data.musicVolume)
+	set_sfx_volume(SaveScript.game_data.sfxVolume)
 
-func set_volume(volume):
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), (-50 + volume*100/7))
-
-
-func _on_VolumeLevel_value_changed(value):
-	set_volume(value)
-	$TestSound.play()
+func set_music_volume(v):
+	AudioServer.set_bus_volume_db(musicBus, linear2db(v))
+	
+func set_sfx_volume(v):
+	AudioServer.set_bus_volume_db(sfxBus, linear2db(v))
+	$VBoxContainer/HBoxContainer/Sliders/SFXVolume/SFXTest.play()
 
 
 func _on_ResetData_pressed():
@@ -25,3 +29,11 @@ func _on_ConfirmPanel_confirm():
 
 func _on_ConfirmPanel_back():
 	$ConfirmationBlock.set_deferred("visible", false)
+
+
+func _on_MusicSlider_value_changed(value):
+	set_music_volume(value)
+
+
+func _on_SFXSlider_value_changed(value):
+	set_sfx_volume(value)

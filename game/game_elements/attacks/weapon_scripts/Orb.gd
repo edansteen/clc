@@ -38,6 +38,8 @@ func level_up():
 		5:
 			orb_count = 6
 		6:
+			SaveScript.game_data.threeUnlocked = true
+			SaveScript.save()
 			orb_count = 7
 	
 	for i in range(orb_count):

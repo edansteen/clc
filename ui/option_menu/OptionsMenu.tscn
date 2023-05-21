@@ -15,7 +15,7 @@
 size = 18
 outline_size = 1
 outline_color = Color( 1, 0, 0, 1 )
-extra_spacing_top = 16
+extra_spacing_top = 32
 extra_spacing_bottom = 8
 font_data = ExtResource( 7 )
 
@@ -55,9 +55,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -302.5
-margin_top = -41.0
+margin_top = -96.0
 margin_right = 302.5
-margin_bottom = 41.0
+margin_bottom = 96.0
 
 [node name="OptionsLabel" type="Label" parent="VBoxContainer"]
 margin_right = 605.0
@@ -67,59 +67,69 @@ text = "Options:"
 align = 1
 valign = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 38.0
 margin_right = 605.0
 margin_bottom = 82.0
 
-[node name="MusicVolume" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_right = 605.0
-margin_bottom = 20.0
+[node name="Labels" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 101.0
+margin_bottom = 44.0
+alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/MusicVolume"]
-margin_top = 2.0
-margin_right = 90.0
-margin_bottom = 17.0
+[node name="MusicLabel" type="Label" parent="VBoxContainer/HBoxContainer/Labels"]
+margin_top = 5.0
+margin_right = 101.0
+margin_bottom = 20.0
 custom_fonts/font = ExtResource( 4 )
 text = "Music Volume:"
 
-[node name="VolumeSlider" parent="VBoxContainer/VBoxContainer/MusicVolume" instance=ExtResource( 5 )]
-margin_left = 94.0
-margin_right = 594.0
-
-[node name="SFXVolume" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="SFXLabel" type="Label" parent="VBoxContainer/HBoxContainer/Labels"]
 margin_top = 24.0
-margin_right = 605.0
-margin_bottom = 44.0
-
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/SFXVolume"]
-margin_top = 2.0
 margin_right = 101.0
-margin_bottom = 17.0
+margin_bottom = 39.0
 custom_fonts/font = ExtResource( 4 )
 text = "Sound Effects: "
 
-[node name="VolumeLevel" parent="VBoxContainer/VBoxContainer/SFXVolume" instance=ExtResource( 5 )]
+[node name="Sliders" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 105.0
 margin_right = 605.0
+margin_bottom = 44.0
+
+[node name="MusicVolume" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Sliders"]
+margin_right = 500.0
+margin_bottom = 20.0
+
+[node name="MusicSlider" parent="VBoxContainer/HBoxContainer/Sliders/MusicVolume" instance=ExtResource( 5 )]
+
+[node name="SFXVolume" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Sliders"]
+margin_top = 24.0
+margin_right = 500.0
+margin_bottom = 44.0
+
+[node name="SFXSlider" parent="VBoxContainer/HBoxContainer/Sliders/SFXVolume" instance=ExtResource( 5 )]
+
+[node name="SFXTest" type="AudioStreamPlayer" parent="VBoxContainer/HBoxContainer/Sliders/SFXVolume"]
+stream = ExtResource( 6 )
+bus = "SFX"
 
 [node name="DangerZone" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 86.0
 margin_right = 605.0
-margin_bottom = 176.0
+margin_bottom = 192.0
 
 [node name="Danger" type="Label" parent="VBoxContainer/DangerZone"]
 margin_right = 605.0
-margin_bottom = 46.0
+margin_bottom = 62.0
 custom_fonts/font = SubResource( 1 )
 text = "Danger Zone"
 align = 1
 valign = 1
 
 [node name="ResetData" type="Button" parent="VBoxContainer/DangerZone"]
-margin_top = 50.0
+margin_top = 66.0
 margin_right = 605.0
-margin_bottom = 90.0
+margin_bottom = 106.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
@@ -130,9 +140,6 @@ custom_styles/pressed = SubResource( 3 )
 custom_styles/normal = ExtResource( 10 )
 text = "Reset Data"
 
-[node name="TestSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-
 [node name="ConfirmationBlock" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
@@ -142,7 +149,8 @@ color = Color( 0, 0, 0, 0.360784 )
 [node name="ConfirmPanel" parent="." instance=ExtResource( 8 )]
 visible = false
 
-[connection signal="value_changed" from="VBoxContainer/VBoxContainer/SFXVolume/VolumeLevel" to="." method="_on_VolumeLevel_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/Sliders/MusicVolume/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/Sliders/SFXVolume/SFXSlider" to="." method="_on_SFXSlider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/DangerZone/ResetData" to="." method="_on_ResetData_pressed"]
 [connection signal="back" from="ConfirmPanel" to="." method="_on_ConfirmPanel_back"]
 [connection signal="confirm" from="ConfirmPanel" to="." method="_on_ConfirmPanel_confirm"]

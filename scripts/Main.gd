@@ -23,7 +23,6 @@ onready var spawner = $MobSpawner
 func _ready():
 	highscore = SaveScript.game_data.highscore
 	set_highscore(highscore)
-	selectedLevel = SaveScript.game_data.selectedLevel
 	$Background.set_bg(selectedLevel)
 	match (selectedLevel):
 		0:
@@ -81,7 +80,7 @@ func save_game():
 	SaveScript.save()
 
 func set_highscore(t):
-	$Clock/HBoxContainer/HighScore.text = str(round(t/60.0)).pad_zeros(2)+":"+str(round(fmod(t,60))).pad_zeros(2)
+	$Clock/HBoxContainer/HighScore.text = str(int(t/60)).pad_zeros(2)+":"+str(round(fmod(t,60))).pad_zeros(2)
 
 func _on_Player_gameOver():
 	end_game()

@@ -119,7 +119,6 @@ material = SubResource( 15 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "move"
-frame = 2
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
@@ -146,18 +145,23 @@ autostart = true
 
 [node name="HitSoundEffect" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 8 )
+bus = "SFX"
 
 [node name="PrepCharge" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 4 )
+bus = "SFX"
 
 [node name="ChargingSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 3 )
+bus = "SFX"
 
 [node name="Huff" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 9 )
+bus = "SFX"
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 10 )
+bus = "SFX"
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 2.5, 0.5 )

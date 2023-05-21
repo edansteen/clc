@@ -19,8 +19,6 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-
 [node name="Lifetime" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true

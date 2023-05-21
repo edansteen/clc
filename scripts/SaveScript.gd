@@ -31,7 +31,6 @@ func load_data():
 	
 func reset():
 	game_data = {
-		"first_time_playing" : true,
 		"highscore" : 0.0,
 		"achievement1" : false,
 		"achievement2" : false,
@@ -39,8 +38,8 @@ func reset():
 		"oneUnlocked" : false, #BulletRetriever
 		"twoUnlocked" : false, #Turtle
 		"threeUnlocked" : false, #???
-		"musicVolume" : 50,
-		"sfxVolume" : 50
+		"musicVolume" : 3,
+		"sfxVolume" : 3
 	}
 	save()
 	print("reset")

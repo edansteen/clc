@@ -226,6 +226,7 @@ material = SubResource( 24 )
 scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 1 )
 animation = "turtleIdle"
+frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
@@ -234,7 +235,6 @@ anims/hurt = ExtResource( 4 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( -0.507623, 2.80724 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 58 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -254,9 +254,11 @@ shape = SubResource( 22 )
 [node name="ItemPickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -10.0
+bus = "SFX"
 
 [node name="WeaponEquipped" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+bus = "SFX"
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -344,6 +346,7 @@ margin_bottom = 308.0
 [node name="LevelUpSound" type="AudioStreamPlayer" parent="GUI/Control/LevelUp"]
 stream = ExtResource( 12 )
 volume_db = 5.0
+bus = "SFX"
 
 [connection signal="timeout" from="ImmunityTimer" to="." method="_on_ImmunityTimer_timeout"]
 [connection signal="area_entered" from="GrabRange" to="." method="_on_GrabRange_area_entered"]

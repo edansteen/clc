@@ -83,7 +83,7 @@ material = SubResource( 15 )
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 1 )
 animation = "move"
-frame = 4
+frame = 3
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
@@ -96,5 +96,6 @@ shape = SubResource( 26 )
 
 [node name="HitSoundEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+bus = "SFX"
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

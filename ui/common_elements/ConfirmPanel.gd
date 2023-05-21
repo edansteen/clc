@@ -13,3 +13,4 @@ func _on_Confirm_pressed():
 func _on_Back_pressed():
 	self.set_deferred("visible", false)
 	emit_signal("back")
+	$OptionClicked.play()

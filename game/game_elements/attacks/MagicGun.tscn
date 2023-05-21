@@ -16,5 +16,6 @@ texture = ExtResource( 2 )
 
 [node name="Shot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "SFX"
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]

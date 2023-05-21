@@ -76,6 +76,7 @@ material = SubResource( 15 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "move"
+frame = 2
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
@@ -89,6 +90,7 @@ shape = SubResource( 32 )
 
 [node name="HitSoundEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+bus = "SFX"
 
 [node name="Muzzle1" type="Position2D" parent="."]
 position = Vector2( 53, 6 )

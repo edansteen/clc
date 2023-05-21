@@ -59,6 +59,7 @@ visible = false
 
 [node name="MenuOpened" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+bus = "SFX"
 
 [connection signal="pressed" from="VisualElements/MarginContainer/AspectRatioContainer/Buttons/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="VisualElements/MarginContainer/AspectRatioContainer/Buttons/Quit" to="." method="_on_Quit_pressed"]

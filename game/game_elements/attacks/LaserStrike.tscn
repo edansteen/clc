@@ -23,6 +23,7 @@ shape = SubResource( 1 )
 
 [node name="ThunderClap" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+bus = "SFX"
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]
 [connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]

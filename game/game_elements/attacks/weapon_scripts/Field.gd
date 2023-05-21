@@ -67,6 +67,8 @@ func get_desc():
 		4:
 			return "Damage +10%, Area +5%"
 		5:
+			SaveScript.game_data.twoUnlocked = true
+			SaveScript.save()
 			return "Damage +100%, Area +5%"
 			
 func _on_Field_body_entered(body):

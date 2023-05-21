@@ -38,6 +38,7 @@ script = ExtResource( 2 )
 
 [node name="Clicked" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+bus = "SFX"
 
 [node name="Requirement" type="Label" parent="."]
 margin_top = 206.0
