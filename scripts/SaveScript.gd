@@ -32,12 +32,11 @@ func reset():
 		"achievement1" : false,
 		"achievement2" : false,
 		"activeLevel" : 0,
-		"selectedCharacter" : 0,
 		"oneUnlocked" : false, #BulletRetriever
 		"twoUnlocked" : false, #Turtle
 		"threeUnlocked" : false, #???
-		"musicVolume" : true,
-		"sfxVolume" : true
+		"musicVolume" : 50,
+		"sfxVolume" : 50
 	}
 	save(d)
 	print("reset")

@@ -1,24 +1,13 @@
-# Option 0 = Wizard
-# Option 1 = RamboCat
-# Option 2 = Turtle
-# Option 3 = ???? 
+#Character Selection Script
 extends Control
 
 signal confirmed
 
-var save_path = preload("res://scripts/SaveScript.gd")
-var SaveObject = null
-var loaded_data = {}
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	SaveObject = save_path.new()
-	loaded_data = SaveObject.load_data()
 	#var buttons = $VBoxContainer/HBoxContainer/Characters/GridContainer.get_children()
 	#buttons[0].set_player_icon("") #wizard
-	print(loaded_data.selectedCharacter)
-	selectOption(loaded_data.selectedCharacter)
+	selectOption(Globals.selectedCharacter)
 
 func selectOption(n):
 	var name = ""
@@ -45,11 +34,10 @@ func selectOption(n):
 	$VBoxContainer/HBoxContainer/CharacterDisplay/VBoxContainer/CharacterBios/VBoxContainer/Name.text = name
 	$VBoxContainer/HBoxContainer/CharacterDisplay/VBoxContainer/CharacterBios/VBoxContainer/Details.text = details
 	$VBoxContainer/HBoxContainer/CharacterDisplay/VBoxContainer/CharacterBios/VBoxContainer/Description.text = desc
-	loaded_data.selectedCharacter = n
+	Globals.selectedCharacter = n
 
 
 func _on_ConfirmButton_pressed():
-	SaveObject.save(loaded_data)
 	emit_signal("confirmed")
 
 

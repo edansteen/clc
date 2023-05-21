@@ -5,17 +5,9 @@ var game_data = {}
 enum levelOptions {ONE, TWO, THREE, NA}
 var selected_level = levelOptions.NA
 
-var save_path = preload("res://scripts/SaveScript.gd")
-var SaveObject = null
-
 #load data
 func _ready():
-	SaveObject = save_path.new()
-	game_data = SaveObject.load_data()
-	#play starting cutscene if first time playing
-	if game_data.first_time_playing:
-		print("Played for the first time")
-		game_data.first_time_playing = false
+	game_data = SaveScript.load_data()
 	
 	$LevelMenu/HBoxContainer/LevelOne.unlock()
 
@@ -29,7 +21,7 @@ func _ready():
 		$LevelMenu/HBoxContainer/LevelThree/Requirement.text = "Survive 10 minutes to unlock"
 
 func play():
-	SaveObject.save(game_data)
+	SaveScript.save(game_data)
 	#wait for data to save
 	var error = get_tree().change_scene("res://game/Main.tscn")
 	if error != OK:
@@ -48,7 +40,7 @@ func _on_LevelThree_pressed():
 	$LevelMenu/StartButton.set_deferred("disabled", false)
 
 func _on_StartButton_pressed():
-	game_data.selectedLevel = selected_level
+	Globals.selectedLevel = selected_level
 	play()
 
 

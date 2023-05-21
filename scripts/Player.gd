@@ -19,10 +19,6 @@ var immunity_time := 0.1
 
 var rng = RandomNumberGenerator.new()
 
-var save_path = preload("res://scripts/SaveScript.gd")
-var SaveObject = null
-var game_data = {}
-
 #Weapons
 var weapons_array = [
 	preload("res://game/game_elements/attacks/Field.tscn"), # field
@@ -48,10 +44,6 @@ var runAnimation = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#load character data
-	SaveObject = save_path.new()
-	game_data = SaveObject.load_data()
-	
 	position.x = 0
 	position.y = 0
 	game_over = false
@@ -65,7 +57,7 @@ func _ready():
 		weapons_array[i] = weapons_array[i].instance() #transform to instance of itself
 		weapons.call_deferred("add_child", weapons_array[i])
 	
-	match (game_data.selectedCharacter):
+	match (Globals.selectedCharacter):
 		0: #Wizard
 			runAnimation = "wizardRun"
 			idleAnimation = "wizardIdle"

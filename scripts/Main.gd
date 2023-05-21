@@ -1,12 +1,10 @@
 extends Node
 
-var save_script = preload("res://scripts/SaveScript.gd")
-var SaveObject = null
 var game_data = {}
 
 var highscore = 0
 enum level {ONE, TWO, THREE}
-var selectedLevel = level.ONE
+var selectedLevel = Globals.selectedLevel
 
 var time = 0.0 #in s
 var seconds = 0
@@ -25,8 +23,7 @@ onready var spawner = $MobSpawner
 
 # Load level based on which is active
 func _ready():
-	SaveObject = save_script.new()
-	game_data = SaveObject.load_data()
+	game_data = SaveScript.load_data()
 	highscore = game_data.highscore
 	set_highscore(highscore)
 	$Background.set_bg(game_data.selectedLevel)
@@ -85,7 +82,7 @@ func save_game():
 		game_data.achievement1 = true
 	if minutes >= 10:
 		game_data.achievement2 = true
-	SaveObject.save(game_data)
+	SaveScript.save(game_data)
 
 func set_highscore(t):
 	$Clock/HBoxContainer/HighScore.text = str(round(t/60.0)).pad_zeros(2)+":"+str(round(fmod(t,60))).pad_zeros(2)

@@ -2,13 +2,9 @@ extends Control
 
 var data = {}
 
-var save_path = preload("res://scripts/SaveScript.gd")
-var SaveObject = null
-
 #load data
 func _ready():
-	SaveObject = save_path.new()
-	data = SaveObject.load_data()
+	data = SaveScript.load_data()
 	$ConfirmPanel.set_text("Are you sure? This will wipe all your progress.")
 
 func set_volume(volume):
@@ -25,7 +21,7 @@ func _on_ResetData_pressed():
 	$ConfirmPanel.set_deferred("visible", true)
 
 func _on_ConfirmPanel_confirm():
-	SaveObject.reset()
+	SaveScript.reset()
 	$ConfirmationBlock.set_deferred("visible", false)
 	$ConfirmPanel.set_deferred("visible", false)
 
