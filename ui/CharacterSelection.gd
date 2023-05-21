@@ -7,7 +7,9 @@ signal confirmed
 func _ready():
 	#var buttons = $VBoxContainer/HBoxContainer/Characters/GridContainer.get_children()
 	#buttons[0].set_player_icon("") #wizard
-	selectOption(Globals.selectedCharacter)
+	var n = Globals.selectedCharacter
+	selectOption(n)
+	$VBoxContainer/HBoxContainer/Characters/GridContainer.get_children()[n]
 
 func selectOption(n):
 	var name = ""
@@ -20,7 +22,7 @@ func selectOption(n):
 			desc = "The naked wizard's home was attacked while he was taking a shower. He seeks vengeance."
 		1: # BulletRetriever
 			name = "Bullet Retriever"
-			details = "HP: 120 Speed: 180, Magic Gun lvl. 3"
+			details = "HP: 120 Speed: 180, Magic Gun lvl. 2"
 			desc = "This dawg of a dog's owner is an ex US. Navy Seal. Trigger & Happy are his middle names."
 		2: #Turtle
 			name = "Mutated Turtle"
@@ -39,7 +41,6 @@ func selectOption(n):
 
 func _on_ConfirmButton_pressed():
 	emit_signal("confirmed")
-
 
 func _on_CharacterButton_pressed():
 	selectOption(0)

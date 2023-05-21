@@ -69,7 +69,7 @@ func _ready():
 			idleAnimation = "retrieverIdle"
 			max_hp = 120
 			speed = 180
-			for _i in range(3):
+			for _i in range(2):
 				level_up_weapon(4)
 		2: #Turtle
 			runAnimation = "turtleRun"

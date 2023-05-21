@@ -177,7 +177,6 @@ material = SubResource( 15 )
 position = Vector2( 175, 100 )
 frames = SubResource( 1 )
 animation = "0"
-frame = 2
 playing = true
 
 [node name="CharacterBios" type="Panel" parent="VBoxContainer/HBoxContainer/CharacterDisplay/VBoxContainer"]
