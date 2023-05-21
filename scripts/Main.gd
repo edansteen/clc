@@ -45,8 +45,6 @@ func _ready():
 	minutes = 0
 	spawner_level = 1
 	spawner.set_level(spawner_level)
-	#equip players base attack
-	$Player.level_up_weapon(2) 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

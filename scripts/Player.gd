@@ -21,7 +21,7 @@ var rng = RandomNumberGenerator.new()
 
 var save_path = preload("res://scripts/SaveScript.gd")
 var SaveObject = null
-var loaded_data = {}
+var game_data = {}
 
 #Weapons
 var weapons_array = [
@@ -43,50 +43,58 @@ onready var healthbar = $GUI/Control/HealthBar
 onready var level_label = $GUI/Control/ProgressBar/LevelLabel
 onready var upgrade_options = $GUI/Control/LevelUp/UpgradeOptions
 
-var idleAnimation = "retrieverIdle"
-var runAnimation = "retrieverRun"
+var idleAnimation = ""
+var runAnimation = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#load character data
+	SaveObject = save_path.new()
+	game_data = SaveObject.load_data()
+	
 	position.x = 0
 	position.y = 0
-	hp = max_hp
 	game_over = false
 	$Camera2D.make_current()
 	xp_level = 1
 	xp_bar.max_value = xp_to_next_lvl
 	xp_bar.value = xp
-	healthbar.max_value = hp
-	healthbar.value = hp
-	
-	#load character data
-	SaveObject = save_path.new()
-	loaded_data = SaveObject.load_data()
-	match (loaded_data.selectedCharacter):
-		0: #Cat
-			pass
-		1: #Wizard
-			runAnimation = "wizardRun"
-			idleAnimation = "wizardIdle"
-			speed = 200
-			max_hp = 100
-		2: #RamboCat
-			pass
-		3: #Turtle
-			pass
-		4: #???
-			runAnimation = "???"
-			idleAnimation = "???"
-			speed = 300
-			max_hp = 1
-			#$AnimatedSprite/AnimationPlayer.queue_free()
-			#$AnimatedSprite.material.shader = null
-	hp = max_hp
 	
 	#equip all weapons at level 0 (where they do nothing)
 	for i in range(weapons_array.size()):
 		weapons_array[i] = weapons_array[i].instance() #transform to instance of itself
 		weapons.call_deferred("add_child", weapons_array[i])
+	
+	match (game_data.selectedCharacter):
+		0: #Wizard
+			runAnimation = "wizardRun"
+			idleAnimation = "wizardIdle"
+			speed = 200
+			max_hp = 100
+			level_up_weapon(2)
+		1: #BulletRetriever
+			runAnimation = "retrieverRun"
+			idleAnimation = "retrieverIdle"
+			max_hp = 120
+			speed = 180
+			for _i in range(3):
+				level_up_weapon(4)
+		2: #Turtle
+			runAnimation = "turtleRun"
+			idleAnimation = "turtleIdle"
+			speed = 150
+			max_hp = 200
+			level_up_weapon(0)
+		3: #???
+			runAnimation = "???"
+			idleAnimation = "???"
+			speed = 300
+			max_hp = 1
+			for _i in range(6):
+				level_up_weapon(1)
+	hp = max_hp
+	healthbar.max_value = hp
+	healthbar.value = hp
 
 #Get keyboard input for movement
 func get_input():

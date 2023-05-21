@@ -33,7 +33,7 @@ func reset():
 		"achievement2" : false,
 		"activeLevel" : 0,
 		"selectedCharacter" : 0,
-		"oneUnlocked" : false, #RamboCat
+		"oneUnlocked" : false, #BulletRetriever
 		"twoUnlocked" : false, #Turtle
 		"threeUnlocked" : false, #???
 		"musicVolume" : true,

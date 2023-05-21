@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://ui/CharacterSelection.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/title_screen/TitleScreenButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/option_menu/OptionsMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/selection_menu/LevelSelection.tscn" type="PackedScene" id=4]
@@ -46,7 +47,7 @@ margin_right = 1034.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 600, 100 )
 custom_fonts/font = SubResource( 2 )
-text = "Cats vs Robots"
+text = "Robo-Wars"
 align = 1
 valign = 1
 
@@ -97,6 +98,9 @@ Created by Edan Steen"
 align = 1
 valign = 1
 
+[node name="CharacterSelection" parent="." instance=ExtResource( 1 )]
+visible = false
+
 [node name="LevelSelectionMenu" parent="." instance=ExtResource( 4 )]
 visible = false
 
@@ -106,3 +110,4 @@ visible = false
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="confirmed" from="CharacterSelection" to="." method="_on_CharacterSelection_confirmed"]
