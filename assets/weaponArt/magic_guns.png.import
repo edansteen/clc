@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/guns.png-8b8949e4c65bd8a9f6147d942cb8b8c2.stex"
+path="res://.import/magic_guns.png-9525c3fb5d3cd712007854a581af9120.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weaponArt/guns.png"
-dest_files=[ "res://.import/guns.png-8b8949e4c65bd8a9f6147d942cb8b8c2.stex" ]
+source_file="res://assets/weaponArt/magic_guns.png"
+dest_files=[ "res://.import/magic_guns.png-9525c3fb5d3cd712007854a581af9120.stex" ]
 
 [params]
 
