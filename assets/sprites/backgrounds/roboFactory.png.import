@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pixels.png-50a7f6da5d640c84743caccd18f6b437.stex"
+path="res://.import/roboFactory.png-d07c616c069ccd14b9310041e69a25fe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/backgrounds/pixels.png"
-dest_files=[ "res://.import/pixels.png-50a7f6da5d640c84743caccd18f6b437.stex" ]
+source_file="res://assets/sprites/backgrounds/roboFactory.png"
+dest_files=[ "res://.import/roboFactory.png-d07c616c069ccd14b9310041e69a25fe.stex" ]
 
 [params]
 

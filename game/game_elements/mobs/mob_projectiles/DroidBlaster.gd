@@ -29,4 +29,5 @@ func _on_ShootTimer_timeout():
 	main.call_deferred("add_child", b)
 	b.global_position = $Muzzle.global_position
 	b.set_dir($Muzzle.get_angle_to(player.global_position))
+	$Fire.play()
 	$ShootTimer.start(cooldown)

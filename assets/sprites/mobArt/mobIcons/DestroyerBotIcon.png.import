@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/flowers.png-05b7d83737890efaeee1a76a6faa364f.stex"
+path="res://.import/DestroyerBotIcon.png-eabb76d91ec926c54d040c10a2acd784.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/backgrounds/flowers.png"
-dest_files=[ "res://.import/flowers.png-05b7d83737890efaeee1a76a6faa364f.stex" ]
+source_file="res://assets/sprites/mobArt/mobIcons/DestroyerBotIcon.png"
+dest_files=[ "res://.import/DestroyerBotIcon.png-eabb76d91ec926c54d040c10a2acd784.stex" ]
 
 [params]
 

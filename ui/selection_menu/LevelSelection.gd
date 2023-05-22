@@ -5,9 +5,18 @@ var game_data = {}
 enum levelOptions {ONE, TWO, THREE, NA}
 var selected_level = levelOptions.NA
 
+var icons = [
+	preload("res://assets/sprites/mobArt/mobIcons/TrenchBotIcon.png"),
+	preload("res://assets/sprites/mobArt/mobIcons/DestroyerBotIcon.png")
+]
+
 #load data
 func _ready():
 	$LevelMenu/HBoxContainer/LevelOne.unlock()
+	$LevelMenu/HBoxContainer/LevelTwo/VBoxContainer/Icon.texture = icons[0]
+	$LevelMenu/HBoxContainer/LevelTwo/VBoxContainer/Mode.text = "Medium"
+	$LevelMenu/HBoxContainer/LevelThree/VBoxContainer/Icon.texture = icons[1]
+	$LevelMenu/HBoxContainer/LevelThree/VBoxContainer/Mode.text = "Hard"
 
 	if SaveScript.game_data.achievement1:
 		$LevelMenu/HBoxContainer/LevelTwo.unlock()

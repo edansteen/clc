@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/xes.png-2aeac424bca442f4a7f8c1d473dbb073.stex"
+path="res://.import/DroidIcon.png-ec013a1aa9207f5e919891d44bd59b7b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/backgrounds/xes.png"
-dest_files=[ "res://.import/xes.png-2aeac424bca442f4a7f8c1d473dbb073.stex" ]
+source_file="res://assets/sprites/mobArt/mobIcons/DroidIcon.png"
+dest_files=[ "res://.import/DroidIcon.png-ec013a1aa9207f5e919891d44bd59b7b.stex" ]
 
 [params]
 
@@ -19,9 +19,9 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=true
-flags/mipmaps=true
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true

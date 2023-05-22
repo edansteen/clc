@@ -79,5 +79,6 @@ func _on_ShootCooldown_timeout():
 		main.call_deferred("add_child", b)
 		b.global_position = muzzle.global_position
 		b.set_dir(muzzle.get_angle_to(player.global_position))
+	$Fire.play()
 	$ShootCooldown.start(shoot_cooldown)
 	
