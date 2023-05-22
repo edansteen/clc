@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-export var speed = 50.0
-export var hp = 20
-export var damage = 1
+var speed = 50.0 + (10*Globals.selectedLevel)
+var hp = 20 + (30*Globals.selectedLevel)
+var damage = 1 + (15*Globals.selectedLevel)
 
 var velocity = Vector2()
 var max_distance = 1500

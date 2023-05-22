@@ -77,7 +77,7 @@ material = SubResource( 15 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "move"
-frame = 1
+frame = 2
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]

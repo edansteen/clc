@@ -1,6 +1,6 @@
 extends Area2D
 
-var damage = 40.0
+var damage = 30.0 + (60*Globals.selectedLevel)
 var speed = 250.0
 var dir = Vector2.ZERO
 

@@ -6,12 +6,12 @@
 
 extends KinematicBody2D
 
-const move_speed = 100.0
-var charge_speed = 400.0
+var move_speed = 100.0 + (10*Globals.selectedLevel)
+var charge_speed = 400.0 + (30*Globals.selectedCharacter)
 var speed = move_speed
-var hp_max = 2000
+var hp_max = 2000 + (2000*Globals.selectedLevel)
 var hp = hp_max
-var damage = 50
+var damage = 50 * (100*Globals.selectedLevel)
 var velocity = Vector2()
 var target_position = Vector2.ZERO #the position bull charges towards
 var direction = Vector2.ZERO

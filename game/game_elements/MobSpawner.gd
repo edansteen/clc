@@ -61,56 +61,39 @@ func set_active(b):
 func set_level(n):
 	match n:
 		1:
-			match (difficulty):
-				0:
-					spawn_delay = 0.8
-					mob_cap = 50
-					spawn_probability = [1.0, 0.0, 0.0, 0.0, 0.0]
+			spawn_delay = 0.8
+			mob_cap = 50
+			spawn_probability = [1.0, 0.0, 0.0, 0.0, 0.0]
 		2: 
-			match (difficulty):
-				0:
-					spawn_delay = 0.6
-					mob_cap = 80
-					spawn_probability = [0.75, 0.25, 0.0, 0.0, 0.0]
+			spawn_delay = 0.6
+			mob_cap = 80
+			spawn_probability = [0.75, 0.25, 0.0, 0.0, 0.0]
 		3:
-			match (difficulty):
-				0:
-					spawn_delay = 0.4
-					mob_cap = 120
-					spawn_probability = [0.6, 0.1, 0.3, 0.0, 0.0]
+			spawn_delay = 0.4
+			mob_cap = 120
+			spawn_probability = [0.6, 0.1, 0.3, 0.0, 0.0]
 		4:
-			match (difficulty):
-				0:
-					spawn_delay = 0.2
-					mob_cap = 120
-					spawn_probability = [0.1, 0.8, 0.9, 0.0, 0.0]
+			spawn_delay = 0.2
+			mob_cap = 120
+			spawn_probability = [0.1, 0.8, 0.9, 0.0, 0.0]
 		5:
-			match (difficulty):
-				0:
-					spawn_delay = 0.1
-					mob_cap = 150
-					spawn_probability = [1.0,1.0,1.0,0.1, 0.0]
+			spawn_delay = 0.1
+			mob_cap = 150
+			spawn_probability = [1.0,1.0,1.0,0.1, 0.0]
 		6:
-			match (difficulty):
-				0:
-					spawn_delay = 0.05
-					mob_cap = 200
-					spawn_probability = [1.0 ,0.0 ,0.0 , 0.5, 0.0]
+			spawn_delay = 0.05
+			mob_cap = 200
+			spawn_probability = [1.0 ,0.0 ,0.0 , 0.5, 0.0]
 		7:
-			match (difficulty):
-				0:
-					spawn_probability = [0.0, 0.0 ,0.0 ,0.9, 0.1]
+			spawn_probability = [0.0, 0.0 ,0.0 ,0.9, 0.1]
 		8:
-			match (difficulty):
-				0:
-					spawn_probability = [1.0,0.0,0.0,0.0]
-					spawn_boss(0)
+			spawn_probability = [1.0,0.0,0.0,0.0,0.0]
+			for i in range(Globals.selectedLevel+1):
+				spawn_boss(0)
 		9: #spawn mobs at random
-			set_active(true)
-			for i in spawn_probability:
-				i = rng.randf_range(0.0,1.0)
+			spawn_probability = [1.0,1.0,1.0,1.0,1.0]
 			mob_cap += 20
-			if spawn_delay > 0.01:
+			if spawn_delay >= 0.01:
 				spawn_delay /= 1.2
 
 func spawn_boss(n):
@@ -161,6 +144,7 @@ func get_random_position():
 func boss_defeated():
 	mob_cap = 200
 	set_level(9)
+	Globals.bullDefeated = true
 
 func _on_CooldownTimer_timeout():
 	active = true

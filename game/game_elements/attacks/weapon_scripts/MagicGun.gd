@@ -8,21 +8,12 @@ var ready_to_fire = true
 var spread = 0.0 #bullet spread (+/- the given angle IN RADIANS)
 var bullet_number = 1
 var dir = Vector2.RIGHT
-var muzzlePositions = [
-	Vector2(14,15),
-	Vector2(14,15),
-	Vector2(35,15),
-	Vector2(42,17),
-	Vector2(35,15),
-	Vector2(33,24)
-]
 
 var projectile = preload("res://game/game_elements/attacks/projectiles/Bullet.tscn") 
 
 var rng = RandomNumberGenerator.new()
 
 onready var main = get_tree().get_nodes_in_group("player")[0].get_parent()
-onready var weapon = $Weapon
 onready var sprite = $WeaponSprite
 
 func _input(event):
@@ -36,7 +27,6 @@ func _process(_delta):
 		sprite.flip_v = true
 	else:
 		sprite.flip_v = false
-	weapon.rotation = dir
 	sprite.rotation = dir
 	if Input.is_mouse_button_pressed( 1 ) or Input.is_action_pressed("special"):
 		if level != 0:
@@ -52,7 +42,6 @@ func _process(_delta):
 					$Cooldown.start(cooldown_time)
 
 func level_up():
-	$Weapon/Muzzle.position = muzzlePositions[level]
 	level += 1
 	match level:
 		1:

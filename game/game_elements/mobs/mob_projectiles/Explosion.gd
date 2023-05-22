@@ -1,6 +1,6 @@
 extends Area2D
 
-var damage = 40
+var damage = 40 + (50*Globals.selectedLevel)
 
 func _ready():
 	$AnimatedSprite.play("default")
