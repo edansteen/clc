@@ -148,7 +148,7 @@ func boss_defeated():
 func end_game():
 	for m in get_tree().get_nodes_in_group("mobs"):
 			m.queue_free() 
-	for i in range(mob_cap):
+	for i in range(150):
 		spawn_boss(0)
 	
 func _on_CooldownTimer_timeout():

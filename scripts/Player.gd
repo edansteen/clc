@@ -164,6 +164,8 @@ func heal(n):
 		hp = max_hp
 	healthbar.value = hp
 	
+func boost_speed(n):
+	speed += n
 	
 func level_up_player():
 	get_tree().paused = true
