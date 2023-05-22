@@ -7,10 +7,15 @@ var cooldown_time = 1.0
 var ready_to_fire = true
 var spread = 0.0 #bullet spread (+/- the given angle IN RADIANS)
 var bullet_number = 1
+var dir = Vector2.RIGHT
+var muzzlePositions = [
+	Vector2(0,0),
+	Vector2(0,0),
+	Vector2(0,0),
+	Vector2(0,0)
+]
 
 var projectile = preload("res://game/game_elements/attacks/projectiles/Bullet.tscn") 
-
-var dir = Vector2.RIGHT
 
 var rng = RandomNumberGenerator.new()
 

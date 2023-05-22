@@ -73,9 +73,9 @@ func end_game():
 
 func save_game():
 	SaveScript.game_data.highscore = highscore
-	if bossesKilled > 0:
+	if minutes >= 6 and Globals.selectedLevel == 0:
 		SaveScript.game_data.achievement1 = true
-	if minutes >= 10:
+	if minutes >= 6 and Globals.selectedLevel == 1:
 		SaveScript.game_data.achievement2 = true
 	SaveScript.save()
 

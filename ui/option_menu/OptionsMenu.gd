@@ -6,12 +6,18 @@ onready var sfxBus = AudioServer.get_bus_index("SFX")
 #load data
 func _ready():
 	$ConfirmPanel.set_text("Are you sure? This will wipe all your progress.")
+	set_music_volume(SaveScript.game_data.musicVolume)
+	set_sfx_volume(SaveScript.game_data.sfxVolume)
 
 func set_music_volume(v):
 	AudioServer.set_bus_volume_db(musicBus, linear2db(v))
+	SaveScript.game_data.musicVolume = v
+	SaveScript.save()
 	
 func set_sfx_volume(v):
 	AudioServer.set_bus_volume_db(sfxBus, linear2db(v))
+	SaveScript.game_data.sfxVolume = v
+	SaveScript.save()
 	$VBoxContainer/HBoxContainer/Sliders/SFXVolume/SFXTest.play()
 
 

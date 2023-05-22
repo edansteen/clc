@@ -38,8 +38,8 @@ func reset():
 		"oneUnlocked" : false, #BulletRetriever
 		"twoUnlocked" : false, #Turtle
 		"threeUnlocked" : false, #???
-		"musicVolume" : 3,
-		"sfxVolume" : 3
+		"musicVolume" : 0.5,
+		"sfxVolume" : 1
 	}
 	save()
 	print("reset")
