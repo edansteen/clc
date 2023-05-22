@@ -61,6 +61,7 @@ func mob_killed():
 func boss_defeated():
 	bossesKilled += 1
 	spawner.boss_defeated()
+	$EndGameTimer.start(60) #end game in 1 minute
 
 func end_game():
 	game_over = true
@@ -73,9 +74,9 @@ func end_game():
 
 func save_game():
 	SaveScript.game_data.highscore = highscore
-	if minutes >= 6 and Globals.selectedLevel == 0:
+	if Globals.bullsDefeated > 0 and Globals.selectedLevel == 0:
 		SaveScript.game_data.achievement1 = true
-	if minutes >= 6 and Globals.selectedLevel == 1:
+	if Globals.bullsDefeated > 0 and Globals.selectedLevel == 1:
 		SaveScript.game_data.achievement2 = true
 	SaveScript.save()
 
@@ -89,7 +90,7 @@ func _on_GameOverScreenTimer_timeout():
 	$GameOverScreen.make_visible(victory, $Clock/ClockDisplay/TimeDisplay.text)
 
 func _on_SpawnerLevelUpTimer_timeout():
-	#level up every 30 seconds
+	#level up every 45 seconds
 	if spawner_level < 9:
 		spawner_level += 1
 	spawner.set_level(spawner_level)
@@ -105,3 +106,8 @@ func _on_GameOverScreen_quit():
 func _on_SaveTimer_timeout():
 	save_game()
 	$SaveTimer.start(60)
+
+
+func _on_EndGameTimer_timeout():
+	$SpawnerLevelUpTimer.stop()
+	spawner.end_game()

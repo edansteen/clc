@@ -88,8 +88,7 @@ func set_level(n):
 			spawn_probability = [0.0, 0.0 ,0.0 ,0.9, 0.1]
 		8:
 			spawn_probability = [1.0,0.0,0.0,0.0,0.0]
-			for i in range(Globals.selectedLevel+1):
-				spawn_boss(0)
+			spawn_boss(0)
 		9: #spawn mobs at random
 			spawn_probability = [1.0,1.0,1.0,1.0,1.0]
 			mob_cap += 20
@@ -144,7 +143,13 @@ func get_random_position():
 func boss_defeated():
 	mob_cap = 200
 	set_level(9)
-	Globals.bullDefeated = true
+	Globals.bullsDefeated += 1
 
+func end_game():
+	for m in get_tree().get_nodes_in_group("mobs"):
+			m.queue_free() 
+	for i in range(mob_cap):
+		spawn_boss(0)
+	
 func _on_CooldownTimer_timeout():
 	active = true

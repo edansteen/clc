@@ -73,7 +73,7 @@ func _physics_process(delta):
 			
 		elif collision.collider.has_method("hit_for"): #also hit mobs if charging
 			if state == phase.CHARGE or state == phase.SLOW: 
-				collision.collider.hit_for(damage)
+				collision.collider.hit_for(2000)
 
 func hit_for(dmg):
 	if hp >= 0: 

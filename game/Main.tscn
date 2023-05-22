@@ -121,12 +121,11 @@ autostart = true
 wait_time = 60.0
 autostart = true
 
-[node name="VideoPlayer" type="VideoPlayer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="EndGameTimer" type="Timer" parent="."]
 
 [connection signal="gameOver" from="Player" to="." method="_on_Player_gameOver"]
 [connection signal="quit" from="GameOverScreen" to="." method="_on_GameOverScreen_quit"]
 [connection signal="timeout" from="GameOverScreenTimer" to="." method="_on_GameOverScreenTimer_timeout"]
 [connection signal="timeout" from="SpawnerLevelUpTimer" to="." method="_on_SpawnerLevelUpTimer_timeout"]
 [connection signal="timeout" from="SaveTimer" to="." method="_on_SaveTimer_timeout"]
+[connection signal="timeout" from="EndGameTimer" to="." method="_on_EndGameTimer_timeout"]

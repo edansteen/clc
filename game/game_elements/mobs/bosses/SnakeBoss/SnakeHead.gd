@@ -16,7 +16,7 @@ onready var death_effect = preload("res://game/game_elements/mobs/mob_projectile
 onready var sprite = $AnimatedSprite
 
 func _ready():
-	for i in range(length):
+	for _i in range(length):
 		tail.append(body.instance())
 		
 
@@ -40,7 +40,7 @@ func _physics_process(delta):
 		if collision.collider.has_method("hit"): #hit if it's the player
 			collision.collider.hit(damage)
 			
-	for i in range(1, tail.length()):
+	for _i in range(1, tail.length()):
 		pass
 
 func hit_for(dmg):

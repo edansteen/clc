@@ -21,11 +21,11 @@ func _ready():
 	if SaveScript.game_data.achievement1:
 		$LevelMenu/HBoxContainer/LevelTwo.unlock()
 	else:
-		$LevelMenu/HBoxContainer/LevelTwo/Requirement.text = "Survive 6 minutes in Easy mode to unlock"
+		$LevelMenu/HBoxContainer/LevelTwo/Requirement.text = "Defeat a Bull in Easy mode to unlock"
 	if SaveScript.game_data.achievement2:
 		$LevelMenu/HBoxContainer/LevelThree.unlock()
 	else:
-		$LevelMenu/HBoxContainer/LevelThree/Requirement.text = "Survive 6 minutes in Medium mode to unlock"
+		$LevelMenu/HBoxContainer/LevelThree/Requirement.text = "Defeat a Bull in Medium mode to unlock"
 
 func play():
 	SaveScript.save()

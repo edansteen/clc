@@ -61,7 +61,7 @@ func _on_MagicProjectile_body_entered(body):
 	if body.has_method("hit_for"):
 		body.hit_for(damage)
 		piercing -= 1
-		if piercing <= 0:
+		if piercing == 0:
 			$AnimatedSprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished")
 			$AnimatedSprite.play("impact")
 			$CollisionShape2D.set_deferred("disabled", true)

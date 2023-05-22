@@ -30,7 +30,6 @@ func _ready():
 			
 	var n = Globals.selectedCharacter
 	selectOption(n)
-	$VBoxContainer/HBoxContainer/Characters/GridContainer.get_children()[n]
 	
 
 func selectOption(n):
