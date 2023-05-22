@@ -1,6 +1,6 @@
 extends Area2D
 
-var damage = 10.0
+var damage = 15.0
 var speed = 250.0
 var level = 0
 
@@ -8,13 +8,11 @@ var target = Vector2.ZERO
 var angle = Vector2.RIGHT
 var targets_list = [] 
 
-var rng = RandomNumberGenerator.new()
-
 func _ready():
 	var mobs = get_tree().get_nodes_in_group("mobs")
 	if mobs.size() == 0:
 		return null
-	target = mobs[rng.randi_range(mobs.size())]
+	target = mobs[randi() % mobs.size()]
 	look_at(target.global_position)
 	angle = (target.global_position - global_position).normalized()
 
@@ -23,18 +21,18 @@ func set_level(lvl) -> void:
 	level = lvl
 	match lvl:
 		1:
-			damage = 10.0
+			damage = 15.0
 			speed = 300.0
 		2:
-			damage *= 1.5
+			damage = 20
 		3:
-			damage *= 1.5
+			damage = 30
 		4:
-			damage *= 1.5
+			damage = 45
 		5:
-			damage *= 1.5
+			damage = 60
 		6:
-			damage *= 1.5
+			damage = 60
 
 
 func _process(delta):

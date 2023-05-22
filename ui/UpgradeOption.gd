@@ -12,11 +12,18 @@ func get_value():
 
 func set_option(weapon_object):
 	if weapon_object == null:
-		value = -1
-		$VBoxContainer/HBoxContainer/Icon.texture = load("res://assets/sprites/heart_sprite.png")
-		$VBoxContainer/HBoxContainer/Name.text = "Heal"
-		$VBoxContainer/HBoxContainer/LevelIndicator.text = "(Powerup)"
-		$VBoxContainer/Description.text = "Heal for 40 hp"
+		if (randf() > 0.5):
+			value = -1
+			$VBoxContainer/HBoxContainer/Icon.texture = load("res://assets/sprites/heart_sprite.png")
+			$VBoxContainer/HBoxContainer/Name.text = "Heal"
+			$VBoxContainer/HBoxContainer/LevelIndicator.text = "(Powerup)"
+			$VBoxContainer/Description.text = "Heal for 40 hp"
+		else:
+			value = -2
+			$VBoxContainer/HBoxContainer/Icon.texture = load("res://assets/sprites/wingIcon.png")
+			$VBoxContainer/HBoxContainer/Name.text = "Speed Boost"
+			$VBoxContainer/HBoxContainer/LevelIndicator.text = "(Powerup)"
+			$VBoxContainer/Description.text = "+20 Speed"
 	else:
 		$VBoxContainer/HBoxContainer/Icon.texture = load(weapon_object.get_icon())
 		$VBoxContainer/HBoxContainer/Name.text = weapon_object.get_name()

@@ -26,6 +26,7 @@ var weapons_array = [
 	preload("res://game/game_elements/attacks/MagicMissile.tscn"), # magic missile
 	preload("res://game/game_elements/attacks/LaserStrike.tscn"), #laser strike
 	preload("res://game/game_elements/attacks/MagicGun.tscn"), #the magic gun
+	preload("res://game/game_elements/attacks/Fireball.tscn"), #fireball
 ]
 
 # Nodes
@@ -139,6 +140,8 @@ func _physics_process(delta):
 func level_up_weapon(weapon_index):
 	if weapon_index == -1:
 		heal(40)
+	elif weapon_index == -2:
+		boost_speed(20)
 	elif weapon_index < weapons_array.size():
 		weapons_array[weapon_index].level_up()
 	else:
