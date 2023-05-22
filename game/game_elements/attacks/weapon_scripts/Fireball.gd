@@ -34,7 +34,7 @@ func get_name():
 	return "Fireball"
 	
 func get_icon():
-	return "res://assets/weaponArt/fireball/FB001.png"
+	return "res://assets/weaponArt/weapon_icons/fireballIcon.png"
 
 func get_level():
 	return level
