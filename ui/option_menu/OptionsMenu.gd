@@ -29,8 +29,9 @@ func _on_ConfirmPanel_confirm():
 	SaveScript.reset()
 	$ConfirmationBlock.set_deferred("visible", false)
 	$ConfirmPanel.set_deferred("visible", false)
-	get_tree().reload_current_scene()
-
+	var error = get_tree().reload_current_scene()
+	if error != OK:
+		print(error)
 
 func _on_ConfirmPanel_back():
 	$ConfirmationBlock.set_deferred("visible", false)

@@ -100,8 +100,9 @@ func _on_SpawnerLevelUpTimer_timeout():
 func _on_GameOverScreen_quit():
 	save_game()
 	get_tree().paused = false
-	get_tree().change_scene("res://TitleScreen.tscn")
-
+	var error =get_tree().change_scene("res://TitleScreen.tscn")
+	if error != OK:
+		print("error")
 
 #save the game every minute
 func _on_SaveTimer_timeout():
