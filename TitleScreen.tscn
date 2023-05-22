@@ -48,7 +48,7 @@ margin_right = 1034.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 600, 100 )
 custom_fonts/font = SubResource( 2 )
-text = "Robo-Wars"
+text = "Droidpocalypse"
 align = 1
 valign = 1
 
