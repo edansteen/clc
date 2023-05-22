@@ -70,7 +70,7 @@ func get_level():
 func get_desc():
 	match (level):
 		0:
-			return "Summons orbs that rotate around the player, damaging \nenemies."
+			return "Summons orbs that rotate around the player,\ndamaging enemies."
 		1:
 			return "+1 Orb"
 		2:

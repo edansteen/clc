@@ -10,8 +10,12 @@ config_version=4
 
 [application]
 
-config/name="CLC"
+config/name="Droidpocalypse"
+config/description="An army of robots has taken over the world! Choose from a menagerie of characters as you try to survive as long as you can.
+
+Created by Edan Steen for a highschool capstone project"
 run/main_scene="res://TitleScreen.tscn"
+config/icon="res://assets/projectArt/gameIcon.png"
 
 [autoload]
 

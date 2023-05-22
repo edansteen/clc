@@ -42,7 +42,7 @@ func get_level():
 func get_desc():
 	match level:
 		0:
-			return "Shoots a fireball at a random enemy every 4 seconds"
+			return "Shoots a fireball at a random enemy every\n4 seconds"
 		1:
 			return "Cooldown -0.5 seconds."
 		2:

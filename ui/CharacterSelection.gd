@@ -67,7 +67,7 @@ func selectOption(n):
 		3: #???
 			if SaveScript.game_data.threeUnlocked:
 				sprite.material.set_shader_param("flashState",0)
-				name = "53!8o0b"
+				name = "The Unknown"
 				details = "HP: 1, Speed: 300, Cosmic Orbs lvl. 6"
 				desc = "A being of cosmic origin. Even the Gods quake in it's presence."
 			else:
