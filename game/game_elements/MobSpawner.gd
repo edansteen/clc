@@ -3,6 +3,7 @@ extends Node2D
 export var active: bool = false
 
 #difficulty level
+var difficulty = Globals.selectedLevel
 var mob_cap: int = 50 #maximum number of mobs that can be spawned
 var spawn_delay: float = 1.0 #in s
 var max_distance = 3000.0
@@ -60,34 +61,50 @@ func set_active(b):
 func set_level(n):
 	match n:
 		1:
-			spawn_delay = 0.8
-			mob_cap = 50
-			spawn_probability = [1.0, 0.0, 0.0, 0.0, 0.0]
+			match (difficulty):
+				0:
+					spawn_delay = 0.8
+					mob_cap = 50
+					spawn_probability = [1.0, 0.0, 0.0, 0.0, 0.0]
 		2: 
-			spawn_delay = 0.6
-			mob_cap = 80
-			spawn_probability = [0.75, 0.25, 0.0, 0.0, 0.0]
+			match (difficulty):
+				0:
+					spawn_delay = 0.6
+					mob_cap = 80
+					spawn_probability = [0.75, 0.25, 0.0, 0.0, 0.0]
 		3:
-			spawn_delay = 0.4
-			mob_cap = 120
-			spawn_probability = [0.6, 0.1, 0.3, 0.0, 0.0]
+			match (difficulty):
+				0:
+					spawn_delay = 0.4
+					mob_cap = 120
+					spawn_probability = [0.6, 0.1, 0.3, 0.0, 0.0]
 		4:
-			spawn_delay = 0.2
-			mob_cap = 120
-			spawn_probability = [0.1, 0.8, 0.9, 0.0, 0.0]
+			match (difficulty):
+				0:
+					spawn_delay = 0.2
+					mob_cap = 120
+					spawn_probability = [0.1, 0.8, 0.9, 0.0, 0.0]
 		5:
-			spawn_delay = 0.1
-			mob_cap = 150
-			spawn_probability = [1.0,1.0,1.0,0.1, 0.0]
+			match (difficulty):
+				0:
+					spawn_delay = 0.1
+					mob_cap = 150
+					spawn_probability = [1.0,1.0,1.0,0.1, 0.0]
 		6:
-			spawn_delay = 0.05
-			mob_cap = 200
-			spawn_probability = [1.0 ,0.0 ,0.0 , 0.5, 0.0]
+			match (difficulty):
+				0:
+					spawn_delay = 0.05
+					mob_cap = 200
+					spawn_probability = [1.0 ,0.0 ,0.0 , 0.5, 0.0]
 		7:
-			spawn_probability = [0.0, 0.0 ,0.0 ,0.9, 0.1]
+			match (difficulty):
+				0:
+					spawn_probability = [0.0, 0.0 ,0.0 ,0.9, 0.1]
 		8:
-			spawn_probability = [1.0,0.0,0.0,0.0]
-			spawn_boss(0)
+			match (difficulty):
+				0:
+					spawn_probability = [1.0,0.0,0.0,0.0]
+					spawn_boss(0)
 		9: #spawn mobs at random
 			set_active(true)
 			for i in spawn_probability:
@@ -98,7 +115,7 @@ func set_level(n):
 
 func spawn_boss(n):
 	var b = bosses[n].instance()
-	b.global_position = Vector2(player.global_position.x + 500, player.global_position.y)
+	b.global_position = get_random_position()
 	$Bosses.call_deferred("add_child", b)
 
 #Select which mob to spawn based on probability

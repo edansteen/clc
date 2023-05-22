@@ -14,7 +14,7 @@ var bossesKilled = 0
 
 var time_till_boss = 300
 var game_over = false
-var victory = false #achieved by surviving 20 minutes
+var victory = false #achieved by surviving 10 minutes
 
 onready var clock = $Clock/ClockDisplay/TimeDisplay
 onready var spawner = $MobSpawner
