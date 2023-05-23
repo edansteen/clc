@@ -39,6 +39,7 @@ func set_option(weapon_object):
 				$VBoxContainer/Description.text = "+10% Damage"
 				Globals.powerupsShown[2] = true
 				valid = true
+			$VBoxContainer/HBoxContainer/Name.add_color_override("font_color", Color("ffffff"))
 	else:
 		$VBoxContainer/HBoxContainer/Icon.texture = load(weapon_object.get_icon())
 		$VBoxContainer/HBoxContainer/Name.text = weapon_object.get_name()

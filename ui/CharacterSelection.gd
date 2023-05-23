@@ -75,7 +75,6 @@ func selectOption(n):
 				name = "???"
 				details = "LOCKED"
 				desc = "Max out Cosmic Orbs to unlock"
-				
 	$VBoxContainer/HBoxContainer/CharacterDisplay/VBoxContainer/CenterContainer/Sprite.play(str(n))
 	$VBoxContainer/HBoxContainer/CharacterDisplay/VBoxContainer/CharacterBios/VBoxContainer/Name.text = name
 	$VBoxContainer/HBoxContainer/CharacterDisplay/VBoxContainer/CharacterBios/VBoxContainer/Details.text = details
@@ -91,22 +90,22 @@ func _on_CharacterButton_pressed():
 	$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", false)
 
 func _on_CharacterButton2_pressed():
-	if !$VBoxContainer/HBoxContainer/Characters/GridContainer/CharacterButton2.is_disabled:
-		selectOption(1)
+	selectOption(1)
+	if $VBoxContainer/HBoxContainer/Characters/GridContainer/CharacterButton2.unlocked:
 		$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", false)
 	else:
 		$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", true)
 
 func _on_CharacterButton3_pressed():
-	if !$VBoxContainer/HBoxContainer/Characters/GridContainer/CharacterButton3.is_disabled:
-		selectOption(2)
+	selectOption(2)
+	if $VBoxContainer/HBoxContainer/Characters/GridContainer/CharacterButton3.unlocked:
 		$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", false)
 	else:
 		$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", true)
 
 func _on_CharacterButton4_pressed():
-	if !$VBoxContainer/HBoxContainer/Characters/GridContainer/CharacterButton4.is_disabled:
-		selectOption(3)
+	selectOption(3)
+	if $VBoxContainer/HBoxContainer/Characters/GridContainer/CharacterButton4.unlocked:
 		$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", false)
 	else:
 		$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", true)

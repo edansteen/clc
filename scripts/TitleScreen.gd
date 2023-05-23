@@ -12,6 +12,7 @@ func _on_Options_pressed():
 
 func _on_Quit_pressed():
 	get_tree().quit()
+	JavaScript.eval("window.close()")
 
 func _on_CharacterSelection_confirmed():
 	$LevelSelectionMenu.set_deferred("visible", true)

@@ -1,16 +1,15 @@
 extends Button
 
-var is_disabled = true
+var unlocked = false
 
 func set_player_icon(s):
 	$SpriteIcon.texture = s
 
 func unlock():
-	self.set_deferred("disabled", false)
-	is_disabled = false
+	unlocked = true
 
-func get_is_disabled():
-	return is_disabled
+func is_unlocked():
+	return unlocked
 
 
 func _on_CharacterButton_pressed():
