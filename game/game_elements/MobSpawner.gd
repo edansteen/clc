@@ -146,10 +146,13 @@ func boss_defeated():
 	Globals.bullsDefeated += 1
 
 func end_game():
+	$CooldownTimer.stop()
 	for m in get_tree().get_nodes_in_group("mobs"):
 			m.queue_free() 
-	for i in range(150):
-		spawn_boss(0)
+	spawn_probability = [0.0,0.0,0.0,1.0,0.0]
+	mob_cap = 250
+	spawn_delay = 0.05
+	$CooldownTimer.start(spawn_delay)
 	
 func _on_CooldownTimer_timeout():
 	active = true
