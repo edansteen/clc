@@ -71,6 +71,9 @@ func get_desc():
 			SaveScript.save()
 			return "Damage +100%, Area +5%"
 			
+func boost_damage(multiplier):
+	damage *= multiplier
+			
 func _on_Field_body_entered(body):
 	if !enemies_in_range.has(body):
 		if body.has_method("hit_for"):

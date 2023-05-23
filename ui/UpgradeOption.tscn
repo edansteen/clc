@@ -71,3 +71,5 @@ margin_top = 54.0
 margin_right = 345.0
 margin_bottom = 68.0
 text = "Brief description of what it does"
+
+[connection signal="pressed" from="." to="." method="_on_UpgradeOption_pressed"]

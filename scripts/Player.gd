@@ -142,6 +142,8 @@ func level_up_weapon(weapon_index):
 		heal(40)
 	elif weapon_index == -2:
 		boost_speed(20)
+	elif weapon_index == -3:
+		Globals.damageMultiplier *= 1.1
 	elif weapon_index < weapons_array.size():
 		weapons_array[weapon_index].level_up()
 	else:
