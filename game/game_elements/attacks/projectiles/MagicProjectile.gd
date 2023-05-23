@@ -48,6 +48,8 @@ func set_level(lvl) -> void:
 		6:
 			damage *= 1.5
 			piercing = 4
+	damage *= Globals.damageMultiplier
+			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	global_position += angle*speed*delta

@@ -1,7 +1,7 @@
 extends Node2D
 
 var level = 0
-var orb_count = 1 #number of orbs
+var orb_count = 2 #number of orbs
 var damage = 8.0
 var rotation_speed = 0.03
 var orb_size = 1.0
@@ -27,11 +27,12 @@ func level_up():
 			orb_size = 1.0
 			radius = 90
 		2:
-			damage = 12
+			damage = 12.0
 			orb_count = 3
 			rotation_speed = 0.05
 			radius = 100
 		3:
+			damage = 15.0
 			orb_count = 4
 		4:
 			orb_count = 5
@@ -41,7 +42,7 @@ func level_up():
 			SaveScript.game_data.threeUnlocked = true
 			SaveScript.save()
 			orb_count = 7
-	
+	damage *= Globals.damageMultiplier
 	for i in range(orb_count):
 			#add to array, position, and place in scene
 			angle = (2*PI)/orb_count * (i)
@@ -49,7 +50,6 @@ func level_up():
 			orbs[i].position = $OriginPoint.position + Vector2(cos(angle), sin(angle)) * radius
 			orbs[i].set_level(level, 1.0)
 			call_deferred("add_child",orbs[i])
-
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -57,6 +57,9 @@ func _process(_delta):
 	for o in orbs:
 		o.position = p + (o.position - p).rotated(rotation_speed)
 
+func boost_damage():
+	level -= 1
+	level_up()
 
 func get_name():
 	return "Cosmic Orbs"

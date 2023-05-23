@@ -33,6 +33,7 @@ func set_level(lvl) -> void:
 			damage = 60
 		6:
 			damage = 60
+	damage *= Globals.damageMultiplier
 
 
 func _process(delta):

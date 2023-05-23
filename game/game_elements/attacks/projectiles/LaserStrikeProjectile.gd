@@ -17,7 +17,11 @@ func set_level(lvl):
 		1:
 			damage = 20.0
 			area = 1.0
-
+		2:
+			damage = 25.0
+		3:
+			damage = 30.0
+	damage += Globals.damageMultiplier
 
 func _on_Duration_timeout():
 	queue_free()

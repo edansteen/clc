@@ -144,6 +144,9 @@ func level_up_weapon(weapon_index):
 		boost_speed(20)
 	elif weapon_index == -3:
 		Globals.damageMultiplier *= 1.1
+		for w in $Weapons.get_children():
+			if w.has_method("boost_damage"):
+				w.boost_damage()
 	elif weapon_index < weapons_array.size():
 		weapons_array[weapon_index].level_up()
 	else:
@@ -171,6 +174,7 @@ func heal(n):
 	
 func boost_speed(n):
 	speed += n
+	
 	
 func level_up_player():
 	get_tree().paused = true

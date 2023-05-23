@@ -18,6 +18,7 @@ func set_level(lvl) -> void:
 			area = 1.0
 			knockback = 30.0
 			piercing = 1
+	damage *= Globals.damageMultiplier
 
 
 func set_dir(angle):

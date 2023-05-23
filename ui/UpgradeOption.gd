@@ -21,20 +21,23 @@ func set_option(weapon_object):
 				$VBoxContainer/HBoxContainer/Name.text = "Heal"
 				$VBoxContainer/HBoxContainer/LevelIndicator.text = "(Powerup)"
 				$VBoxContainer/Description.text = "Heal for 40 hp"
+				Globals.powerupsShown[0] = true
 				valid = true
-			elif n >= 0.4 and n < 7 and !Globals.powerupsShown[1]:
+			elif n >= 0.4 and n < 0.75 and !Globals.powerupsShown[1]:
 				value = -2
 				$VBoxContainer/HBoxContainer/Icon.texture = load("res://assets/sprites/wingIcon.png")
 				$VBoxContainer/HBoxContainer/Name.text = "Speed Boost"
 				$VBoxContainer/HBoxContainer/LevelIndicator.text = "(Powerup)"
 				$VBoxContainer/Description.text = "+20 Speed"
+				Globals.powerupsShown[1] = true
 				valid = true
-			elif n >= 7 and !Globals.powerupsShown[2]:
+			elif n >= 0.75 and !Globals.powerupsShown[2]:
 				value = -3
 				$VBoxContainer/HBoxContainer/Icon.texture = load("res://assets/sprites/roboflex.png")
 				$VBoxContainer/HBoxContainer/Name.text = "Damage Boost"
 				$VBoxContainer/HBoxContainer/LevelIndicator.text = "(Powerup)"
 				$VBoxContainer/Description.text = "+10% Damage"
+				Globals.powerupsShown[2] = true
 				valid = true
 	else:
 		$VBoxContainer/HBoxContainer/Icon.texture = load(weapon_object.get_icon())
