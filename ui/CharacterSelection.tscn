@@ -276,6 +276,7 @@ custom_styles/pressed = ExtResource( 13 )
 custom_styles/focus = ExtResource( 13 )
 custom_styles/disabled = ExtResource( 13 )
 custom_styles/normal = ExtResource( 13 )
+disabled = true
 text = "Confirm >"
 
 [node name="BackButton" parent="." instance=ExtResource( 1 )]

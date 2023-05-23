@@ -88,12 +88,26 @@ func _on_ConfirmButton_pressed():
 
 func _on_CharacterButton_pressed():
 	selectOption(0)
+	$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", false)
 
 func _on_CharacterButton2_pressed():
-	selectOption(1)
+	if !$VBoxContainer/HBoxContainer/Characters/GridContainer/CharacterButton2.is_disabled:
+		selectOption(1)
+		$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", false)
+	else:
+		$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", true)
 
 func _on_CharacterButton3_pressed():
-	selectOption(2)
+	if !$VBoxContainer/HBoxContainer/Characters/GridContainer/CharacterButton3.is_disabled:
+		selectOption(2)
+		$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", false)
+	else:
+		$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", true)
 
 func _on_CharacterButton4_pressed():
-	selectOption(3)
+	if !$VBoxContainer/HBoxContainer/Characters/GridContainer/CharacterButton4.is_disabled:
+		selectOption(3)
+		$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", false)
+	else:
+		$VBoxContainer/HBoxContainer/Characters/ConfirmButton.set_deferred("disabled", true)
+

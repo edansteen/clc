@@ -75,9 +75,9 @@ func end_game():
 
 func save_game():
 	SaveScript.game_data.highscore = highscore
-	if Globals.bullsDefeated > 0 and Globals.selectedLevel == 0:
+	if bossesKilled > 0 and Globals.selectedLevel == 0:
 		SaveScript.game_data.achievement1 = true
-	if Globals.bullsDefeated > 0 and Globals.selectedLevel == 1:
+	if bossesKilled > 0 and Globals.selectedLevel == 1:
 		SaveScript.game_data.achievement2 = true
 	SaveScript.save()
 

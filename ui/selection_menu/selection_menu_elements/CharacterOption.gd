@@ -7,6 +7,7 @@ func set_player_icon(s):
 
 func unlock():
 	self.set_deferred("disabled", false)
+	is_disabled = false
 
 func get_is_disabled():
 	return is_disabled

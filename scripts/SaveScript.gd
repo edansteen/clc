@@ -34,11 +34,10 @@ func reset():
 		"highscore" : 0.0,
 		"achievement1" : false,
 		"achievement2" : false,
-		"activeLevel" : 0,
 		"oneUnlocked" : false, #BulletRetriever
 		"twoUnlocked" : false, #Turtle
 		"threeUnlocked" : false, #???
-		"musicVolume" : 0.5,
+		"musicVolume" : 1,
 		"sfxVolume" : 1
 	}
 	save()
