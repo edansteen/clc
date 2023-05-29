@@ -20,17 +20,19 @@ onready var clock = $Clock/ClockDisplay/TimeDisplay
 onready var spawner = $MobSpawner
 
 # Load level based on which is active
-func _ready():
-	highscore = SaveScript.game_data.highscore
-	set_highscore(highscore)
+func _ready():	
 	$Background.set_bg(selectedLevel)
 	match (selectedLevel):
 		0:
+			highscore = SaveScript.game_data.highscore
 			$Music/Music1.play()
 		1:
+			highscore = SaveScript.game_data.highscoreMed
 			$Music/Music2.play()
 		2:
+			highscore = SaveScript.game_data.highscoreHard
 			$Music/Music3.play()
+	set_highscore(highscore)
 	spawner.set_active(true)
 	time = 0.0
 	seconds = 0
@@ -74,7 +76,13 @@ func end_game():
 	$GameOverScreenTimer.start(1.0)
 
 func save_game():
-	SaveScript.game_data.highscore = highscore
+	match Globals.selectedLevel:
+		0:
+			SaveScript.game_data.highscore = highscore
+		1:
+			SaveScript.game_data.highscoreMed = highscore
+		2:
+			SaveScript.game_data.highscoreHard = highscore
 	if bossesKilled > 0 and Globals.selectedLevel == 0:
 		SaveScript.game_data.achievement1 = true
 	if bossesKilled > 0 and Globals.selectedLevel == 1:

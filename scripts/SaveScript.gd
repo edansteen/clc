@@ -32,6 +32,8 @@ func load_data():
 func reset():
 	game_data = {
 		"highscore" : 0.0,
+		"highscoreMed" : 0.0,
+		"highscoreHard" : 0.0,
 		"achievement1" : false,
 		"achievement2" : false,
 		"oneUnlocked" : false, #BulletRetriever
